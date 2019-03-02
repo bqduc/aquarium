@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ErpApplication {
+public class AquariumApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ErpApplication.class, args);
+		SpringApplication.run(AquariumApplication.class, args);
 	}
 }
