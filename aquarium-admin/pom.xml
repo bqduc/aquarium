@@ -9,7 +9,7 @@
         <version>0.1</version>
     </parent>
     
-	<artifactId>aquariums-admin</artifactId>
+	<artifactId>aquarium-admin</artifactId>
 	<!-- <version>0.1</version> -->
 	<packaging>war</packaging>
 
@@ -25,7 +25,7 @@
 	<!-- Business inside modules -->
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>aquariums-service</artifactId>
+            <artifactId>aquarium-service</artifactId>
             <version>${project.version}</version>
         </dependency>	
 	<!-- End of business inside modules -->
