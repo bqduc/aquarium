@@ -10,6 +10,7 @@
     </parent>
     
 	<artifactId>aquariums-admin</artifactId>
+	<!-- <version>0.1</version> -->
 	<packaging>war</packaging>
 
 	<description>Demo project for Spring Boot</description>
