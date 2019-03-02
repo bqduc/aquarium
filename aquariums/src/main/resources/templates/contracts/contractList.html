@@ -1,0 +1,40 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorator="layout">
+<th:block layout:fragment="content">
+  <head>
+
+  </head>
+  <body>
+  <div>
+    <a th:href="@{/contracts/new}" class="btn btn-primary" type="submit">Create Contract</a>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th>Refence</th>
+        <th>Customer</th>
+        <th>Supplier</th>
+        <th>Third Party</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="contract:${contracts}" th:object="${contract}">
+        <td th:text="*{reference}"></td>
+        <td th:text="*{customer}"></td>
+        <td th:text="*{supplier}"></td>
+        <td th:text="*{thirdParty}"></td>
+        <td>
+          <form method="post" th:action="@{'/contracts/' + ${contract.id} + '/delete'}">
+            <button class="btn btn-danger">Delete</button>
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  </body>
+</th:block>
+</html>

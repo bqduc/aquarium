@@ -1,0 +1,74 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorator="layout">
+<th:block layout:fragment="content">
+  <body>
+  <div>
+    <form method="post" th:action="@{/suppliers/new}" th:object="${supplier}">
+
+      <div class="form-group">
+        <label for="reference">Ref.</label>
+        <input class="form-control" type="text" id="reference" th:field="*{reference}"/>
+      </div>
+
+
+      <div class="form-group">
+        <label for="supplierReference">Ref. supplier</label>
+        <input class="form-control" type="text" id="supplierReference" th:field="*{supplierReference}"/>
+      </div>
+
+      <div class="form-group">
+        <label for="paymentTerms">Payment Terms</label>
+        <select class="form-control" id="paymentTerms" th:field="*{paymentTerms}">
+          <option value=""></option>
+          <option
+              th:each="paymentTerms :${T(com.gitlab.adilcan.erp.commercial.enumeration.PaymentTerms).values()}"
+              th:value="${paymentTerms}"
+              th:text="${paymentTerms}">
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="paymentTypes">Payment type</label>
+        <select class="form-control" id="paymentTypes" th:field="*{paymentTypes}">
+          <option value=""></option>
+          <option
+              th:each="paymentTypes :${T(com.gitlab.adilcan.erp.commercial.enumeration.PaymentTypes).values()}"
+              th:value="${paymentTypes}"
+              th:text="${paymentTypes}">
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="plannedDeliveryDate">Planned date of delivery</label>
+        <input class="form-control" type="date" id="plannedDeliveryDate" th:field="*{plannedDeliveryDate}"/>
+      </div>
+
+      <div class="form-group">
+        <label for="publicNote">Public Note</label>
+        <input class="form-control" type="text" id="publicNote" th:field="*{publicNote}"/>
+      </div>
+
+      <div class="form-group">
+        <label for="privateNote">Private Note</label>
+        <input class="form-control" type="text" id="privateNote" th:field="*{privateNote}"/>
+      </div>
+
+      <div class="form-group">
+        <label for="currency">Currency</label>
+        <select class="form-control" id="currency" th:field="*{currency}">
+          <option value=""></option>
+          <option
+              th:each="currency : ${T(com.gitlab.adilcan.erp.commercial.enumeration.Currency).values()}"
+              th:value="${currency}"
+              th:text="${currency}">
+          </option>
+        </select>
+      </div>
+
+      <button class="btn btn-primary" type="submit">Create</button>
+    </form>
+  </div>
+  </body>
+</th:block>
+</html>
