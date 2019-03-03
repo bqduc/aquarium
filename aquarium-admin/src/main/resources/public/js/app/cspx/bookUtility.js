@@ -1,7 +1,7 @@
 var vnLanguageUrl = "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Vietnamese.json";
 var enLanguageUrl = "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/English.json";
 
-var contextPrefix = '/rapi/cspxBook/';
+var contextPrefix = '/rapi/book/';
 var currentLanguageUrl = vnLanguageUrl;
 var dataTableObject;
 var objectTableId = '#bizObjectTable';

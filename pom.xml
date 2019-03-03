@@ -30,12 +30,14 @@
         <lombok.version>1.18.6</lombok.version>
         <javax.inject.version>1</javax.inject.version>
         <jackson-jaxrs-base.version>2.9.8</jackson-jaxrs-base.version>
+        <validation-api.version>2.0.1.Final</validation-api.version>
     </properties>
  
     <modules>
         <module>aquarium-common</module>
         <module>aquarium-service</module>
         <module>aquarium-core</module>
+        <module>aquarium-community</module>
         <module>aquarium-admin</module>
     </modules>
  

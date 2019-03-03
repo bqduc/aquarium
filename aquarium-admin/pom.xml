@@ -35,6 +35,12 @@
             <artifactId>aquarium-service</artifactId>
             <version>${project.version}</version>
         </dependency>	
+
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>aquarium-community</artifactId>
+            <version>${project.version}</version>
+        </dependency>	
 	<!-- End of business inside modules -->
 
 		<dependency>
