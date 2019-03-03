@@ -1,11 +1,11 @@
-package com.sunrise.service_product;
+package com.sunrise.stock;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import com.sunrise.service_product.Tag;
-import com.sunrise.service_product.TagRepository;
+import com.sunrise.stock.Tag;
+import com.sunrise.stock.TagRepository;
 
 import org.springframework.stereotype.Controller;
 

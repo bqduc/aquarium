@@ -1,10 +1,10 @@
-package com.sunrise.service_product;
+package com.sunrise.stock;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.sunrise.service_product.enumeration.PurchaseStatus;
-import com.sunrise.service_product.enumeration.SaleStatus;
+import com.sunrise.stock.enumeration.PurchaseStatus;
+import com.sunrise.stock.enumeration.SaleStatus;
 
 import java.util.List;
 

@@ -20,6 +20,7 @@ public class HomeController {
 	
 	@GetMapping("")
 	public String getHome(){
-		return "index";
+		System.out.println("Engine: " + globalServiceEngine.getEngine());
+		return "pages/public/dashboard/master";//"index";
 	}
 }

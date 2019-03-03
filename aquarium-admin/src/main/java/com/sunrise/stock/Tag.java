@@ -1,4 +1,4 @@
-package com.sunrise.service_product;
+package com.sunrise.stock;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

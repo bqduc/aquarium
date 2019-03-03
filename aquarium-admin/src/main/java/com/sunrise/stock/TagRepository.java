@@ -1,4 +1,4 @@
-package com.sunrise.service_product;
+package com.sunrise.stock;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

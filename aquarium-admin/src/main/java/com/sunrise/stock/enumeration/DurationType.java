@@ -1,4 +1,4 @@
-package com.sunrise.service_product.enumeration;
+package com.sunrise.stock.enumeration;
 
 /**
  * Created on January, 2018

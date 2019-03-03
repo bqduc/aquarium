@@ -1,4 +1,4 @@
-package com.sunrise.service_product.api;
+package com.sunrise.stock.api;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,8 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import com.sunrise.service_product.Tag;
-import com.sunrise.service_product.TagRepository;
+import com.sunrise.stock.Tag;
+import com.sunrise.stock.TagRepository;
 
 import javax.persistence.EntityListeners;
 import java.util.Optional;

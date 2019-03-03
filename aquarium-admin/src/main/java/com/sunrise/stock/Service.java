@@ -1,4 +1,4 @@
-package com.sunrise.service_product;
+package com.sunrise.stock;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,7 +7,7 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.URL;
 
 import com.sunrise.domain.BaseEntity;
-import com.sunrise.service_product.enumeration.*;
+import com.sunrise.stock.enumeration.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Lob;
