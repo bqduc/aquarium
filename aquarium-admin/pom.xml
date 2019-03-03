@@ -10,7 +10,7 @@
     </parent>
     
 	<artifactId>aquarium-admin</artifactId>
-	<!-- <version>0.1</version> -->
+	<version>0.1</version>
 	<packaging>war</packaging>
 
 	<description>Demo project for Spring Boot</description>
@@ -29,6 +29,7 @@
             <version>${project.version}</version>
         </dependency>	
 	<!-- End of business inside modules -->
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -45,6 +46,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+
 		<!-- database dependencies -->
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -54,19 +56,16 @@
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>42.1.4</version>
+			<version>42.2.5</version>
 		</dependency>
 		<!-- End of database dependencies -->
+
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>

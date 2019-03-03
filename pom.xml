@@ -22,9 +22,12 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        
+        <commons-lang.version>2.6</commons-lang.version>
     </properties>
  
     <modules>
+        <module>aquarium-common</module>
         <module>aquarium-service</module>
         <module>aquarium-admin</module>
     </modules>
