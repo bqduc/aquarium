@@ -10,7 +10,7 @@
     </parent>
     
 	<artifactId>aquarium-admin</artifactId>
-	<version>0.1</version>
+	<!-- <version>0.1</version> -->
 	<packaging>war</packaging>
     <name>Aquarium - Administration</name>
 

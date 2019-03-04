@@ -3,23 +3,18 @@
  */
 package net.brilliance.framework.specifications;
 
-import javax.inject.Inject;
-
 import org.springframework.data.jpa.domain.Specification;
 
 import net.brilliance.common.CommonUtility;
-import net.brilliance.framework.logging.LogService;
+import net.brilliance.framework.component.ComponentRoot;
 import net.brilliance.framework.model.SearchParameter;
 
 /**
  * @author ducbq
  *
  */
-public abstract class BaseSpecification<UserType, UserRequest> {
+public abstract class BaseSpecification<UserType, UserRequest> extends ComponentRoot {
   public abstract Specification<UserType> getFilter(UserRequest request);
-
-  @Inject
-  protected LogService log;
 
   protected String containsLowerCase(String searchField) {
   	return new StringBuilder()

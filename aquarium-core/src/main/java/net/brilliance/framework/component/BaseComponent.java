@@ -3,22 +3,13 @@
  */
 package net.brilliance.framework.component;
 
-import java.io.Serializable;
-
-import javax.inject.Inject;
-
-import net.brilliance.framework.logging.LogService;
-
 /**
  * @author ducbq
  *
  */
-public abstract class BaseComponent implements Serializable {
+public abstract class BaseComponent extends ComponentRoot {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 2761943656319335197L;
-
-	@Inject
-	protected LogService log;
 }

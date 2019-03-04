@@ -5,22 +5,22 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import javax.inject.Inject;
-
 import org.springframework.core.io.ClassPathResource;
 
 import lombok.Builder;
 import net.brilliance.common.ListUtility;
 import net.brilliance.exceptions.EcosysException;
-import net.brilliance.framework.logging.LogService;
+import net.brilliance.framework.component.ComponentRoot;
 import net.brilliance.model.SimpleDataContainer;
 import net.brilliance.model.base.IDataContainer;
 
 
 @Builder
-public class GlobalDataServicesRepository {
-	@Inject 
-	private LogService log;
+public class GlobalDataServicesRepository extends ComponentRoot {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4103738524977948563L;
 
 	public IDataContainer<String> readCsvFile(InputStream inputStream, boolean processColumnHeaders, String separator) throws EcosysException {
 		IDataContainer<String> dataContainer = null;

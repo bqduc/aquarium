@@ -3,19 +3,20 @@
  */
 package net.brilliance.framework.runnable;
 
-import javax.inject.Inject;
-
-import net.brilliance.framework.logging.LogService;
+import net.brilliance.framework.component.ComponentRoot;
 import net.brilliance.framework.model.ExecutionContext;
 
 /**
  * @author ducbq
  *
  */
-public abstract class RunnableBase implements Runnable {
-	@Inject 
-	protected LogService log;
+public abstract class RunnableBase extends ComponentRoot implements Runnable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7087174224187449778L;
+	
 	private ExecutionContext context;
 
 	@Override

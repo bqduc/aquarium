@@ -8,18 +8,20 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.context.MessageSource;
 
-import net.brilliance.framework.logging.LogService;
+import net.brilliance.framework.component.ComponentRoot;
 
 /**
  * @author ducbq
  *
  */
-public abstract class RootController {
-  protected static final String  DEFAULT_PAGE_SIZE = "100";
-  protected static final String DEFAULT_PAGE_NUM = "0";
+public abstract class RootController extends ComponentRoot {
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = -2445529753237451206L;
 
-  @Inject
-	protected LogService log;
+	protected static final String  DEFAULT_PAGE_SIZE = "100";
+  protected static final String DEFAULT_PAGE_NUM = "0";
 
 	@Inject
 	protected MessageSource messageSource;

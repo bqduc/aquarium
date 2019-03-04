@@ -26,6 +26,7 @@ public class BookController extends BaseController {
 
 	@Override
 	protected String loadDefault(Model model, HttpServletRequest request) {
+		System.out.println("Book");
 		System.out.println("Number of books in repository: " + bookService.count());
 		return "pages/cspx/bookBrowse";
 	}

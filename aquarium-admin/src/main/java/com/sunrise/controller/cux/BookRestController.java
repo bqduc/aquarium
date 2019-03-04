@@ -30,7 +30,7 @@ import net.sunrise.service.BookService;
 
 @RequestMapping(CommonConstants.REST_API + "book/")
 @RestController
-public class CspxBookRestController extends BaseRestController<Book>{
+public class BookRestController extends BaseRestController<Book>{
 	private final static String CACHE_OBJECTS_KEY = "cached.books";
 
 	@Inject
