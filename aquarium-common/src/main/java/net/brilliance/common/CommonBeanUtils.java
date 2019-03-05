@@ -13,8 +13,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
+
 import org.apache.commons.beanutils.BeanUtils;
-import lombok.extern.slf4j.Slf4j;
+
+import com.sun.javafx.fxml.PropertyNotFoundException;
 
 /**
  * @author ducbq
@@ -58,6 +60,14 @@ public class CommonBeanUtils {
     	//System.out.println("Property with Name: " + propName + " and Type: " + propType);
     }
 		return propertyNames;
+	}
+
+	public static Object getBeanProperty(Object bean, String propertyNames)
+      throws
+          NoSuchMethodException,
+          InvocationTargetException,
+          IllegalAccessException {
+		return getObjectAttribute(bean, propertyNames);
 	}
 
 	/**

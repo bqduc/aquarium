@@ -41,6 +41,12 @@
             <artifactId>aquarium-community</artifactId>
             <version>${project.version}</version>
         </dependency>	
+
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>aquarium-dmx</artifactId>
+            <version>${project.version}</version>
+        </dependency>	
 	<!-- End of business inside modules -->
 
 		<dependency>
@@ -66,12 +72,19 @@
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>42.2.5</version>
 		</dependency>
 		<!-- End of database dependencies -->
+
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.6.2</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>

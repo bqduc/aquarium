@@ -49,6 +49,10 @@ public class ListUtility {
 		return new HashSet<>();
 	}
 
+	public static <T> List<T> newArrayList(List<T> objects){
+		return new ArrayList<>(objects);
+	}
+
 	public static <T> List<T> arraysAsList(T [] objects){
 		return Arrays.asList(objects);
 	}
