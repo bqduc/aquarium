@@ -18,8 +18,10 @@
     </parent>
  
     <properties>
-				<maven.test.skip>true</maven.test.skip>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<maven.test.skip>true</maven.test.skip>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
 
@@ -37,7 +39,9 @@
         <module>aquarium-common</module>
         <module>aquarium-service</module>
         <module>aquarium-core</module>
+        <module>aquarium-core-service</module>
         <module>aquarium-community</module>
+        <module>aquarium-dmx</module>
         <module>aquarium-admin</module>
     </modules>
  
@@ -48,5 +52,24 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-eclipse-plugin</artifactId>
+        <version>2.9</version>
+        <configuration>
+          <additionalConfig>
+            <file>
+              <name>.settings/org.eclipse.core.resources.prefs</name>
+              <content>
+                <![CDATA[eclipse.preferences.version=1${line.separator}encoding/<project>=${project.build.sourceEncoding}${line.separator}]]>
+              </content>
+            </file>
+          </additionalConfig>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
  
 </project>
