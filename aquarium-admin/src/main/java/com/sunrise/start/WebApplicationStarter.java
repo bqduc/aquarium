@@ -17,13 +17,12 @@ package com.sunrise.start;
 
 import java.util.Locale;
 
-import javax.inject.Inject;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.mail.MailProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -32,12 +31,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.format.FormatterRegistry;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
@@ -49,9 +46,6 @@ import com.sunrise.config.SecurityConfig;
 import com.sunrise.dispatch.GlobalDataRepositoryManager;
 
 import lombok.extern.slf4j.Slf4j;
-import net.brilliance.converter.CategoryConverter;
-import net.brilliance.converter.CategoryFormatter;
-import net.brilliance.manager.catalog.CategoryManager;
 import net.brilliance.manager.mail.ThymeleafMailConfig;
 import net.brilliance.manager.mail.freemarker.FreeMarkerEmailConfiguration;
 
@@ -94,7 +88,7 @@ import net.brilliance.manager.mail.freemarker.FreeMarkerEmailConfiguration;
 		ThymeleafMailConfig.class, 
 		FreeMarkerEmailConfiguration.class})
 @EnableAsync
-public class WebApplicationStarter implements WebMvcConfigurer /*WebMvcConfigurerAdapter*/ {
+public class WebApplicationStarter extends SpringBootServletInitializer /*WebMvcConfigurerAdapter*/ {
 	/*@Inject
 	private CategoryManager categoryService;*/
 	
@@ -193,20 +187,20 @@ public class WebApplicationStarter implements WebMvcConfigurer /*WebMvcConfigure
 
   /**
 	 * {@inheritDoc}
-	 */
+	 *//*
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		//registry.addViewController("/login").setViewName("signin");
 		registry.addViewController("/login").setViewName("clientLogin");
 	}
 
-	/**
+	*//**
 	 * {@inheritDoc}
-	 */
+	 *//*
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(localeChangeInterceptor());
-	}
+	}*/
 
 	/*@Override
 	public void addFormatters(FormatterRegistry registry) {
