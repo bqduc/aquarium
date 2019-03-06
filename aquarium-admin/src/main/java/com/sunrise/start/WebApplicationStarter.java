@@ -33,12 +33,11 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
 import com.sunrise.config.AspectConfig;
+import com.sunrise.config.BaseConfiguration;
 import com.sunrise.config.H2Config;
 import com.sunrise.config.JpaAuditingConfig;
 import com.sunrise.config.PostgresConfig;
@@ -80,6 +79,7 @@ import net.brilliance.manager.mail.freemarker.FreeMarkerEmailConfiguration;
 @EnableConfigurationProperties({  MailProperties.class})
 @EnableAspectJAutoProxy
 @Import(value = { 
+		BaseConfiguration.class,
 		JpaAuditingConfig.class,
 		PostgresConfig.class, 
 		AspectConfig.class, 
