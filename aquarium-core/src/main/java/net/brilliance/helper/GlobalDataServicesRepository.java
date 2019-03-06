@@ -10,13 +10,13 @@ import org.springframework.core.io.ClassPathResource;
 import lombok.Builder;
 import net.brilliance.common.ListUtility;
 import net.brilliance.exceptions.EcosysException;
-import net.brilliance.framework.component.ComponentRoot;
+import net.brilliance.framework.component.RootComponent;
 import net.brilliance.model.SimpleDataContainer;
 import net.brilliance.model.base.IDataContainer;
 
 
 @Builder
-public class GlobalDataServicesRepository extends ComponentRoot {
+public class GlobalDataServicesRepository extends RootComponent {
 	/**
 	 * 
 	 */

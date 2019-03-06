@@ -30,7 +30,7 @@ import net.sunrise.helper.GlobalDataServiceHelper;
  */
 
 @Component
-@SuppressWarnings("unchecked")
+
 public class InventoryCatalogDataDispatchHelper extends BaseComponent {
 	/**
 	 * 

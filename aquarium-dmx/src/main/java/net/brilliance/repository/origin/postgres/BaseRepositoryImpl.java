@@ -82,7 +82,7 @@ public class BaseRepositoryImpl<T, ID> implements IBaseRepository<T, ID> {
 		return Optional.ofNullable(this.em.find(persistentClass, id));
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public List<T> findAll() {
 		Query query = this.em.createQuery(String.format("SELECT e FROM %s e", persistentClass.getSimpleName()));

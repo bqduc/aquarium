@@ -346,7 +346,7 @@ public class Xlsx2StringTableParser {
 		Xlsx2StringTableParser parserInstance = Xlsx2StringTableParser.getInstance(new FileInputStream(xlsxFile));
 		Bucket dataBucket = parserInstance.parseXlsxData();
 		System.out.println(dataBucket);
-		@SuppressWarnings("unchecked")
+		
 		List<List<String>> dataMap = (List<List<String>>)dataBucket.getBucketData().get("Sheet1");
 		parserInstance.parseFoumnData(dataMap);
 		
@@ -366,7 +366,7 @@ public class Xlsx2StringTableParser {
 		OPCPackage p = OPCPackage.open(xlsxFile.getPath(), PackageAccess.READ);
 		Xlsx2StringTableParser xlsx2csv = new Xlsx2StringTableParser(p, minColumns);
 		dataBucket = xlsx2csv.processXlsData(OfficeSuiteTarget.StringTable);
-		@SuppressWarnings("unchecked")
+		
 		dataMap = (Map<Object, List<String>>)dataBucket.getBucketData().get("Sheet1");
 		for (Object rowKey :dataMap.keySet()){
 			for (int cellIdx = 0; cellIdx < xlsx2csv.getActualMaxPhysicalCells(); cellIdx++){

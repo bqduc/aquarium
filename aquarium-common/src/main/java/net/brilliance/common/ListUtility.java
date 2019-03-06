@@ -20,7 +20,6 @@ import net.brilliance.model.ui.UISelectItem;
  * @author ducbq
  *
  */
-@SuppressWarnings({ "unchecked"})
 public class ListUtility {
 	public static <T> DataList<T> createDataList(){
 		return new DataList<T>();
@@ -32,6 +31,13 @@ public class ListUtility {
 
 	public static <K, T> HashMap <K, T> createMap(){
 		return new HashMap<>();
+	}
+
+	public static <T> T[] listToArray(List<T> objects) {
+		if (CommonUtility.isEmpty(objects))
+			return null;
+
+		return (T[])objects.toArray();
 	}
 
 	public static <K, T> HashMap <K, T> createMap(Object ...keyValuePairs){

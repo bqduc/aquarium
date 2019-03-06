@@ -79,7 +79,7 @@ public class VirtualBulletinBoardHelper {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	public void importForums() throws EcosysException{
 		Bucket dataBucket = null;
 		//SpreadsheetStringTableDataParser parserInstance = null;

@@ -8,13 +8,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.context.MessageSource;
 
-import net.brilliance.framework.component.ComponentRoot;
+import net.brilliance.framework.component.RootComponent;
 
 /**
  * @author ducbq
  *
  */
-public abstract class RootController extends ComponentRoot {
+public abstract class RootController extends RootComponent {
   /**
 	 * 
 	 */

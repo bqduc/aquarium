@@ -15,12 +15,12 @@ import net.brilliance.common.CommonUtility;
 import net.brilliance.common.GUUISequenceGenerator;
 import net.brilliance.common.ListUtility;
 import net.brilliance.domain.entity.system.SystemSequence;
-import net.brilliance.framework.component.ComponentRoot;
+import net.brilliance.framework.component.RootComponent;
 import net.brilliance.service.api.system.SystemSequenceService;
 
 @Component
 @Transactional
-public class SystemSequenceManager extends ComponentRoot {
+public class SystemSequenceManager extends RootComponent {
 	/**
 	 * 
 	 */

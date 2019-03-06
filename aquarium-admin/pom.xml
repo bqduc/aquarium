@@ -47,6 +47,12 @@
             <artifactId>aquarium-dmx</artifactId>
             <version>${project.version}</version>
         </dependency>	
+
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>aquarium-brx</artifactId>
+            <version>${project.version}</version>
+        </dependency>	
 	<!-- End of business inside modules -->
 
 		<dependency>
@@ -93,9 +99,27 @@
 		</dependency>
 
 		<dependency>
+		    <groupId>io.springfox</groupId>
+		    <artifactId>springfox-swagger2</artifactId>
+		    <version>${springfox-swagger.version}</version>
+		</dependency>
+
+		<dependency>
+		    <groupId>io.springfox</groupId>
+		    <artifactId>springfox-swagger-ui</artifactId>
+		    <version>${springfox-swagger.version}</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>${commons-io.version}</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

@@ -3,14 +3,14 @@
  */
 package net.brilliance.framework.runnable;
 
-import net.brilliance.framework.component.ComponentRoot;
+import net.brilliance.framework.component.RootComponent;
 import net.brilliance.framework.model.ExecutionContext;
 
 /**
  * @author ducbq
  *
  */
-public abstract class RunnableBase extends ComponentRoot implements Runnable {
+public abstract class RunnableBase extends RootComponent implements Runnable {
 
 	/**
 	 * 

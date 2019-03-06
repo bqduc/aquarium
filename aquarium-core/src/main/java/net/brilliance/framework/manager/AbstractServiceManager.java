@@ -101,7 +101,7 @@ public abstract class AbstractServiceManager<T extends BizObjectBase, PK extends
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	public T update(T entity) {
 		T getEntity = getRepository().getOne((PK) entity.getId());
 		getRepository().save(entity);

@@ -79,7 +79,7 @@ public abstract class BaseManager<T extends ObjectBase, PK extends Serializable>
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	public T update(T entity) {
 		T getEntity = getRepository().getOne((PK) entity.getId());
 		getRepository().save(entity);

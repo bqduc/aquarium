@@ -31,6 +31,11 @@ import net.sunrise.service.BookService;
 @RequestMapping(CommonConstants.REST_API + "book/")
 @RestController
 public class BookRestController extends BaseRestController<Book>{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5744267626610556992L;
+
 	private final static String CACHE_OBJECTS_KEY = "cached.books";
 
 	@Inject

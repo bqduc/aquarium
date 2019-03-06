@@ -6,14 +6,14 @@ package net.brilliance.framework.specifications;
 import org.springframework.data.jpa.domain.Specification;
 
 import net.brilliance.common.CommonUtility;
-import net.brilliance.framework.component.ComponentRoot;
+import net.brilliance.framework.component.RootComponent;
 import net.brilliance.framework.model.SearchParameter;
 
 /**
  * @author ducbq
  *
  */
-public abstract class BaseSpecification<UserType, UserRequest> extends ComponentRoot {
+public abstract class BaseSpecification<UserType, UserRequest> extends RootComponent {
   public abstract Specification<UserType> getFilter(UserRequest request);
 
   protected String containsLowerCase(String searchField) {

@@ -110,11 +110,27 @@ public abstract class BaseController extends RootController {
 		return "";
 	}
 
+	protected void loadDependencies(Model model){
+		//Load dependencies and put back to model
+	}
+
 	protected Map<String, Object> buildSearchParameters(Short page, Short pageSize, String... keywords) {
 		return WebServicingHelper.createSearchParameters(keywords[0], page, pageSize);
 	}
 
 	protected List<SelectItem> suggestItems(String keyword) {
+		return null;
+	}
+
+	protected List<SelectItem> buildSelectedItems(List<?> objects){
+		List<SelectItem> selectItems = new ArrayList<>();
+		for (Object object :objects){
+			selectItems.add(this.buildSelectableObject(object));
+		}
+		return selectItems;
+	}
+
+	protected SelectItem buildSelectableObject(Object beanObject){
 		return null;
 	}
 

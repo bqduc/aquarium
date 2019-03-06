@@ -44,7 +44,7 @@ public class EmployeeManager extends BaseManager<Employee, Long> {
 		return this.employeeRepository.countByCode(code);
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	public String importEmployees(InputStream inputStream, String sheetName, int startedIndex) throws EcosysException {
 		List<String> dataParts = null;
 		Bucket dataBucket = null;

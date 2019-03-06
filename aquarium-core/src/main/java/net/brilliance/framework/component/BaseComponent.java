@@ -7,7 +7,7 @@ package net.brilliance.framework.component;
  * @author ducbq
  *
  */
-public abstract class BaseComponent extends ComponentRoot {
+public abstract class BaseComponent extends RootComponent {
 	/**
 	 * 
 	 */

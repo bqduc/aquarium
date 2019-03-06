@@ -118,7 +118,7 @@ public class VbbForumManager extends BaseManager<VbbForum, Long> {
 			ClassPathResource resource = new ClassPathResource("/config/liquibase/data/forum-structure.xlsx");
 			parserInstance = Xlsx2StringTableParser.getInstance(resource.getInputStream());
 			dataBucket = parserInstance.parseXlsxData();
-			@SuppressWarnings("unchecked")
+			
 			List<List<String>> dataMap = (List<List<String>>) dataBucket.getBucketData().get("Sheet1");
 			this.parseFoumnData(1, dataMap);
 		} catch (Exception e) {

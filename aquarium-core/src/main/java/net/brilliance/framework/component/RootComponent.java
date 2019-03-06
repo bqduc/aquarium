@@ -13,7 +13,7 @@ import net.brilliance.framework.logging.LogService;
  * @author ducbq
  *
  */
-public abstract class ComponentRoot implements Serializable {
+public abstract class RootComponent implements Serializable {
 	/**
 	 * 
 	 */
