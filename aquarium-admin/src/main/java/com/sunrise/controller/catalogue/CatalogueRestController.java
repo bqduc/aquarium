@@ -1,4 +1,4 @@
-package net.brilliance.controller.catalogue;
+package com.sunrise.controller.catalogue;
 
 import java.util.List;
 
