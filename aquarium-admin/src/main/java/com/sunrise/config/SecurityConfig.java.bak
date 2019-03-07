@@ -1,4 +1,4 @@
-package com.sunrise.config;
+/*package com.sunrise.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -11,11 +11,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.sunrise.user.UserService;
 
-/**
+*//**
  * Created on February, 2018
  *
  * @author adilcan
- */
+ *//*
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -52,3 +52,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable();
 	}
 }
+*/

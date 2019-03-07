@@ -8,6 +8,9 @@ import javax.inject.Inject;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import net.brilliance.common.CommonUtility;
+import net.brilliance.framework.model.security.CryptoAlgorithm;
+
 /**
  * @author ducbq
  *
@@ -31,5 +34,14 @@ public class BrillianceEncoder implements PasswordEncoder {
 	public boolean matches(CharSequence rawPassword, String encodedPassword) {
 		return passwordEncoder.matches(rawPassword, encodedPassword);
 		//return new Md5PasswordEncoder().encodePassword(rawPassword.toString(), PASSWORD_ENCODER_SALT).equals(encodedPassword);
+	}
+
+	public boolean comparePassword(String userPassword, String repositoryPassword, String algorithm) {
+		if (CryptoAlgorithm.PLAIN_TEXT.getAlgorithm().equalsIgnoreCase(algorithm) || CommonUtility.isEmpty(algorithm)){
+			return userPassword.equals(repositoryPassword);
+		}
+
+		//String encodedPwd = this.performEncode(userPassword);
+		return repositoryPassword.equals(passwordEncoder.encode(userPassword));
 	}
 }

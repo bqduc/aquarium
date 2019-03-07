@@ -47,7 +47,7 @@ public class SimpleEncryptionManager {
 		return performEncode(plainText);
 	}*/
 
-	public String vpxEncode(String plainText){
+	public String encode(String plainText){
 		return passwordEncoder.encode(plainText);
 	}
 

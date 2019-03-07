@@ -15,6 +15,8 @@
 */
 package net.brilliance.framework.entity.auth;
 
+import org.springframework.security.core.userdetails.UserDetails;
+
 import net.brilliance.framework.entity.BizEntity;
 
 /**
@@ -22,7 +24,7 @@ import net.brilliance.framework.entity.BizEntity;
  * 
  * @author ducbq
  */
-public interface AuthAccount extends BizEntity {
+public interface AuthAccount extends UserDetails, BizEntity {
 	String getSsoId();
 	void setSsoId(String ssoId);
 

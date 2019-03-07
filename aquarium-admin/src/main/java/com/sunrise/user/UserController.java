@@ -1,5 +1,8 @@
 package com.sunrise.user;
 
+import javax.inject.Inject;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.sunrise.domain.User;
 
-import javax.validation.Valid;
+import net.brilliance.service.api.admin.UserAuthenticationService;
 
 /**
  * Created on February, 2018
@@ -19,12 +22,14 @@ import javax.validation.Valid;
  */
 @Controller
 public class UserController {
+	@Inject 
+	private UserAuthenticationService userAuthenticationService;
 
-	@Autowired
+	/*@Autowired
 	private UserService userService;
 
 	@Autowired
-	private UserRepository userRepository;
+	private UserRepository userRepository;*/
 
 	@GetMapping("/register")
 	public String register(Model model) {
@@ -40,7 +45,8 @@ public class UserController {
 		}
 
 		else {
-			userService.save(user);
+			//userService.save(user);
+			//userAuthenticationService.save(user);
 			return "redirect:/";
 		}
 

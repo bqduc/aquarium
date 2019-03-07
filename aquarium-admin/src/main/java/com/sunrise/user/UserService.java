@@ -15,7 +15,7 @@ import net.brilliance.manager.security.BrillianceEncoder;
  *
  * @author adilcan
  */
-@Service
+/*@Service
 public class UserService implements UserDetailsService {
 
 	@Autowired
@@ -33,4 +33,4 @@ public class UserService implements UserDetailsService {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		userRepository.save(user);
 	}
-}
+}*/

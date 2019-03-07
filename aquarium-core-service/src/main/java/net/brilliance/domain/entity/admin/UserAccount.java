@@ -16,8 +16,11 @@
 package net.brilliance.domain.entity.admin;
 
 import java.time.ZonedDateTime;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -34,6 +37,8 @@ import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -43,7 +48,9 @@ import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import net.brilliance.common.CommonUtility;
 import net.brilliance.common.DateTimeUtility;
+import net.brilliance.domain.entity.auth.User;
 import net.brilliance.domain.entity.general.Attachment;
 import net.brilliance.framework.entity.BizObjectBase;
 import net.brilliance.framework.entity.auth.AuthAccount;
@@ -193,9 +200,9 @@ public class UserAccount extends BizObjectBase implements AuthAccount {
 		this.resetDate = resetDate;
 	}
 
-	public Set<Authority> getAuthorities() {
+	/*public Set<Authority> getAuthorities() {
 		return authorities;
-	}
+	}*/
 
 	public void setAuthorities(Set<Authority> authorities) {
 		this.authorities = authorities;
@@ -304,5 +311,53 @@ public class UserAccount extends BizObjectBase implements AuthAccount {
 
 	public void setAttachment(Attachment attachment) {
 		this.attachment = attachment;
+	}
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return false;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		Iterator<Authority> itr = null;
+		Authority authority = null;
+		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
+		if (CommonUtility.isEmpty(this.authorities)) {
+			itr = this.authorities.iterator();
+			while (itr.hasNext()) {
+				authority = itr.next();
+				grantedAuthorities.add(new SimpleGrantedAuthority(authority.getName()));
+			}
+		}
+		return grantedAuthorities;
+	}
+
+	public UserAccount(User user) {
+		
 	}
 }

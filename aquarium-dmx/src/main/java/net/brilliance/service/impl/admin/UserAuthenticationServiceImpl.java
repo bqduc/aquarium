@@ -30,7 +30,7 @@ import net.brilliance.exceptions.UserAuthenticationException.AuthenticationCode;
 import net.brilliance.framework.repository.BrillianceRepository;
 import net.brilliance.framework.service.GenericServiceImpl;
 import net.brilliance.manager.auth.AuthorityManager;
-import net.brilliance.manager.security.SimpleEncryptionManager;
+import net.brilliance.manager.security.BrillianceEncoder;
 import net.brilliance.repository.admin.UserAccountRepository;
 import net.brilliance.service.api.admin.UserAuthenticationService;
 import net.brilliance.service.helper.ClientServicesHelper;
@@ -53,7 +53,7 @@ public class UserAuthenticationServiceImpl extends GenericServiceImpl<UserAccoun
 	private ClientServicesHelper clientServicesHelper;
 
 	@Inject
-	private SimpleEncryptionManager simpleEncryptor;
+	private BrillianceEncoder passwordEncoder;
 
 	@Override
   protected BrillianceRepository<UserAccount, Long> getRepository() {
@@ -78,7 +78,7 @@ public class UserAuthenticationServiceImpl extends GenericServiceImpl<UserAccoun
 			throw new AccountNotActivatedException(String.format("User %s is not activated", lowercaseLogin));
 
 		List<GrantedAuthority> grantedAuthorities = userFromDatabase.getAuthorities().stream()
-				.map(authority -> new SimpleGrantedAuthority(authority.getName())).collect(Collectors.toList());
+				.map(authority -> new SimpleGrantedAuthority(authority.getAuthority())).collect(Collectors.toList());
 
 		return new org.springframework.security.core.userdetails.User(userFromDatabase.getSsoId(), userFromDatabase.getPassword(), grantedAuthorities);
 	}
@@ -140,6 +140,7 @@ public class UserAuthenticationServiceImpl extends GenericServiceImpl<UserAccoun
 
 	@Override
 	public UserAccount save(UserAccount user) {
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		repository.save(user);
 		return user;
 	}
@@ -158,7 +159,7 @@ public class UserAuthenticationServiceImpl extends GenericServiceImpl<UserAccoun
 		if (null == repositoryUser)
 			throw new AuthenticationException(AuthenticationException.ERROR_INVALID_PRINCIPAL, "Could not get the user information base on [" + loginToken + "]");
 
-		if (false==simpleEncryptor.comparePassword(password, repositoryUser.getPassword(), repositoryUser.getEncryptAlgorithm()))
+		if (false==passwordEncoder.comparePassword(password, repositoryUser.getPassword(), repositoryUser.getEncryptAlgorithm()))
 			throw new AuthenticationException(AuthenticationException.ERROR_INVALID_CREDENTIAL, "Invalid password of the user information base on [" + loginToken + "]");
 
 		if (!Boolean.TRUE.equals(repositoryUser.isActivated()))
@@ -228,7 +229,7 @@ public class UserAuthenticationServiceImpl extends GenericServiceImpl<UserAccoun
 						"Administrator", 
 						"System", 
 						MasterUserGroup.Administrator.getLogin(), 
-						simpleEncryptor.vpxEncode("P@dministr@t0r"), 
+						passwordEncoder.encode("P@dministr@t0r"), 
 						null);
 				adminUser.setActivated(true);
 				repository.save(adminUser);
@@ -246,7 +247,7 @@ public class UserAuthenticationServiceImpl extends GenericServiceImpl<UserAccoun
 						"Corporate client", 
 						"Vpex", 
 						MasterUserGroup.VpexClient.getLogin(), 
-						simpleEncryptor.vpxEncode("vP3@x5"), 
+						passwordEncoder.encode("vP3@x5"), 
 						null);
 				clientUser.setActivated(true); 
 				repository.save(clientUser);
@@ -264,7 +265,7 @@ public class UserAuthenticationServiceImpl extends GenericServiceImpl<UserAccoun
 						"User", 
 						"Application", 
 						MasterUserGroup.User.getLogin(), 
-						simpleEncryptor.vpxEncode("u63r@x9"), 
+						passwordEncoder.encode("u63r@x9"), 
 						null);
 				user.setActivated(true);
 				repository.save(user);
@@ -292,7 +293,7 @@ public class UserAuthenticationServiceImpl extends GenericServiceImpl<UserAccoun
 
 	private UserDetails buildUserDetails(UserAccount userProfile){
 		List<GrantedAuthority> grantedAuthorities = userProfile.getAuthorities().stream()
-				.map(authority -> new SimpleGrantedAuthority(authority.getName())).collect(Collectors.toList());
+				.map(authority -> new SimpleGrantedAuthority(authority.getAuthority())).collect(Collectors.toList());
 
 		return new org.springframework.security.core.userdetails.User(userProfile.getSsoId(), userProfile.getPassword(), grantedAuthorities);
 	}

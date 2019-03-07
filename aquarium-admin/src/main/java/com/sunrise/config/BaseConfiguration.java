@@ -13,9 +13,13 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
+
+import com.sunrise.start.WebApplicationStarter;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,7 +35,18 @@ import lombok.extern.slf4j.Slf4j;
 @EntityScan(basePackages={ "com.sunrise", "net.sunrise", "net.brilliance"})
 @EnableTransactionManagement
 public class BaseConfiguration {
-	  @Bean
+	/**
+	 * {@link PasswordEncoder} bean.
+	 * 
+	 * @return <b>{@code BCryptPasswordEncoder}</b> with strength (passed as
+	 *         argument) the log rounds to use, between 4 and 31
+	 */
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+	    return new BCryptPasswordEncoder();
+	}
+	
+	@Bean
 	  public MessageSource messageSource() {
 	  	String[] resourceBundles = new String[]{
 	  			"classpath:/i18n/messages-menu", 

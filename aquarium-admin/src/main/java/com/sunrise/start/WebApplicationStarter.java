@@ -17,12 +17,13 @@ package com.sunrise.start;
 
 import java.util.Locale;
 
+import javax.inject.Inject;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.mail.MailProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -33,6 +34,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
@@ -41,10 +43,11 @@ import com.sunrise.config.BaseConfiguration;
 import com.sunrise.config.H2Config;
 import com.sunrise.config.JpaAuditingConfig;
 import com.sunrise.config.PostgresConfig;
-import com.sunrise.config.SecurityConfig;
+import com.sunrise.config.WebSecurityConfiguration;
 import com.sunrise.dispatch.GlobalDataRepositoryManager;
 
 import lombok.extern.slf4j.Slf4j;
+import net.brilliance.manager.catalog.CategoryManager;
 import net.brilliance.manager.mail.ThymeleafMailConfig;
 import net.brilliance.manager.mail.freemarker.FreeMarkerEmailConfiguration;
 
@@ -83,14 +86,14 @@ import net.brilliance.manager.mail.freemarker.FreeMarkerEmailConfiguration;
 		JpaAuditingConfig.class,
 		PostgresConfig.class, 
 		AspectConfig.class, 
-		//WebSecurityConfiguration.class, 
-		SecurityConfig.class,
+		WebSecurityConfiguration.class, 
+		//SecurityConfig.class,
 		ThymeleafMailConfig.class, 
 		FreeMarkerEmailConfiguration.class})
 @EnableAsync
-public class WebApplicationStarter extends SpringBootServletInitializer /*WebMvcConfigurerAdapter*/ {
-	/*@Inject
-	private CategoryManager categoryService;*/
+public class WebApplicationStarter implements WebMvcConfigurer /*extends SpringBootServletInitializer*/ /*WebMvcConfigurerAdapter*/ {
+	@Inject
+	private CategoryManager categoryService;
 	
 	/**
 	 * Entry point of the application
