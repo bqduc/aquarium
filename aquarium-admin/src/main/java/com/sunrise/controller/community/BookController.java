@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.sunrise.controller.cux;
+package com.sunrise.controller.community;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;

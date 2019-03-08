@@ -1,4 +1,4 @@
-package com.sunrise.controller.admin;
+package com.sunrise.controller.auth;
 
 import java.util.Calendar;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.sunrise.controller.admin;
+package com.sunrise.controller.crx;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,62 +27,53 @@ import com.google.gson.Gson;
 import com.sunrise.controller.ControllerConstants;
 import com.sunrise.controller.base.BaseController;
 
+import lombok.extern.slf4j.Slf4j;
 import net.brilliance.common.CommonConstants;
 import net.brilliance.common.CommonUtility;
-import net.brilliance.common.GUUISequenceGenerator;
 import net.brilliance.common.ListUtility;
-import net.brilliance.domain.entity.admin.ClientUserAccount;
+import net.brilliance.domain.entity.crx.Campaign;
 import net.brilliance.domain.entity.crx.contact.Contact;
 import net.brilliance.domain.model.SelectItem;
 import net.brilliance.framework.model.SearchParameter;
-import net.brilliance.framework.model.SequenceType;
 import net.brilliance.model.ui.UISelectItem;
 import net.brilliance.runnable.UpdateSystemSequenceThread;
-import net.brilliance.service.api.admin.ClientUserAccountService;
 import net.brilliance.service.api.contact.ContactService;
+import net.brilliance.service.api.crx.CampaignService;
 
+@Slf4j
 @Controller
-@RequestMapping(ControllerConstants.REQ_URI_CLIENT_USER_ACCOUNT)
-public class ClientUserAccountController extends BaseController {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -8718777985960156966L;
-
-	private static final String PAGE_CONTEXT_PREFIX = ControllerConstants.CONTEXT_WEB_PAGES + "admin/clientAccount";
+@RequestMapping(ControllerConstants.URI_CAMPAIGN)
+public class CampaignController extends BaseController { 
+	private String PAGE_CONTEXT_PREFIX = ControllerConstants.CONTEXT_WEB_PAGES + "crx/campaign";
 
 	@Inject
-	private TaskExecutor taskExecutor;
-
+  private TaskExecutor taskExecutor;
+	
 	@Inject
 	private ApplicationContext applicationContext;
 
 	@Inject
-	private ClientUserAccountService businessManager;
+	private CampaignService businessManager;
 
 	@Inject
 	private ContactService contactService;
 
-	/*@Inject
-	private GlobalDataInitializer globalDataInitializer;*/
-
-	@RequestMapping(path = { "/", "" }, method = RequestMethod.GET)
-	public String viewDefaultPage() {
+	@RequestMapping(path={"/", ""}, method=RequestMethod.GET)
+	public String viewDefaultPage(){
 		return getDefaultPage();
 	}
 
 	@Override
 	protected String performListing(Model model, HttpServletRequest request) {
-		System.out.println("catalogue subtypes performListing");
 		return PAGE_CONTEXT_PREFIX + ControllerConstants.BROWSE;
 	}
 
 	/**
 	 * Export catalogs.
-	 */
+   */
 	@RequestMapping(value = "/export", method = RequestMethod.GET)
 	public String exports(Model model, HttpServletRequest request) {
-		log.info("Exporting catalogue subtypes .....");
+		log.info("Exporting enterprise .....");
 		return PAGE_CONTEXT_PREFIX + ControllerConstants.BROWSE;
 	}
 
@@ -91,68 +82,65 @@ public class ClientUserAccountController extends BaseController {
 	 */
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String createForm(Model model) {
-		String guuId = GUUISequenceGenerator.getInstance().nextGUUIdString(SequenceType.CLIENT_USER_ACCOUNT.getType());
-
-		ClientUserAccount newClientUserAccount = new ClientUserAccount();
-		newClientUserAccount.getUserAccount().setSsoId(guuId);
-		model.addAttribute(net.brilliance.common.CommonConstants.FETCHED_OBJECT, newClientUserAccount);
+		Campaign newCampaign = Campaign
+		.builder()
+		.build();
+		model.addAttribute(net.brilliance.common.CommonConstants.FETCHED_OBJECT, newCampaign);
 		return PAGE_CONTEXT_PREFIX + ControllerConstants.EDIT;
 	}
 
 	/**
 	 * Create/update a contact.
-	 */
-	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String create(@Valid ClientUserAccount uiBizObject, BindingResult bindingResult, Model model,
-			HttpServletRequest httpServletRequest, RedirectAttributes redirectAttributes, Locale locale) {
-
+	*/
+	@RequestMapping(value="/create", method = RequestMethod.POST)
+	public String create(@Valid Campaign uiBizObject, BindingResult bindingResult,
+			Model model, HttpServletRequest httpServletRequest,
+			RedirectAttributes redirectAttributes, Locale locale) {
+		
 		if (bindingResult.hasErrors()) {
 			model.addAttribute(net.brilliance.common.CommonConstants.FETCHED_OBJECT, uiBizObject);
 			return PAGE_CONTEXT_PREFIX + ControllerConstants.EDIT;
 		}
 
 		log.info("Creating/updating catalogue subtype");
-
+		
 		model.asMap().clear();
-		// redirectAttributes.addFlashAttribute("message", new Message("success",
-		// messageSource.getMessage("general_save_success", new Object[] {}, locale)));
+		//redirectAttributes.addFlashAttribute("message", new Message("success", messageSource.getMessage("general_save_success", new Object[] {}, locale)));
 
 		businessManager.saveOrUpdate(uiBizObject);
-		// systemSequenceManager.registerSequence(uiBizObject.getCode());
+		//systemSequenceManager.registerSequence(uiBizObject.getCode());
 
-		UpdateSystemSequenceThread updateSystemSequenceThread = applicationContext.getBean(UpdateSystemSequenceThread.class,
-				uiBizObject.getUserAccount().getSsoId());
+		UpdateSystemSequenceThread updateSystemSequenceThread = applicationContext.getBean(UpdateSystemSequenceThread.class, uiBizObject.getName());
 		taskExecutor.execute(updateSystemSequenceThread);
-		// TODO: Pay attention please
-		String ret = "redirect:/catalogSubtype/" + uiBizObject.getId().toString();
-		return ret;// "redirect:/department/" + UrlUtil.encodeUrlPathSegment(department.getId().toString(),
-							 // httpServletRequest);
+		//TODO: Pay attention please
+		String ret = "redirect:/catalogSubtype/"+uiBizObject.getId().toString();
+		return ret;//"redirect:/department/" + UrlUtil.encodeUrlPathSegment(department.getId().toString(), httpServletRequest);
 	}
 
 	/**
 	 * Retrieve the book with the specified id for the update form.
 	 */
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
-	public String updateForm(@PathVariable("id") Long id, Model model) {
-		model.addAttribute(net.brilliance.common.CommonConstants.FETCHED_OBJECT, businessManager.getObject(id));
-		return PAGE_CONTEXT_PREFIX + ControllerConstants.EDIT;
-	}
+    public String updateForm(@PathVariable("id") Long id, Model model) {
+			model.addAttribute(net.brilliance.common.CommonConstants.FETCHED_OBJECT, businessManager.getObject(id));
+			return PAGE_CONTEXT_PREFIX + ControllerConstants.EDIT;
+    }
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public String show(@PathVariable("id") Long id, Model model) {
 		log.info("Fetch business object of catalogue subtype with id: " + id);
 
 		model.addAttribute(ControllerConstants.FETCHED_OBJECT, businessManager.getObject(id));
-
+		
 		return PAGE_CONTEXT_PREFIX + ControllerConstants.VIEW;
 	}
 
 	@Override
 	protected List<SelectItem> suggestItems(String keyword) {
 		List<SelectItem> suggestedItems = new ArrayList<>();
-		Page<ClientUserAccount> fetchedObjects = this.businessManager.searchObjects(keyword, null);
-		for (ClientUserAccount bizObject : fetchedObjects.getContent()) {
-			suggestedItems.add(SelectItem.builder().build().instance(bizObject.getId(), bizObject.getUserAccount().getSsoId(), bizObject.getUserAccount().getFirstName()));
+		Page<Campaign> fetchedObjects = this.businessManager.searchObjects(keyword, null);
+		for (Campaign bizObject :fetchedObjects.getContent()) {
+			suggestedItems.add(SelectItem.builder().build().instance(bizObject.getId(), bizObject.getName(), bizObject.getName()));
 		}
 		return suggestedItems;
 	}
@@ -160,21 +148,16 @@ public class ClientUserAccountController extends BaseController {
 	@Override
 	protected String performSearch(SearchParameter params) {
 		Map<String, Object> parameters = new HashMap<>();
-		Page<ClientUserAccount> pageContentData = businessManager.search(parameters);
+		Page<Campaign> pageContentData = businessManager.search(parameters);
 		params.getModel().addAttribute(ControllerConstants.FETCHED_OBJECT, pageContentData);
-		/*
-		 * HttpSession session = super.getSession(); session.setAttribute(CommonConstants.CACHED_PAGE_MODEL,
-		 * params.getModel());
-		 */
+		/*HttpSession session = super.getSession();
+		session.setAttribute(CommonConstants.CACHED_PAGE_MODEL, params.getModel());*/
 		Gson gson = new Gson();
-		// return gson.toJson(pageContentData.getContent());
+		//return gson.toJson(pageContentData.getContent());
 		return PAGE_CONTEXT_PREFIX + "Browse :: result-teable " + gson.toJson(pageContentData.getContent());
 	}
 
-	private String getDefaultPage() {
-		if (1 > this.businessManager.count()) {
-			//this.globalDataInitializer.buildFakeEnterprises(ExecutionContext.builder().build());
-		}
+	private String getDefaultPage(){
 		return PAGE_CONTEXT_PREFIX + ControllerConstants.BROWSE;
 	}
 
@@ -183,10 +166,14 @@ public class ClientUserAccountController extends BaseController {
 		log.info("Enter keyword: " + keyword);
 		Page<Contact> contacts = contactService.searchObjects(keyword, null);
 		System.out.println(contacts.getContent());
-		List<UISelectItem> uiSelectItems = ListUtility.createSelectItems(contacts.getContent(),
-				ListUtility.createMap(CommonConstants.PROPERTY_KEY, "id", CommonConstants.PROPERTY_CODE, "code", CommonConstants.PROPERTY_NAME,
-						"name", CommonConstants.PROPERTY_NAME_LOCAL, "nameLocal"));
-		if (CommonUtility.isNull(uiSelectItems)) {
+		List<UISelectItem> uiSelectItems = ListUtility.createSelectItems(contacts.getContent(), 
+				ListUtility.createMap(
+  				CommonConstants.PROPERTY_KEY, "id", 
+  				CommonConstants.PROPERTY_CODE, "code", 
+  				CommonConstants.PROPERTY_NAME, "name", 
+  				CommonConstants.PROPERTY_NAME_LOCAL, "nameLocal")
+				);
+		if (CommonUtility.isNull(uiSelectItems)){
 			uiSelectItems = ListUtility.createArrayList();
 		}
 		return uiSelectItems;

@@ -1,4 +1,4 @@
-package com.sunrise.controller.cux;
+package com.sunrise.controller.community;
 
 import java.net.URI;
 import java.util.List;

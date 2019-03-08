@@ -1,4 +1,4 @@
-package net.brilliance.manager.hc;
+package net.sunrise.hrcx.service;
 
 import java.util.List;
 
@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import net.brilliance.domain.entity.hc.Employee;
-import net.brilliance.repository.hc.EmployeeRepository;
+import net.sunrise.hrcx.persistence.EmployeeRepository;
 
-@Service("employeeService")
+@Service
 public class EmployeeServiceImpl implements EmployeeService {
 
 	@Autowired

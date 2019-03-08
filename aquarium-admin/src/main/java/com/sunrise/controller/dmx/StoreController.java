@@ -1,4 +1,4 @@
-package com.sunrise.controller.vbb;
+package com.sunrise.controller.dmx;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,6 +14,7 @@ import javax.validation.Valid;
 import org.apache.commons.io.IOUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -39,56 +40,40 @@ import net.brilliance.domain.model.SelectItem;
 import net.brilliance.framework.model.SearchParameter;
 import net.brilliance.helper.WebServicingHelper;
 import net.brilliance.manager.contact.ContactProfileManager;
-import net.sunrise.domain.entity.vbb.VbbForum;
-import net.sunrise.manager.vbb.VbbForumManager;
-import net.sunrise.manager.vbb.VirtualBulletinBoardHelper;
+import net.brilliance.manager.stock.StoreManager;
 
 @Slf4j
-@RequestMapping("/" + ControllerConstants.REQUEST_URI_FORUM)
+@RequestMapping("/" + ControllerConstants.REQUEST_MAPPING_STORE)
 @Controller
-public class VbbForumController extends BaseController {
+@PostAuthorize("isAuthenticated()")
+public class StoreController extends BaseController {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 6776965798453085855L;
-	private static final String PAGE_CONTEXT = ControllerConstants.CONTEXT_WEB_PAGES + "vbb/forum";
-	private static final String DEFAULT_PAGED_REDIRECT = REDIRECT + ControllerConstants.REQUEST_URI_FORUM + "/list/1";
+	private static final long serialVersionUID = 8334950021918676728L;
+	private static final String PAGE_CONTEXT = ControllerConstants.CONTEXT_WEB_PAGES + "stock/";
+	private static final String DEFAULT_PAGED_REDIRECT = REDIRECT + "store/list/1";
 
 	@Inject
-	private VbbForumManager serviceManager;
+	private StoreManager serviceManager;
 
 	@Inject
 	private ContactProfileManager contactManager;
 
-	@Inject
-	private VirtualBulletinBoardHelper virtualBulletinBoardHelper;
-
-	/*@Inject
-	private GlobalRepositoryHelper globalRepositoryHelper;
-
-	@Inject
-	private GlobalDataServiceHelper globalDataRepositoryHelper;*/
-
 	/**
-	 * List all forums.
+	 * List all stores.
 	 */
-	@RequestMapping(value = { "/list" }, method = RequestMethod.GET)
-	public String onListing(Model model) {
-		log.info("Enter listing forums ...");
-		try {
-			virtualBulletinBoardHelper.setupDefaultData();
-		} catch (Exception e) {
-			log.error(CommonUtility.getStackTrace(e));
-		}
-		log.info("Leave listing forums ...");
+	@RequestMapping(value = { "/list", "" }, method = RequestMethod.GET)
+	public String list(Model model) {
+		log.info("Listing stores ...");
 		return DEFAULT_PAGED_REDIRECT;
 	}
 
 	@RequestMapping(value = "/list/{pageNumber}", method = RequestMethod.GET)
 	public String listByPage(@PathVariable Integer pageNumber, Model model) {
-		log.info("Listing forums for page: ", pageNumber, ". At: ", Calendar.getInstance().getTime());
+		log.info("Listing stores for page: ", pageNumber, ". At: ", Calendar.getInstance().getTime());
 
-		Page<VbbForum> page = serviceManager.getList(pageNumber);
+		Page<Store> page = serviceManager.getList(pageNumber);
 		int current = page.getNumber() + 1;
 		int begin = Math.max(1, current - CommonConstants.DEFAULT_PAGE_SIZE);
 		int end = Math.min(begin + CommonConstants.DEFAULT_PAGE_SIZE, page.getTotalPages());
@@ -96,99 +81,59 @@ public class VbbForumController extends BaseController {
 		model.addAttribute("beginIndex", begin);
 		model.addAttribute("endIndex", end);
 		model.addAttribute("currentIndex", current);
-		
-		return PAGE_CONTEXT + "Browse";
+		return PAGE_CONTEXT + "storeBrowse";
 	}
 
 	/**
-	 * Import employee objects.
-	 */
-	@Override
-	protected String performImport(Model model, HttpServletRequest request) {
-		InputStream inputStream = null;
-		/*Bucket forumDataBucket = null;
-		String datasheet = "Sheet1";*/
-		try {
-			virtualBulletinBoardHelper.importForums();
-			/*inputStream = CommonUtility.getClassPathResourceInputStream(globalRepositoryHelper.getDataDirectory() + "forum-structure.xlsx");
-			forumDataBucket = this.globalDataRepositoryHelper.readSpreadsheetData(inputStream, new String[]{datasheet});
-
-			serviceManager.importBusinessObjects(forumDataBucket, datasheet, 1);*/
-		} catch (Exception e) {
-			log.error(CommonUtility.getStackTrace(e));
-		} finally{
-			try {
-				CommonUtility.closeInputStream(inputStream);
-			} catch (Exception e2) {
-				log.error(CommonUtility.getStackTrace(e2));
-			}
-		}
-		return PAGE_CONTEXT + "employeeBrowse";
-	}
-
-	/**
-	 * Retrieve the forum with the specified id.
+	 * Retrieve the store with the specified id.
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public String show(@PathVariable("id") Long id, Model model) {
-		log.info("Getting forum with id: " + id);
+		log.info("Getting store with id: " + id);
 
-		VbbForum forum = serviceManager.get(id);
-		model.addAttribute(ControllerConstants.FETCHED_OBJECT, forum);
+		Store store = serviceManager.get(id);
+		model.addAttribute(ControllerConstants.FETCHED_OBJECT, store);
 
-		return PAGE_CONTEXT + "Show";
+		return PAGE_CONTEXT + "storeShow";
 	}
 
 	/**
-	 * Retrieve the forum with the specified id.
-	 */
-	@RequestMapping(value = "/listTopics/{forumId}", method = RequestMethod.GET)
-	public String showTopics(@PathVariable("forumId") Long forumId, Model model) {
-		log.info("Getting topic with forum id: " + forumId);
-
-		VbbForum fetchedObject = serviceManager.get(forumId);
-		model.addAttribute(ControllerConstants.FETCHED_OBJECT, fetchedObject);
-
-		return PAGE_CONTEXT + "Topics";
-	}
-
-	/**
-	 * Retrieve the forum with the specified id for the update form.
+	 * Retrieve the store with the specified id for the update form.
 	 */
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
 	public String updateForm(@PathVariable("id") Long id, Model model) {
-		log.info("Edit forum with id: " + id);
+		log.info("Edit store with id: " + id);
 		model.addAttribute(ControllerConstants.FETCHED_OBJECT, serviceManager.get(id));
 		loadDependencies(model);
-		return PAGE_CONTEXT + "Edit";
+		return PAGE_CONTEXT + "storeEdit";
 	}
 
 	/**
-	 * Create a new forum and place in Model attribute.
+	 * Create a new store and place in Model attribute.
 	 */
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String createForm(Model model) {
 		model.addAttribute(ControllerConstants.FETCHED_OBJECT, new Store());
 		loadDependencies(model);
-		return PAGE_CONTEXT + "Edit";
+		return PAGE_CONTEXT + "storeEdit";
 	}
 
 	/**
-	 * Create/update a forum.
+	 * Create/update a store.
 	 */
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String onSave(@Valid VbbForum fetchedDataObject, BindingResult bindingResult, Model model, HttpServletRequest httpServletRequest,
+	public String onSave(@Valid Store store, BindingResult bindingResult, Model model, HttpServletRequest httpServletRequest,
 			RedirectAttributes redirectAttributes, Locale locale, @RequestParam(value = "file", required = false) MultipartFile file) {
 
 		if (bindingResult.hasErrors()) {
-			model.addAttribute(ControllerConstants.FETCHED_OBJECT, fetchedDataObject);
-			return PAGE_CONTEXT + "Edit";
+			model.addAttribute(ControllerConstants.FETCHED_OBJECT, store);
+			return PAGE_CONTEXT + "storeEdit";
 		}
 
-		log.info("Creating/updating forum");
+		log.info("Creating/updating store");
 
 		model.asMap().clear();
-		//redirectAttributes.addFlashAttribute("message", new Message("success", messageSource.getMessage("forum_save_success", new Object[] {}, locale)));
+		//redirectAttributes.addFlashAttribute("message", new Message("success", messageSource.getMessage("store_save_success", new Object[] {}, locale)));
 
 		// Process upload file
 		if (!file.isEmpty() && (file.getContentType().equals(MediaType.IMAGE_JPEG_VALUE) || file.getContentType().equals(MediaType.IMAGE_PNG_VALUE)
@@ -208,54 +153,54 @@ public class VbbForumController extends BaseController {
 				// Convert byte[] into String image
 				imageString = ImageUtil.encodeToString(fileContent);
 
-				fetchedDataObject.setPhoto(imageString);
+				store.setPhoto(imageString);
 
 			} catch (IOException ex) {
 				log.error("Error saving uploaded file");
-				fetchedDataObject.setPhoto(ImageUtil.smallNoImage());
+				store.setPhoto(ImageUtil.smallNoImage());
 			}
 		} else { // File is improper type or no file was uploaded.
 
-			// If forum already exists, load its image into the 'forum' object.
-			if (fetchedDataObject.getId() != null) {
-				VbbForum savedProduct = serviceManager.get(fetchedDataObject.getId());
-				fetchedDataObject.setPhoto(savedProduct.getPhoto());
+			// If store already exists, load its image into the 'store' object.
+			if (store.getId() != null) {
+				Store savedProduct = serviceManager.get(store.getId());
+				store.setPhoto(savedProduct.getPhoto());
 
 			} else {// Else set to default no-image picture.
-				fetchedDataObject.setPhoto(ImageUtil.smallNoImage());
+				store.setPhoto(ImageUtil.smallNoImage());
 			}
 		}
 
 		//Push back dependencies data
-		if (null != fetchedDataObject.getParent() && null != fetchedDataObject.getParent().getName() && fetchedDataObject.getParent().getId()==null){
-			VbbForum parent = this.serviceManager.getByName(fetchedDataObject.getParent().getName());
-			fetchedDataObject.setParent(parent);
+		if (null != store.getParent() && null != store.getParent().getCode() && store.getParent().getId()==null){
+			Store parent = this.serviceManager.getByCode(store.getParent().getCode());
+			store.setParent(parent);
 		}
 
-		/*if (null != forum.getAuthor() && null != forum.getAuthor().getCode() && null==forum.getAuthor().getId()){
-			Contact coordinator = this.contactManager.getByCode(forum.getAuthor().getCode());
-			forum.setAuthor(coordinator);
-		}*/
+		if (null != store.getCoordinator() && null != store.getCoordinator().getCode() && null==store.getCoordinator().getId()){
+			ContactProc coordinator = this.contactManager.getByCode(store.getCoordinator().getCode());
+			store.setCoordinator(coordinator);
+		}
 
-		serviceManager.save(fetchedDataObject);
+		serviceManager.save(store);
 
-		return REDIRECT + "forum/"+fetchedDataObject.getId().toString();
-		//return "redirect:/" + UrlUtil.encodeUrlPathSegment(forum.getId().toString(), httpServletRequest);
+		return REDIRECT + "store/"+store.getId().toString();
+		//return "redirect:/" + UrlUtil.encodeUrlPathSegment(store.getId().toString(), httpServletRequest);
 	}
 
 	/**
-	 * Returns the photo for the forum with the specified id.
+	 * Returns the photo for the store with the specified id.
 	 */
 	@RequestMapping(value = "/photo/{id}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
 	@ResponseBody
 	public byte[] downloadPhoto(@PathVariable("id") Long id) {
 		byte[] imageBytes = null;
-		VbbForum forum = serviceManager.get(id);
-		if (CommonUtility.isNotEmpty(forum.getPhoto())){
-			log.info("Downloading photo for id: {} with size: {}", forum.getId(), forum.getPhoto().length());
+		Store store = serviceManager.get(id);
+		if (CommonUtility.isNotEmpty(store.getPhoto())){
+			log.info("Downloading photo for id: {} with size: {}", store.getId(), store.getPhoto().length());
 
 			// Convert String image into byte[]
-			imageBytes = ImageUtil.decode(forum.getPhoto());
+			imageBytes = ImageUtil.decode(store.getPhoto());
 		}else{
 			imageBytes = new byte[0];
 		}
@@ -263,18 +208,18 @@ public class VbbForumController extends BaseController {
 	}
 
 	/**
-	 * Deletes the forum with the specified id.
+	 * Deletes the store with the specified id.
 	 */
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	public String delete(@PathVariable Long id, Model model, Locale locale) {
-		log.info("Deleting forum with id: " + id);
-		VbbForum forum = serviceManager.get(id);
+		log.info("Deleting store with id: " + id);
+		Store store = serviceManager.get(id);
 
-		if (forum != null) {
-			serviceManager.delete(forum);
-			log.info("Forum deleted successfully");
+		if (store != null) {
+			serviceManager.delete(store);
+			log.info("Store deleted successfully");
 
-			model.addAttribute("message", new Message("success", messageSource.getMessage("forum_delete_success", new Object[] {}, locale)));
+			model.addAttribute("message", new Message("success", messageSource.getMessage("store_delete_success", new Object[] {}, locale)));
 		}
 
 		return DEFAULT_PAGED_REDIRECT;
@@ -283,7 +228,7 @@ public class VbbForumController extends BaseController {
 	//Default method for suggest parent object
 	@Override
 	protected List<SelectItem> suggestItems(String keyword) {
-		Page<VbbForum> searchResults =  serviceManager.search(keyword, null);
+		Page<Store> searchResults =  serviceManager.search(keyword, null);
 		return buildCategorySelectedItems(searchResults.getContent());
 	}
 
@@ -295,12 +240,12 @@ public class VbbForumController extends BaseController {
 	}
 
 	/**
-	 * Search forums base on input values from search section.
+	 * Search stores base on input values from search section.
    */
 	@RequestMapping(value={"/search/{searchPattern}", "/search"}, method = RequestMethod.GET)
 	public String search(@PathVariable Map<String, String> pathVariables, Model model) {
-		log.info("Searching forums ......");
-		Page<VbbForum> pageContentData = null;
+		log.info("Searching stores ......");
+		Page<Store> pageContentData = null;
 		if (pathVariables.containsKey("searchPattern")){
 			log.info("Searching measure units with keyword: " + pathVariables.containsKey("searchPattern"));
 			Short pageNumber = pathVariables.containsKey("pageNumber")?Short.valueOf(pathVariables.get("pageNumber")):(short)1;
@@ -323,15 +268,5 @@ public class VbbForumController extends BaseController {
 	protected String performSearch(SearchParameter params) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	protected void onPostConstruct() {
-		postConstructData("Setup forums");
-	}
-
-	@Override
-	protected void constructData() {
-		//vBulletinBoardHelper.setupDefaultData();
 	}
 }

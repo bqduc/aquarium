@@ -14,10 +14,10 @@ import org.springframework.stereotype.Component;
 import net.brilliance.domain.entity.contact.ClientProfile;
 import net.brilliance.manager.catalog.CatalogManager;
 import net.brilliance.manager.contact.ClientProfileManager;
-import net.brilliance.manager.hc.EmployeeManager;
 //import net.brilliance.service.BookService;
 import net.brilliance.service.api.contact.ContactService;
 import net.brilliance.service.api.inventory.ProductService;
+import net.sunrise.hrcx.manager.EmployeeManager;
 
 /**
  * @author ducbq

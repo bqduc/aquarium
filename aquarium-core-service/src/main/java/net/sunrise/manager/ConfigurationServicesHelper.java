@@ -3,11 +3,14 @@
  */
 package net.sunrise.manager;
 
+import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
 import net.brilliance.common.CommonConstants;
@@ -19,8 +22,10 @@ import net.brilliance.domain.entity.hc.Employee;
 import net.brilliance.domain.model.enums.EmployeeConfigurationModel;
 import net.brilliance.exceptions.EcosysException;
 import net.brilliance.global.WebAdminConstants;
+import net.brilliance.model.Bucket;
 import net.sunrise.enums.DefaultConfigurations;
 import net.sunrise.helper.GlobalDataServiceHelper;
+import net.sunrise.hrcx.manager.EmployeeManager;
 
 /**
  * @author ducbq
@@ -37,6 +42,9 @@ public class ConfigurationServicesHelper {
 	@Inject
 	private GlobalDataServiceHelper globalDataServiceHelper;
 	
+	@Inject
+	private EmployeeManager employeeManager;
+
 	/*private List<String> malePatternList = new ArrayList<>();
 	private List<String> femalePatternList = new ArrayList<>();*/
 
@@ -48,7 +56,7 @@ public class ConfigurationServicesHelper {
 	}
 
 	
-	/*public List<Employee> importEmployees() throws EcosysException {
+	public List<Employee> importEmployees() throws EcosysException {
 		List<Employee> employees = new ArrayList<>();
 		Bucket dataBucket = null;
 		Employee emp = null;
@@ -76,7 +84,7 @@ public class ConfigurationServicesHelper {
 			throw new EcosysException(e);
 		}
 		return employees;
-	}*/
+	}
 
 	private Employee parseEmployee(List<String> dataParts) throws EcosysException {
 		Employee emp = new Employee();

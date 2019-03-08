@@ -1,4 +1,4 @@
-package net.brilliance.manager.hc;
+package net.sunrise.hrcx.service;
 
 import java.util.List;
 

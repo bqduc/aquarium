@@ -283,10 +283,10 @@ public abstract class BaseController extends RootController {
 		return isContinuedOther;
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
+	/*@RequestMapping(method = RequestMethod.GET)
 	public String list(Model model, HttpServletRequest request) {
 		return loadDefault(model, request);
-	}
+	}*/
 
 	@PostMapping(value = "/search/query", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public String search(@RequestBody(required = false) SearchParameter params, Model model, Pageable pageable) {

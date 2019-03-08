@@ -1,4 +1,4 @@
-package net.brilliance.manager.hc;
+package net.sunrise.hrcx.manager;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -17,9 +17,9 @@ import net.brilliance.exceptions.EcosysException;
 import net.brilliance.framework.manager.BaseManager;
 import net.brilliance.framework.repository.BaseRepository;
 import net.brilliance.model.Bucket;
-import net.brilliance.repository.hc.EmployeeRepository;
 import net.sunrise.enums.DefaultConfigurations;
 import net.sunrise.helper.GlobalDataServiceHelper;
+import net.sunrise.hrcx.persistence.EmployeeRepository;
 import net.sunrise.manager.ConfigurationManager;
 
 @Service("employeeManager")
@@ -44,7 +44,7 @@ public class EmployeeManager extends BaseManager<Employee, Long> {
 		return this.employeeRepository.countByCode(code);
 	}
 
-	
+	@SuppressWarnings("unchecked")
 	public String importEmployees(InputStream inputStream, String sheetName, int startedIndex) throws EcosysException {
 		List<String> dataParts = null;
 		Bucket dataBucket = null;
