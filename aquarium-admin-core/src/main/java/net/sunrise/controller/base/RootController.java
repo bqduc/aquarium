@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.sunrise.controller.base;
+package net.sunrise.controller.base;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;

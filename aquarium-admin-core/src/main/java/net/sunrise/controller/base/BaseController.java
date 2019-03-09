@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.sunrise.controller.base;
+package net.sunrise.controller.base;
 
 import java.lang.reflect.InvocationTargetException;
 import java.text.SimpleDateFormat;
@@ -33,7 +33,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.sunrise.controller.ControllerConstants;
 
 import net.brilliance.common.CommonBeanUtils;
 import net.brilliance.common.CommonConstants;

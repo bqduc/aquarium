@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.sunrise.controller.base;
+package net.sunrise.controller.base;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

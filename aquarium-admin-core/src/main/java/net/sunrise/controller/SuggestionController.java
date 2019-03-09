@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.sunrise.controller.common;
+package net.sunrise.controller;
 
 import java.util.List;
 
@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.sunrise.controller.base.BaseController;
-
 import net.brilliance.domain.entity.general.CatalogueSubtype;
 import net.brilliance.domain.model.SelectItem;
 import net.brilliance.framework.logging.LogService;
@@ -26,6 +24,7 @@ import net.brilliance.framework.model.SearchParameter;
 import net.brilliance.manager.catalog.CategoryManager;
 import net.brilliance.manager.catalog.impl.DepartmentManager;
 import net.brilliance.service.api.inventory.CatalogueSubtypeService;
+import net.sunrise.controller.base.BaseController;
 
 /**
  * @author ducbq
