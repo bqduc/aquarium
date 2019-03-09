@@ -23,7 +23,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 import com.sunrise.controller.ControllerConstants;
-import com.sunrise.controller.base.BaseController;
 
 import net.brilliance.common.CommonUtility;
 import net.brilliance.common.GUUISequenceGenerator;
@@ -33,6 +32,7 @@ import net.brilliance.framework.model.SearchParameter;
 import net.brilliance.framework.model.SequenceType;
 import net.brilliance.runnable.UpdateSystemSequenceThread;
 import net.brilliance.service.api.inventory.CatalogueSubtypeService;
+import net.sunrise.controller.base.BaseController;
 
 @Controller
 @RequestMapping("/" + ControllerConstants.REQUEST_MAPPING_CATALOG_SUBTYPE)

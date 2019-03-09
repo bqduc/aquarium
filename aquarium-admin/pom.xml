@@ -26,6 +26,12 @@
 	<!-- Business inside modules -->
         <dependency>
             <groupId>${project.groupId}</groupId>
+            <artifactId>aquarium-admin-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>	
+
+        <dependency>
+            <groupId>${project.groupId}</groupId>
             <artifactId>aquarium-core</artifactId>
             <version>${project.version}</version>
         </dependency>	
@@ -51,6 +57,12 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>aquarium-brx</artifactId>
+            <version>${project.version}</version>
+        </dependency>	
+
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>aquarium-hrcx</artifactId>
             <version>${project.version}</version>
         </dependency>	
 	<!-- End of business inside modules -->

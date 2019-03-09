@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sunrise.controller.ControllerConstants;
-import com.sunrise.controller.base.BaseController;
 
 import lombok.extern.slf4j.Slf4j;
 import net.brilliance.common.CommonConstants;
@@ -33,6 +32,7 @@ import net.brilliance.domain.model.Tag;
 import net.brilliance.framework.model.SearchParameter;
 import net.brilliance.helper.WebServicingHelper;
 import net.brilliance.manager.catalog.impl.DepartmentManager;
+import net.sunrise.controller.base.BaseController;
 
 @Slf4j
 @SuppressWarnings("unchecked")

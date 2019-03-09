@@ -28,7 +28,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sunrise.controller.ControllerConstants;
-import com.sunrise.controller.base.BaseController;
 import com.sunrise.utility.Message;
 
 import lombok.extern.slf4j.Slf4j;
@@ -40,6 +39,7 @@ import net.brilliance.domain.model.SelectItem;
 import net.brilliance.framework.model.ExecutionContext;
 import net.brilliance.framework.model.SearchParameter;
 import net.brilliance.manager.catalog.ProjectServiceManager;
+import net.sunrise.controller.base.BaseController;
 
 @Slf4j
 @RequestMapping("/" + ControllerConstants.REQUEST_MAPPING_PROJECT)

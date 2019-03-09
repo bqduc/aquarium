@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sunrise.controller.ControllerConstants;
-import com.sunrise.controller.base.BaseRestController;
 
 import net.brilliance.common.CommonUtility;
 import net.brilliance.domain.entity.general.Region;
 import net.brilliance.framework.model.SearchParameter;
 import net.brilliance.service.api.general.RegionService;
+import net.sunrise.controller.base.BaseRestController;
 
 
 @RequestMapping(ControllerConstants.REST_API + ControllerConstants.URI_REGION)

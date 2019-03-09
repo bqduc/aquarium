@@ -18,11 +18,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.sunrise.controller.ControllerConstants;
-import com.sunrise.controller.base.BaseController;
 
 import net.brilliance.common.CommonUtility;
 import net.brilliance.framework.model.SearchParameter;
 import net.brilliance.service.api.admin.BusinessUnitService;
+import net.sunrise.controller.base.BaseController;
 import net.sunrise.dispatch.GlobalDataInitializer;
 import net.sunrise.domain.entity.dmx.BusinessUnit;
 

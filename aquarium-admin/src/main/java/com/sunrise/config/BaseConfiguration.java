@@ -53,7 +53,7 @@ public class BaseConfiguration {
 	    		"classpath:/i18n/messages-stock", 
 	    		"classpath:/i18n/messages-catalog", 
 	    		"classpath:/i18n/messages-general",
-	    		"classpath:/i18n/messages-emp",
+	    		"classpath:/i18n/messages-hrcx",
 	    		"classpath:/i18n/messages-master",
 	    		"classpath:/i18n/messages-contact",
 	    		"classpath:/i18n/messages",

@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.sunrise.controller.ControllerConstants;
-import com.sunrise.controller.base.BaseController;
 
 import lombok.extern.slf4j.Slf4j;
 import net.brilliance.common.CommonUtility;
 import net.brilliance.domain.entity.crx.contact.Contact;
 import net.brilliance.framework.model.SearchParameter;
 import net.brilliance.service.api.contact.ContactService;
+import net.sunrise.controller.base.BaseController;
 
 @Slf4j
 @Controller

@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sunrise.controller.ControllerConstants;
-import com.sunrise.controller.base.BaseRestController;
 
 import net.brilliance.domain.entity.general.Catalogue;
 import net.brilliance.manager.catalog.CatalogManager;
+import net.sunrise.controller.base.BaseRestController;
 
 @RestController
 @RequestMapping("/" + ControllerConstants.REQUEST_MAPPING_CATALOG)

@@ -25,7 +25,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 import com.sunrise.controller.ControllerConstants;
-import com.sunrise.controller.base.BaseController;
 
 import net.brilliance.common.CommonConstants;
 import net.brilliance.common.CommonUtility;
@@ -38,6 +37,7 @@ import net.brilliance.model.ui.UISelectItem;
 import net.brilliance.runnable.UpdateSystemSequenceThread;
 import net.brilliance.service.api.contact.ContactService;
 import net.brilliance.service.api.general.RegionService;
+import net.sunrise.controller.base.BaseController;
 
 
 @Controller

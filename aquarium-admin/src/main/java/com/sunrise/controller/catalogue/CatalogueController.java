@@ -21,7 +21,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 import com.sunrise.controller.ControllerConstants;
-import com.sunrise.controller.base.BaseController;
 
 import lombok.extern.slf4j.Slf4j;
 import net.brilliance.common.CommonConstants;
@@ -34,6 +33,7 @@ import net.brilliance.framework.model.SearchParameter;
 import net.brilliance.framework.model.SequenceType;
 import net.brilliance.manager.catalog.CatalogManager;
 import net.brilliance.service.helper.InventoryCatalogDataDispatchHelper;
+import net.sunrise.controller.base.BaseController;
 
 @Slf4j
 @Controller

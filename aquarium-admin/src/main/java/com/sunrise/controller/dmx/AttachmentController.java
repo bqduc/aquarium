@@ -26,7 +26,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 import com.sunrise.controller.ControllerConstants;
-import com.sunrise.controller.base.BaseController;
 
 import lombok.extern.slf4j.Slf4j;
 import net.brilliance.common.CommonConstants;
@@ -38,6 +37,7 @@ import net.brilliance.framework.model.SearchParameter;
 import net.brilliance.model.ui.UISelectItem;
 import net.brilliance.service.api.contact.ContactService;
 import net.brilliance.service.api.general.AttachmentService;
+import net.sunrise.controller.base.BaseController;
 
 @Slf4j
 @Controller

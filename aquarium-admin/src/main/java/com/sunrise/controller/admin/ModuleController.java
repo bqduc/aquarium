@@ -20,13 +20,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sunrise.controller.ControllerConstants;
-import com.sunrise.controller.base.BaseController;
 
 import net.brilliance.common.CommonConstants;
 import net.brilliance.domain.entity.security.Module;
 import net.brilliance.domain.model.SelectItem;
 import net.brilliance.framework.model.SearchParameter;
 import net.brilliance.manager.auth.ModuleManager;
+import net.sunrise.controller.base.BaseController;
 
 @RequestMapping("/" + CommonConstants.CONTROLLER_MODULE)
 @Controller

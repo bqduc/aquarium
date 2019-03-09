@@ -165,7 +165,7 @@ public class WebApplicationStarter implements WebMvcConfigurer /*extends SpringB
 	}
 
 
-  @Bean
+/*  @Bean
   public MessageSource messageSource() {
   	String[] resourceBundles = new String[]{
   			"classpath:/i18n/messages-menu", 
@@ -186,7 +186,7 @@ public class WebApplicationStarter implements WebMvcConfigurer /*extends SpringB
       messageSource.setBasenames(resourceBundles);
       messageSource.setDefaultEncoding("UTF-8");
       return messageSource;
-  }
+  }*/
 
   /**
 	 * {@inheritDoc}

@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.sunrise.controller.ControllerConstants;
-import com.sunrise.controller.base.BaseController;
 
 import lombok.extern.slf4j.Slf4j;
 import net.brilliance.domain.entity.hc.Employee;
 import net.brilliance.framework.model.SearchParameter;
+import net.sunrise.controller.base.BaseController;
 import net.sunrise.hrcx.manager.EmployeeManager;
 import net.sunrise.hrcx.service.EmployeeService;
 

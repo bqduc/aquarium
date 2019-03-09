@@ -22,7 +22,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.sunrise.controller.ControllerConstants;
-import com.sunrise.controller.base.BaseController;
 import com.sunrise.utility.Message;
 
 import net.brilliance.common.CommonConstants;
@@ -31,6 +30,7 @@ import net.brilliance.domain.entity.schedule.JobCategory;
 import net.brilliance.domain.model.SelectItem;
 import net.brilliance.framework.model.SearchParameter;
 import net.brilliance.service.api.admin.quartz.JobCategoryService;
+import net.sunrise.controller.base.BaseController;
 import net.sunrise.dispatch.GlobalDataInitializer;
 
 @Controller

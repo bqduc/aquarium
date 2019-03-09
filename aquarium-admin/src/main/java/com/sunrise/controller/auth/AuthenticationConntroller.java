@@ -39,7 +39,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.LocaleResolver;
 
 import com.sunrise.controller.ControllerConstants;
-import com.sunrise.controller.base.BaseController;
 import com.sunrise.dispatch.SecruityServiceACL;
 
 import net.brilliance.common.CommonUtility;
@@ -50,6 +49,7 @@ import net.brilliance.exceptions.AuthenticationException;
 import net.brilliance.framework.model.SearchParameter;
 import net.brilliance.manager.auth.AuthenticationServiceManager;
 import net.brilliance.service.helper.ClientServicesHelper;
+import net.sunrise.controller.base.BaseController;
 
 @Controller
 @RequestMapping("auth")

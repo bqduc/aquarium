@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sunrise.controller.ControllerConstants;
-import com.sunrise.controller.base.BaseRestController;
 
 import lombok.extern.slf4j.Slf4j;
 import net.brilliance.common.CommonUtility;
 import net.brilliance.framework.model.SearchParameter;
+import net.sunrise.controller.base.BaseRestController;
 import net.sunrise.domain.entity.Schedule;
 import net.sunrise.service.ScheduleService;
 

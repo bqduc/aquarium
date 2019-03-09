@@ -20,11 +20,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.sunrise.controller.base.BaseRestController;
-
 import net.brilliance.common.CommonConstants;
 import net.brilliance.common.CommonUtility;
 import net.brilliance.framework.model.SearchParameter;
+import net.sunrise.controller.base.BaseRestController;
 import net.sunrise.domain.entity.Book;
 import net.sunrise.service.BookService;
 

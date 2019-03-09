@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.MappedSuperclass;
 
 import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -15,7 +16,7 @@ import net.brilliance.framework.entity.BizObjectBase;
 /**
  * A Project base.
  */
-@Entity
+@MappedSuperclass
 public abstract class ProjectBase extends BizObjectBase {
 
 	/**

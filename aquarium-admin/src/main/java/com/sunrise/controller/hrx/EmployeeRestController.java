@@ -7,11 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sunrise.controller.base.BaseRestController;
-
 import net.brilliance.common.CommonUtility;
 import net.brilliance.domain.entity.hc.Employee;
 import net.brilliance.framework.model.SearchParameter;
+import net.sunrise.controller.base.BaseRestController;
 import net.sunrise.hrcx.service.EmployeeService;
 
 @RestController
