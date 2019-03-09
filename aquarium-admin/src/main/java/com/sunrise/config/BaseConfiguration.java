@@ -30,8 +30,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @EnableCaching
 @Configuration
-@EnableJpaRepositories({"com.sunrise", "net.sunrise", "net.brilliance"})
-@ComponentScan({"com.sunrise", "net.sunrise", "net.brilliance"})
+@EnableJpaRepositories(basePackages = {"com.sunrise", "net.sunrise", "net.brilliance"})
+@ComponentScan(basePackages = {"com.sunrise", "net.sunrise", "net.brilliance"})
 @EntityScan(basePackages={ "com.sunrise", "net.sunrise", "net.brilliance"})
 @EnableTransactionManagement
 public class BaseConfiguration {
