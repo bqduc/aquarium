@@ -3,11 +3,16 @@
  */
 package com.sunrise.dispatch;
 
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Component;
 
+import com.sunrise.utility.ClassPathResourceUtility;
+
 import net.brilliance.common.CommonConstants;
+import net.brilliance.common.ListUtility;
 import net.brilliance.constants.CommonManagerConstants;
 import net.brilliance.deployment.GlobalDeploymentManager;
 import net.brilliance.domain.entity.config.Configuration;
@@ -18,6 +23,8 @@ import net.brilliance.framework.model.ExecutionContext;
 import net.brilliance.manager.auth.AuthenticationServiceManager;
 import net.brilliance.manager.system.SystemSequenceManager;
 import net.sunrise.manager.ConfigurationManager;
+import net.sunrise.osx.OfficeSuiteServiceProvider;
+import net.sunrise.osx.model.DataBucket;
 import net.sunrise.service.config.ConfigurationService;
 
 /**
@@ -51,6 +58,7 @@ public class GlobalDataRepositoryManager extends BaseComponent {
 
 	public void initializeGlobalData() throws EcosysException {
 		log.info("Enter GlobalDataRepositoryManager::initializeGlobalData()");
+		this.init();
 		this.performInitializeGlobalMasterData();
 		log.info("Leave GlobalDataRepositoryManager::initializeGlobalData()");
 	}
@@ -96,5 +104,24 @@ public class GlobalDataRepositoryManager extends BaseComponent {
 			throw new EcosysException(e);
 		}
 		log.info("Leave GlobalServicesHelper::initDefaultComponents()");
+	}
+
+	public void init() {
+		log.info("Start to parse Excel data");
+		Map<Object, Object> params = ListUtility.createMap();
+		String[] sheetIds = new String[]{"languages", "items", "localized-items"}; 
+		DataBucket dataBucket = null;
+		try {
+			params.put(DataBucket.PARAM_INPUT_STREAM, ClassPathResourceUtility.builder().build().getInputStream("config/data/data-catalog.xlsx"));
+			params.put(DataBucket.PARAM_DATA_SHEETS, sheetIds);
+			params.put(DataBucket.PARAM_STARTED_ROW_INDEX, new Integer[] {1, 1, 1});
+			dataBucket = OfficeSuiteServiceProvider.builder()
+			.build()
+			.readXlsxData(params);
+			System.out.println(dataBucket);
+		} catch (Exception e) {
+			log.error(e);
+		}
+		log.info("Finished parse Excel data");
 	}
 }

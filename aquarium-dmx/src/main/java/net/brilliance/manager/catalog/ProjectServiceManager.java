@@ -15,16 +15,12 @@
 */
 package net.brilliance.manager.catalog;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import javax.inject.Inject;
 
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -38,9 +34,6 @@ import net.brilliance.framework.logging.LogService;
 import net.brilliance.framework.manager.AbstractServiceManager;
 import net.brilliance.framework.repository.JBaseRepository;
 import net.brilliance.model.base.IDataContainer;
-import net.brilliance.officesuite.GlobalOfficeSuiteRepository;
-import net.brilliance.officesuite.model.SpreadsheetContainer;
-import net.brilliance.officesuite.model.SpreadsheetDocDataContainer;
 import net.brilliance.repository.general.catalog.ProjectRepository;
 
 /**
@@ -109,87 +102,7 @@ public class ProjectServiceManager extends AbstractServiceManager<Project, Long>
 
 	private List<Project> importFromExcel(){
 		List<Project> projects = new ArrayList<>();
-		SpreadsheetDocDataContainer dataContainer = null;
-		Date issueDate = null;
-		String implementComments = null;
-		int implementDuration = 0;
-		try {
-			ClassPathResource resource = new ClassPathResource("/config/data/projects-data.xlsx");
-			List<String> sheetNames = new ArrayList<>();
-			sheetNames.add("master");
-			dataContainer = GlobalOfficeSuiteRepository.instance().fetchExcelData(resource.getInputStream(), sheetNames);
-			//dataContainer = GlobalOfficeSuiteRepository.instance().fetchExcelData(resource.getFile());
-			/*dataContainer = GlobalOfficeSuiteRepository.instance().fetchExcelData(resource.getFile());
-			dataContainer = GlobalOfficeSuiteRepository.instance().fetchExcelData(resource.getURI().getPath());*/
-			Map<Object, SpreadsheetContainer> sheetDataMap = dataContainer.getSheetDataContainer();
-			List<Object> rowData = null;
-			SpreadsheetContainer excelSheetContainer = null;
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-			String investmentModel = null;
-			for (Object worksheet :sheetDataMap.keySet()) {
-				excelSheetContainer = (SpreadsheetContainer)sheetDataMap.get(worksheet);
-				//Remove the first object, column headers
-				excelSheetContainer.getSheetDataContainer().remove(Integer.valueOf(0));
-				for (Object key :excelSheetContainer.getSheetDataContainer().keySet()){
-					rowData = (List<Object>)excelSheetContainer.getSheetDataContainer().get(key);
-					if (CommonUtility.isEmpty(rowData.get(IDX_LICENSE))) {
-						this.log.error("An empty license at [" + key + "]");
-						continue;
-					}
-					try {
-						try {
-							implementDuration = ((Double)rowData.get(IDX_DURATION)).intValue();
-						} catch (Exception e) {
-							implementComments = (String)rowData.get(IDX_DURATION);
-						}
-						if (rowData.get(IDX_ISSUE_DATE) instanceof Date) {
-							issueDate = (Date)rowData.get(IDX_ISSUE_DATE);
-						}else {
-							try {
-								if (null != rowData.get(IDX_ISSUE_DATE)) {
-									issueDate = sdf.parse(rowData.get(IDX_ISSUE_DATE).toString());
-								}
-							} catch (Exception e) {
-								this.log.info(CommonUtility.getStackTrace(e));
-							}
-						}
-						try {
-							investmentModel = (String)rowData.get(IDX_INVESTMENT_MODEL);
-						} catch (Exception e) {
-							investmentModel = null;
-							//e.printStackTrace();
-						}
-						/*
-						projects.add(
-		  						Project.instance(
-		  								(rowData.get(IDX_LICENSE) instanceof String)?((String)rowData.get(IDX_LICENSE)).trim():rowData.get(IDX_LICENSE).toString().trim(), //License 
-		  								((String)rowData.get(IDX_NAME).toString()).trim(), //name
-		  								(String)rowData.get(IDX_INVESTOR), //Investor
-		  								issueDate, //Issue date
-		  								investmentModel, //investmentModel
-		  								(null != rowData.get(IDX_INVESTOR_COUNTRY))?rowData.get(IDX_INVESTOR_COUNTRY).toString().trim():"", //investorCountry
-		  								(null != rowData.get(IDX_BUSINESS_DOMAIN))?rowData.get(IDX_BUSINESS_DOMAIN).toString().trim():"", //businessDomain
-		  								(null != rowData.get(IDX_INVESTMENT_CAPITAL))?new BigDecimal((Double.valueOf(rowData.get(IDX_INVESTMENT_CAPITAL).toString()))):BigDecimal.ZERO, //investmentCapital
-		  								BigDecimal.ZERO, //charteredCapital
-		  								(null != rowData.get(IDX_IMPLEMENT_ADDRESS))?rowData.get(IDX_IMPLEMENT_ADDRESS).toString():"", //implementAddress
-		  								implementDuration, //implement duration
-		  								null, //implementDueDate
-		  								implementComments, //implementComments
-		  								(String)rowData.get(IDX_CONTACT_ADDRESS), //Contact address
-		  								issueDate, //Date of license
-		  								null)//Description
-		  						);
-						*/
-
-					} catch (Exception e) {
-						this.log.info(CommonUtility.getStackTrace(e));
-					}
-				}
-			}
-
-		} catch (Exception e) {
-			this.log.info(CommonUtility.getStackTrace(e));
-		}
+		
 		return projects;
 	}
 

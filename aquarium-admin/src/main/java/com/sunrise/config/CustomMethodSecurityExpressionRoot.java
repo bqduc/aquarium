@@ -1,6 +1,5 @@
 package com.sunrise.config;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Component;
  *
  * @author adilcan
  */
-@Slf4j
 @Component
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @Configurable

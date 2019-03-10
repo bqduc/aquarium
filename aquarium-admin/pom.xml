@@ -65,6 +65,18 @@
             <artifactId>aquarium-hrcx</artifactId>
             <version>${project.version}</version>
         </dependency>	
+
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>aquarium-crsx</artifactId>
+            <version>${project.version}</version>
+        </dependency>	
+
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>aquarium-osx</artifactId>
+            <version>${project.version}</version>
+        </dependency>	
 	<!-- End of business inside modules -->
 
 		<dependency>
@@ -82,6 +94,17 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<dependency>
+		    <groupId>org.thymeleaf.extras</groupId>
+		    <artifactId>thymeleaf-extras-springsecurity5</artifactId>
+		    <version>3.0.4.RELEASE</version>
 		</dependency>
 
 		<!-- database dependencies -->
@@ -123,10 +146,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>${commons-io.version}</version>
@@ -139,6 +158,12 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+                <excludes>
+                    <exclude>src/main/resources/config/data/**</exclude>
+                	<exclude>**/*.xlsx</exclude>
+                </excludes>
+            	</configuration>
 			</plugin>
 		</plugins>
 	</build>

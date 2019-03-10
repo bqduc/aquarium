@@ -1,7 +1,7 @@
 /**
  * 
  */
-package net.sunrise.controller.base;
+package net.sunrise.constants;
 
 import net.brilliance.common.CommonConstants;
 
@@ -9,7 +9,7 @@ import net.brilliance.common.CommonConstants;
  * @author ducbq
  *
  */
-public final class ControllerConstants implements CommonConstants{
+public class ControllerConstants implements CommonConstants{
 	public static final String BROWSE = "Browse";
 	public static final String VIEW = "Show";
 	public static final String EDIT = "Edit";

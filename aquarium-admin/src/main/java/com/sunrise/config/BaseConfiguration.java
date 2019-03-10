@@ -18,6 +18,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
+import org.thymeleaf.spring5.SpringTemplateEngine;
+import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
+import org.thymeleaf.spring5.view.ThymeleafViewResolver;
+import org.thymeleaf.templatemode.TemplateMode;
 
 import com.sunrise.start.WebApplicationStarter;
 
@@ -69,7 +75,23 @@ public class BaseConfiguration {
 	      return messageSource;
 	  }
 
-	  /**
+
+	/**
+	 * i18n bean support for switching locale through a request param. <br />
+	 * Users who are authenticated can change their default locale to another
+	 * when they pass in a<br />
+	 * url (http://example.com/&lt;contextpath&gt;/<em>lang=&lt;locale&gt;</em>)
+	 * 
+	 * @return
+	 */
+	@Bean
+	public LocaleChangeInterceptor localeChangeInterceptor() {
+		LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
+		lci.setParamName("lang");
+		return lci;
+	}
+
+	/**
 		 * i18n support bean. The locale resolver being used is Cookie.<br />
 		 * When locale is changed and intercepted by the
 		 * {@link WebApplicationStarter#localeChangeInterceptor localeChangeInterceptor}.
@@ -96,4 +118,36 @@ public class BaseConfiguration {
 		private Locale getDefaultLocale(){
 			return new Locale("vi", "VN");
 		}
+
+		@Bean
+    public SpringSecurityDialect springSecurityDialect(){
+        return new SpringSecurityDialect();
+    }
+		
+		/*@Bean
+		public SpringTemplateEngine templateEngine() {
+		    SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+		    templateEngine.setTemplateResolver(thymeleafTemplateResolver());
+		    templateEngine.setEnableSpringELCompiler(true);
+		    templateEngine.addDialect(springSecurityDialect());
+		    return templateEngine;
+		}
+
+		@Bean
+		public SpringResourceTemplateResolver thymeleafTemplateResolver() {
+		    SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
+		    templateResolver.setPrefix("classpath:templates/");
+		    templateResolver.setSuffix(".html");
+		    templateResolver.setCacheable(false);
+		    templateResolver.setTemplateMode(TemplateMode.HTML);
+		    return templateResolver;
+		}
+
+		@Bean
+		public ThymeleafViewResolver thymeleafViewResolver() {
+		    ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
+		    viewResolver.setTemplateEngine(templateEngine());
+		    viewResolver.setCharacterEncoding("UTF-8");
+		    return viewResolver;
+		}*/
 }

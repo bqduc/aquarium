@@ -105,16 +105,27 @@ public class WebApplicationStarter implements WebMvcConfigurer /*extends SpringB
 		SpringApplication app = new SpringApplication(WebApplicationStarter.class);
 		//app.setBannerMode(Mode.OFF);
 		ConfigurableApplicationContext  configAppContext = app.run(args);
-
-		GlobalDataRepositoryManager globalDataRepositoryManager = null;
-		try {
+		initializeGlobalData(configAppContext);
+		/*try {
 			log.info("Start initialize the global data");
 			globalDataRepositoryManager = configAppContext.getBean(GlobalDataRepositoryManager.class);
 			globalDataRepositoryManager.initializeGlobalData();
 			log.info("The global data is initialization is done. ");
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
+		}*/
+	}
+
+	protected static void initializeGlobalData(ConfigurableApplicationContext  configAppContext) {
+		GlobalDataRepositoryManager globalDataRepositoryManager = null;
+		log.info("Enter initialize global data");
+		try {
+			globalDataRepositoryManager = configAppContext.getBean(GlobalDataRepositoryManager.class);
+			globalDataRepositoryManager.initializeGlobalData();
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
 		}
+		log.info("Leave initialize global data. ");
 	}
 
 	/*@Bean
@@ -141,13 +152,13 @@ public class WebApplicationStarter implements WebMvcConfigurer /*extends SpringB
 	 * @return {@code LocaleResolver}
 	 * @see WebApplicationStarter#localeChangeInterceptor
 	 */
-	@Bean
+	/*@Bean
 	public LocaleResolver localeResolver() {
 		CookieLocaleResolver clr = new CookieLocaleResolver();
 		//clr.setDefaultLocale(Locale.US);
 		clr.setDefaultLocale(getDefaultLocale());
 		return clr;
-	}
+	}*/
 
 	/**
 	 * i18n bean support for switching locale through a request param. <br />
@@ -157,12 +168,12 @@ public class WebApplicationStarter implements WebMvcConfigurer /*extends SpringB
 	 * 
 	 * @return
 	 */
-	@Bean
+	/*@Bean
 	public LocaleChangeInterceptor localeChangeInterceptor() {
 		LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
 		lci.setParamName("lang");
 		return lci;
-	}
+	}*/
 
 
 /*  @Bean
@@ -210,9 +221,9 @@ public class WebApplicationStarter implements WebMvcConfigurer /*extends SpringB
 		registry.addConverter(new CategoryConverter(categoryService));
 
 		registry.addFormatter(new CategoryFormatter(categoryService));
-	}*/
+	}*//*
 
 	private Locale getDefaultLocale(){
 		return new Locale("vi", "VN");
-	}
+	}*/
 }

@@ -29,6 +29,11 @@ import java.util.Set;
 @Table(name="user_account")
 public class User extends BaseEntity implements UserDetails {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2742110845352318188L;
+
 	@NotEmpty
 	private String username;
 

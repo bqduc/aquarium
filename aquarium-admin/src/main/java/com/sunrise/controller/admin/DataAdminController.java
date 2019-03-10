@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.sunrise.asyn.ImportContactsThread;
 import com.sunrise.asyn.InventoryDataDeployer;
 import com.sunrise.controller.ControllerConstants;
+import com.sunrise.dispatch.GlobalDataRepositoryManager;
 
 import lombok.extern.slf4j.Slf4j;
 import net.brilliance.common.CommonUtility;
@@ -78,6 +79,9 @@ public class DataAdminController extends BaseController {
   @Inject 
 	private GlobalDataServiceHelper globalDataServiceHelper;
 
+  @Inject 
+	private GlobalDataRepositoryManager globalDataRepositoryManager;
+  
 	@Override
 	protected String performSearch(SearchParameter params) {
 		// TODO Auto-generated method stub
@@ -87,6 +91,7 @@ public class DataAdminController extends BaseController {
 	@GetMapping({ "", "/index" })
 	public String viewIndex(Model model, HttpServletRequest request) {
 		log.info("Rendering data administration index page...");
+		globalDataRepositoryManager.init();
 		return "pages/system/dataAdminBrowse";
 	}
 

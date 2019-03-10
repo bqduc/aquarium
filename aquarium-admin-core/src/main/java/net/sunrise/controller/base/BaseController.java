@@ -51,6 +51,7 @@ import net.brilliance.manager.catalog.impl.DepartmentManager;
 import net.brilliance.manager.system.SystemSequenceManager;
 import net.brilliance.model.Bucket;
 import net.brilliance.service.api.inventory.CatalogueSubtypeService;
+import net.sunrise.constants.ControllerConstants;
 import net.sunrise.helper.GlobalDataServiceHelper;
 import net.sunrise.manager.ConfigurationManager;
 
@@ -59,9 +60,6 @@ import net.sunrise.manager.ConfigurationManager;
  *
  */
 public abstract class BaseController extends RootController {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -6493003418945724947L;
 
 	protected static final String PAGE_POSTFIX_BROWSE = "Browse";
@@ -91,6 +89,10 @@ public abstract class BaseController extends RootController {
 	public void initBinder(WebDataBinder binder) {
 		CustomDateEditor editor = new CustomDateEditor(new SimpleDateFormat("MM/dd/yyyy"), true);
 		binder.registerCustomEditor(Date.class, editor);
+	}
+
+	protected String getView(String module) {
+		return null;
 	}
 
 	protected String performListing(Model model, HttpServletRequest request){

@@ -15,7 +15,6 @@ import net.brilliance.common.ListUtility;
 import net.brilliance.exceptions.EcosysException;
 import net.brilliance.framework.component.ComponentBase;
 import net.brilliance.model.Bucket;
-import net.sunrise.dispatch.SpreadsheetStringTableDataParser;
 
 
 @Component
@@ -38,7 +37,7 @@ public class GlobalDataServiceHelper extends ComponentBase {
 	public Bucket readSpreadsheetData(InputStream inputStream, Map<Object, Object>params) throws EcosysException {
 		Bucket dataBucket = null;
 		try {
-			dataBucket = SpreadsheetStringTableDataParser.getInstance(inputStream).extractData(params);
+			//dataBucket = SpreadsheetStringTableDataParser.getInstance(inputStream).extractData(params);
 		} catch (Exception e) {
 			throw new EcosysException(e);
 		}
