@@ -36,18 +36,21 @@
         <validation-api.version>2.0.1.Final</validation-api.version>
         <javafaker.version>0.17.2</javafaker.version>
         <springfox-swagger.version>2.9.2</springfox-swagger.version>
+        <apache-poi.version>4.0.1</apache-poi.version>
     </properties>
  
     <modules>
+        <module>aquarium-osx</module>
         <module>aquarium-common</module>
         <module>aquarium-service</module>
         <module>aquarium-core</module>
         <module>aquarium-core-service</module>
-				<module>aquarium-admin-core</module>
+		<module>aquarium-admin-core</module>
         <module>aquarium-community</module>
         <module>aquarium-dmx</module>
         <module>aquarium-brx</module>
         <module>aquarium-hrcx</module>
+        <module>aquarium-crsx</module>
         <module>aquarium-admin</module>
     </modules>
  
