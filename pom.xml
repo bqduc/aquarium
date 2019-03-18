@@ -45,12 +45,13 @@
         <module>aquarium-service</module>
         <module>aquarium-core</module>
         <module>aquarium-core-service</module>
-		<module>aquarium-admin-core</module>
+				<module>aquarium-admin-core</module>
         <module>aquarium-community</module>
         <module>aquarium-dmx</module>
         <module>aquarium-brx</module>
         <module>aquarium-hrcx</module>
         <module>aquarium-crsx</module>
+        <module>aquarium-csrx</module><!-- Corporate Social Responsibility -->
         <module>aquarium-admin</module>
     </modules>
  

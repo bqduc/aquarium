@@ -44,7 +44,7 @@
 
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>aquarium-community</artifactId>
+            <artifactId>aquarium-csrx</artifactId>
             <version>${project.version}</version>
         </dependency>	
 

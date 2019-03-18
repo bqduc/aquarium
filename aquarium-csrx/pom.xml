@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.sunrise</groupId>
+        <artifactId>aquariums</artifactId>
+        <version>0.1</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>aquarium-csrx</artifactId>
+    <packaging>jar</packaging>
+    <version>0.1</version>
+    <name>Aquarium - Corporate Social Responsibility</name>
+    <description>Module that contains all bpm entities to be used in the project. </description>
+
+	<dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>aquarium-admin-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>	
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>aquarium-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>	
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>aquarium-core-service</artifactId>
+            <version>${project.version}</version>
+        </dependency>	
+			<dependency>
+					<groupId>javax.validation</groupId>
+					<artifactId>validation-api</artifactId>
+					<version>${validation-api.version}</version>
+			</dependency>	
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>${javax.inject.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+	</dependencies>
+</project>
