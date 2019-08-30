@@ -20,7 +20,7 @@ import net.brilliance.service.api.inventory.ProductService;
 import net.sunrise.hrcx.manager.EmployeeManager;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 //@Service

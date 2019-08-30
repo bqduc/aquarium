@@ -4,7 +4,7 @@
 package net.brilliance.framework.component;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public abstract class BaseComponent extends RootComponent {

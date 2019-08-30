@@ -22,7 +22,7 @@ import net.brilliance.domain.entity.contact.ContactProc;
 import net.brilliance.framework.entity.BizObjectBase;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @AllArgsConstructor

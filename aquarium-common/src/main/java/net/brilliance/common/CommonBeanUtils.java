@@ -17,7 +17,7 @@ import java.util.StringTokenizer;
 import org.apache.commons.beanutils.BeanUtils;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public class CommonBeanUtils {

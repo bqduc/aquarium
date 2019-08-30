@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import net.sunrise.controller.base.BaseController;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Controller

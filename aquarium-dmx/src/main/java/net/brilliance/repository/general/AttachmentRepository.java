@@ -9,7 +9,7 @@ import net.brilliance.domain.entity.general.Attachment;
 import net.brilliance.framework.repository.BaseRepository;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Repository

@@ -39,7 +39,7 @@ import net.sunrise.repository.vbb.VbbTopicRepository;
 /**
  * Forum service implementation. Provides implementation of the forum
  * 
- * @author ducbq
+ * @author bqduc
  *
  */
 @Service

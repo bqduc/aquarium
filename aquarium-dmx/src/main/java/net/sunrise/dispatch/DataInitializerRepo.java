@@ -9,7 +9,7 @@ import net.brilliance.common.ListUtility;
 import net.brilliance.domain.entity.common.Address;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public class DataInitializerRepo {

@@ -15,17 +15,22 @@
     <description>Module that contains all entities to be used in the project. </description>
 
 	<dependencies>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>aquarium-common</artifactId>
-            <version>${project.version}</version>
-        </dependency>	
+    <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>aquarium-admin-core</artifactId>
+        <version>${project.version}</version>
+    </dependency>	
 
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
 			<version>${validation-api.version}</version>
 		</dependency>	
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>javax.inject</groupId>

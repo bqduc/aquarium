@@ -6,7 +6,7 @@ package net.brilliance.repository.specification.model;
 import net.brilliance.framework.model.specifications.SearchRequest;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public class ContactListRequest extends SearchRequest{

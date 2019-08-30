@@ -6,7 +6,7 @@ package net.brilliance.domain.entity.common;
 import javax.persistence.Embeddable;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Embeddable 

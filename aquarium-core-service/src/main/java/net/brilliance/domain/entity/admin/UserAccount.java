@@ -50,7 +50,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import net.brilliance.common.CommonUtility;
 import net.brilliance.common.DateTimeUtility;
-import net.brilliance.domain.entity.auth.User;
 import net.brilliance.domain.entity.general.Attachment;
 import net.brilliance.framework.entity.BizObjectBase;
 import net.brilliance.framework.entity.auth.AuthAccount;
@@ -60,13 +59,13 @@ import net.brilliance.model.DateTimePatterns;
 /**
  * A user.
  * 
- * @author ducbq
+ * @author bqduc
  */
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "auth_user_account")
+@Table(name = "sa_user_account")
 @ToString(exclude = { "authorities" })
 @EqualsAndHashCode(callSuper = true)
 public class UserAccount extends BizObjectBase implements AuthAccount {
@@ -134,7 +133,7 @@ public class UserAccount extends BizObjectBase implements AuthAccount {
 	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	//@formatter:off
 	@JoinTable(
-			name = "auth_granted_user_authority", 
+			name = "sa_granted_user_authority", 
 			inverseJoinColumns = {@JoinColumn(name = "authority_id")},
 			joinColumns = {@JoinColumn(name = "account_id")}
 	)
@@ -355,9 +354,5 @@ public class UserAccount extends BizObjectBase implements AuthAccount {
 			}
 		}
 		return grantedAuthorities;
-	}
-
-	public UserAccount(User user) {
-		
 	}
 }

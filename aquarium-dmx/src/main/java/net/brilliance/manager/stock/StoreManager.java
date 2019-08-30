@@ -31,7 +31,7 @@ import net.brilliance.repository.stock.StoreRepository;
 /**
  * Store service implementation. Provides implementation of the measure unit
  * 
- * @author ducbq
+ * @author bqduc
  *
  */
 

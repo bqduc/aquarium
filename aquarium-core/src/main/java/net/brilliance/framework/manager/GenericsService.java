@@ -24,7 +24,7 @@ import org.springframework.data.domain.Pageable;
 /**
  * Contains service methods for the management of RepositoryEntity accounts
  * 
- * @author ducbq
+ * @author bqduc
  *
  */
 public interface GenericsService<E, K> {

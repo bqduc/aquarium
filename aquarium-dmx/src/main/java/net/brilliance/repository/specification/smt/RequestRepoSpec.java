@@ -24,7 +24,7 @@ import net.brilliance.framework.model.specifications.SearchRequest;
 import net.brilliance.framework.specifications.BrillianceSpecifications;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 

@@ -34,7 +34,7 @@ import net.brilliance.repository.general.catalog.MeasureUnitRepository;
 /**
  * MeasureUnit service implementation. Provides implementation of the measure unit
  * 
- * @author ducbq
+ * @author bqduc
  *
  */
 @Service

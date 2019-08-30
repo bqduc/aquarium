@@ -37,7 +37,7 @@ import net.brilliance.repository.schedule.JobCategoryRepository;
 *//**
  * Job category service implementation. Provides implementation of the job category
  * 
- * @author ducbq
+ * @author bqduc
  *
  *//*
 @Service

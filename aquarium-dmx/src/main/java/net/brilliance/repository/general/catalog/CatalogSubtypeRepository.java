@@ -15,7 +15,7 @@ import net.brilliance.domain.entity.general.CatalogueSubtype;
 import net.brilliance.framework.repository.BaseRepository;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Repository

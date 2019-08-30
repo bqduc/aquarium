@@ -37,7 +37,7 @@ import net.brilliance.repository.general.ProductRepositoryOrigin;
 /**
  * Project service implementation. Provides implementation of the department
  * 
- * @author ducbq
+ * @author bqduc
  *
  */
 

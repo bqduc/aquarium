@@ -12,7 +12,7 @@ import net.brilliance.domain.entity.stock.Store;
 import net.brilliance.framework.repository.BaseRepository;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 //@Repository

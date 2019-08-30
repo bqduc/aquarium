@@ -18,7 +18,7 @@ import net.brilliance.exceptions.UserAuthenticationException;
 import net.brilliance.exceptions.UserAuthenticationException.AuthenticationCode;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Component

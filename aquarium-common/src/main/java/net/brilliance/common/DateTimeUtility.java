@@ -14,7 +14,7 @@ import net.brilliance.common.validator.DateValidator;
 import net.brilliance.model.DateTimePatterns;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public final class DateTimeUtility {

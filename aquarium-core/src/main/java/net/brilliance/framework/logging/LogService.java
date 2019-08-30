@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.brilliance.common.CommonUtility;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Slf4j

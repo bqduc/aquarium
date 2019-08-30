@@ -6,7 +6,7 @@ package net.brilliance.repository.specification.base;
 import net.brilliance.common.CommonUtility;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public abstract class BaseSpecifications {

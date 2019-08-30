@@ -22,7 +22,7 @@ import javax.validation.constraints.NotNull;
 /**
  * Base Data Transfer Object for application. It is bound to the UI for validation
  * 
- * @author ducbq
+ * @author bqduc
  *
  */
 public class BaseDto {

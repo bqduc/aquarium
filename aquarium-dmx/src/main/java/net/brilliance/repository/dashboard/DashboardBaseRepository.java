@@ -15,7 +15,7 @@ import org.springframework.data.repository.query.Param;
 import net.brilliance.framework.repository.BaseRepository;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @NoRepositoryBean

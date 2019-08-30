@@ -6,7 +6,7 @@ package net.brilliance.model.base;
 import java.util.ArrayList;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public class DataList<T> extends ArrayList<T> {

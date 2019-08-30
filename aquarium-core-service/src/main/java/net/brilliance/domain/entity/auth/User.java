@@ -1,4 +1,4 @@
-package net.brilliance.domain.entity.auth;
+/*package net.brilliance.domain.entity.auth;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -19,11 +19,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import net.brilliance.framework.entity.BaseEntity;
 
-/**
+*//**
  * Created on February, 2018
  *
- * @author adilcan
- */
+ * @author bqduc
+ *//*
 @Getter
 @Setter
 @AllArgsConstructor
@@ -32,9 +32,9 @@ import net.brilliance.framework.entity.BaseEntity;
 @Table(name="user_account")
 public class User extends BaseEntity implements UserDetails {
 
-	/**
+	*//**
 	 * 
-	 */
+	 *//*
 	private static final long serialVersionUID = 6883956731669443493L;
 
 	@NotEmpty
@@ -75,3 +75,4 @@ public class User extends BaseEntity implements UserDetails {
 		return true;
 	}
 }
+*/

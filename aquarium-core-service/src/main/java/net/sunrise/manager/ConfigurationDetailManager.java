@@ -31,7 +31,7 @@ import net.sunrise.repository.ConfigurationDetailRepository;
 /**
  * Configuration detail service implementation. Provides implementation of the configuration detail
  * 
- * @author ducbq
+ * @author bqduc
  *
  */
 @Service

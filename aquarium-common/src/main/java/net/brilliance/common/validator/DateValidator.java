@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public class DateValidator {

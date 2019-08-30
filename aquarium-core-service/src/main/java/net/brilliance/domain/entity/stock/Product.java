@@ -50,7 +50,7 @@ import net.brilliance.framework.global.GlobalConstants;
 /**
  * A product.
  * 
- * @author ducbq
+ * @author bqduc
  */
 @Data
 @Entity

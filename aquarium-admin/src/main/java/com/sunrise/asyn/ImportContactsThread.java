@@ -21,7 +21,7 @@ import net.brilliance.service.api.contact.ContactService;
 import net.sunrise.helper.GlobalDataServiceHelper;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Component

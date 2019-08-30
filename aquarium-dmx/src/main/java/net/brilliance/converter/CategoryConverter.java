@@ -12,7 +12,7 @@ import net.brilliance.domain.entity.general.Category;
 import net.brilliance.manager.catalog.CategoryManager;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Component

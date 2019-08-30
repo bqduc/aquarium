@@ -15,7 +15,7 @@ import net.brilliance.framework.repository.BaseRepository;
 import net.sunrise.crsx.domain.entity.Region;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Repository

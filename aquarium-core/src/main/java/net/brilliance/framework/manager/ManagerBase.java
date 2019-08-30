@@ -6,7 +6,7 @@ package net.brilliance.framework.manager;
 import net.brilliance.framework.component.BaseComponent;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public abstract class ManagerBase extends BaseComponent {

@@ -25,7 +25,7 @@ import net.brilliance.model.Bucket;
 import net.sunrise.helper.GlobalDataServiceHelper;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 

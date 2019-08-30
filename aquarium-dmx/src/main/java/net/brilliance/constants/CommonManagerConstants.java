@@ -4,7 +4,7 @@
 package net.brilliance.constants;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public class CommonManagerConstants {

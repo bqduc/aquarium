@@ -15,7 +15,7 @@ import net.brilliance.domain.entity.crx.Team;
 import net.brilliance.framework.repository.BaseRepository;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Repository

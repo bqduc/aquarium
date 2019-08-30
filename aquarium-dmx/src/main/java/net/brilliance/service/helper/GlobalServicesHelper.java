@@ -13,7 +13,7 @@ import net.brilliance.manager.auth.AuthenticationServiceManager;
 import net.sunrise.manager.ConfigurationManager;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Component

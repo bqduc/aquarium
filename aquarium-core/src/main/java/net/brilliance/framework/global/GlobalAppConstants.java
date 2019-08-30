@@ -4,7 +4,7 @@
 package net.brilliance.framework.global;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public final class GlobalAppConstants {

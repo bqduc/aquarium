@@ -37,8 +37,8 @@ public class BookServiceImpl extends GenericServiceImpl<Book, Long> implements B
 	}
 
 	@Override
-	public ExecutionContext deploy(ExecutionContext executionContext) throws ExecutionContextException {
+	public ExecutionContext load(ExecutionContext executionContext) throws ExecutionContextException {
 		// TODO Auto-generated method stub
-		return super.deploy(executionContext);
+		return super.load(executionContext);
 	}
 }

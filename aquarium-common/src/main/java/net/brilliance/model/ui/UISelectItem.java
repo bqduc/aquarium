@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 import net.brilliance.common.CommonConstants;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Builder

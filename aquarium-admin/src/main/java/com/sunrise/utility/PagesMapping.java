@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public class PagesMapping {

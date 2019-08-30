@@ -28,7 +28,7 @@ import net.sunrise.osx.model.DataBucket;
 import net.sunrise.service.config.ConfigurationService;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Component

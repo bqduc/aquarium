@@ -14,7 +14,7 @@ import net.brilliance.framework.repository.BaseRepository;
 import net.sunrise.domain.entity.BusinessSubPackage;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public interface BusinessSubPackageRepository extends BaseRepository<BusinessSubPackage, Long> {

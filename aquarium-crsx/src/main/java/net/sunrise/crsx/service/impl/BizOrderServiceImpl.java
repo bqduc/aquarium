@@ -43,7 +43,7 @@ public class BizOrderServiceImpl extends GenericServiceImpl<BizOrder, Long> impl
 	}
 
 	@Override
-	public ExecutionContext deploy(ExecutionContext executionContext) throws ExecutionContextException {
+	public ExecutionContext load(ExecutionContext executionContext) throws ExecutionContextException {
 		GlobalDataServicesRepository globalDataServicesRepository = null;
 		Object projectContextData = null;
 		DataInterfaceModel dataInterfaceModel = null;

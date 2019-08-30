@@ -11,7 +11,7 @@ import net.brilliance.domain.entity.general.Category;
 import net.brilliance.framework.repository.AdvancedSearchRepository;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Repository

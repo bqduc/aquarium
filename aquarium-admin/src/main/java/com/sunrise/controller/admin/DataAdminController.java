@@ -40,7 +40,7 @@ import net.sunrise.helper.GlobalDataServiceHelper;
 import net.sunrise.manager.ConfigurationServicesHelper;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Slf4j

@@ -26,7 +26,7 @@ import javax.validation.constraints.Size;
 /**
  * A forum.
  * 
- * @author ducbq
+ * @author bqduc
  */
 @Entity
 @Table(name = "vbb_topic")

@@ -41,7 +41,7 @@ import net.brilliance.framework.global.GlobalConstants;
 /**
  * A catalog sub type.
  * 
- * @author ducbq
+ * @author bqduc
  */
 @NoArgsConstructor
 @AllArgsConstructor

@@ -11,7 +11,7 @@ import net.powertrain.domain.entity.security.UserProfile;
 import net.powertrain.exceptions.AuthenticationException;
 
 *//**
- * @author BDQ1HC
+ * @author bqduc
  *
  *//*
 public interface CustomUserDetailsService extends UserDetailsService {

@@ -10,7 +10,7 @@ import javax.persistence.criteria.Path;
 import org.springframework.data.jpa.domain.Specification;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public class SpecificationFactory {

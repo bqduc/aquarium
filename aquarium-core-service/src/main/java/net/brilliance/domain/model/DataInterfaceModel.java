@@ -6,7 +6,7 @@ package net.brilliance.domain.model;
 import lombok.Builder;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Builder

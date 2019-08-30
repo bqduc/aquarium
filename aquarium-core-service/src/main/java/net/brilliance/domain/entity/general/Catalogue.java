@@ -43,7 +43,7 @@ import net.brilliance.framework.global.GlobalConstants;
 /**
  * A user.
  * 
- * @author ducbq
+ * @author bqduc
  */
 @Builder
 @Data

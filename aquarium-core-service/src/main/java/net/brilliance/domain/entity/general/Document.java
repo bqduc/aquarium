@@ -22,7 +22,7 @@ import net.brilliance.domain.model.GeneralStatus;
 import net.brilliance.framework.entity.ObjectBase;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Builder

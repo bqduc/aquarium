@@ -33,7 +33,7 @@ import net.brilliance.repository.general.catalog.DepartmentRepository;
 /**
  * Department service implementation. Provides implementation of the department
  * 
- * @author ducbq
+ * @author bqduc
  *
  */
 @Service

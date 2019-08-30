@@ -31,7 +31,7 @@ import net.brilliance.repository.agricultural.AquafeedRepository;
 /**
  * Provides implementation of the Aquafeed
  * 
- * @author ducbq
+ * @author bqduc
  *
  */
 @Service

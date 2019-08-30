@@ -8,7 +8,7 @@ import java.math.BigInteger;
 import org.springframework.stereotype.Component;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Component(value="uiUtility")

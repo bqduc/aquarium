@@ -11,7 +11,7 @@ import org.springframework.core.io.ClassPathResource;
 import lombok.Builder;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Builder

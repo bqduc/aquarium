@@ -27,11 +27,11 @@ import net.brilliance.framework.entity.BizObjectBase;
 /**
  * A user.
  * 
- * @author ducbq
+ * @author bqduc
  */
 @Data
 @Entity
-@Table(name = "auth_permission")
+@Table(name = "sa_permission")
 @EqualsAndHashCode(callSuper = true)
 public class Permission extends BizObjectBase{
 	private static final long serialVersionUID = 3067524972341936718L;

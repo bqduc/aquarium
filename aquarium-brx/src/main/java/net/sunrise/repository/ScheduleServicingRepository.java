@@ -13,7 +13,7 @@ import net.brilliance.framework.repository.BaseRepository;
 import net.sunrise.domain.entity.ScheduleServicing;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Repository

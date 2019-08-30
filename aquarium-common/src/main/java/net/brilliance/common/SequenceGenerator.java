@@ -7,7 +7,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * @author ducbq
+ * @author bqduc
  * 
  * Encapsulates algorithms and state for generating deterministic sequences.
  * The sequence of numbers generated will always follow the same pattern,

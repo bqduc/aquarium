@@ -21,7 +21,7 @@ import net.sunrise.domain.entity.BusinessPackage;
 /**
  * Business package service methods for the management of Department accounts
  * 
- * @author ducbq
+ * @author bqduc
  *
  */
 public interface BusinessPackageService extends GenericService<BusinessPackage, Long> {

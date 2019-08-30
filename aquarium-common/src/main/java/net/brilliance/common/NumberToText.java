@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 /**
  * 
- * @author DucBQ
+ * @author bqduc
  */
 public abstract class NumberToText {
 	int[] intArray = new int[30];

@@ -18,7 +18,7 @@ import net.brilliance.common.ListUtility;
 import net.brilliance.framework.model.SearchParameter;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Builder

@@ -14,7 +14,7 @@ import net.brilliance.domain.entity.config.ConfigurationDetail;
 import net.brilliance.framework.repository.BaseRepository;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Repository

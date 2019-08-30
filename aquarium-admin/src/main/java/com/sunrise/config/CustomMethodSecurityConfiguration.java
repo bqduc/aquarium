@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.method.configuration.Globa
 /**
  * Created on February, 2018
  *
- * @author adilcan
+ * @author bqduc
  */
 @Configuration
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)

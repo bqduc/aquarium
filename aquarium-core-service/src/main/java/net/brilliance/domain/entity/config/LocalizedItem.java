@@ -32,7 +32,7 @@ import net.brilliance.framework.entity.BizObjectBase;
 /**
  * A localized item.
  * 
- * @author ducbq
+ * @author bqduc
  */
 @Data
 @Entity

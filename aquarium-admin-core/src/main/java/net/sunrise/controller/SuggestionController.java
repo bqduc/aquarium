@@ -27,7 +27,7 @@ import net.brilliance.service.api.inventory.CatalogueSubtypeService;
 import net.sunrise.controller.base.BaseController;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Controller

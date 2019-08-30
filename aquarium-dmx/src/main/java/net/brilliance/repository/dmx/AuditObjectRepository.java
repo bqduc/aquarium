@@ -9,7 +9,7 @@ import net.brilliance.domain.entity.audit.AuditObject;
 import net.brilliance.framework.repository.BaseRepository;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Repository

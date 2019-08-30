@@ -11,7 +11,7 @@ import net.brilliance.model.base.DataList;
 import net.brilliance.model.base.IDataContainer;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Builder

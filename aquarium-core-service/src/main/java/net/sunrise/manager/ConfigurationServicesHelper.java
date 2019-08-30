@@ -28,7 +28,7 @@ import net.sunrise.helper.GlobalDataServiceHelper;
 import net.sunrise.hrcx.manager.EmployeeManager;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Service

@@ -35,7 +35,7 @@ import net.sunrise.repository.ConfigurationRepository;
 /**
  * Configuration service implementation. Provides implementation of the configuration
  * 
- * @author ducbq
+ * @author bqduc
  *
  */
 

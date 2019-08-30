@@ -10,7 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.NoRepositoryBean;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @NoRepositoryBean

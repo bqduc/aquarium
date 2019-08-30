@@ -16,7 +16,7 @@ import net.brilliance.framework.entity.BizObjectBase;
 import net.brilliance.framework.global.GlobalConstants;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @NoArgsConstructor

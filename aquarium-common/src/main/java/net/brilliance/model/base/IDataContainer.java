@@ -6,7 +6,7 @@ package net.brilliance.model.base;
 import java.util.List;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public interface IDataContainer<T> {

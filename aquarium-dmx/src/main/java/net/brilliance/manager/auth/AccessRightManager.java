@@ -32,7 +32,7 @@ import net.brilliance.repository.auth.AccessRightRepository;
 /**
  * Access right service implementation. Provides implementation of the department
  * 
- * @author ducbq
+ * @author bqduc
  *
  */
 @Service

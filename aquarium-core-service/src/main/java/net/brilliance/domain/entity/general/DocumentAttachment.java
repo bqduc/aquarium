@@ -28,7 +28,7 @@ import net.brilliance.framework.entity.BizObjectBase;
 /**
  * A project shareholder definition.
  * 
- * @author ducbq
+ * @author bqduc
  */
 @NoArgsConstructor
 @AllArgsConstructor

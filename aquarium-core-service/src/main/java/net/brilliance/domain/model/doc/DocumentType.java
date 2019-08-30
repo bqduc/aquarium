@@ -4,7 +4,7 @@
 package net.brilliance.domain.model.doc;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public enum DocumentType {

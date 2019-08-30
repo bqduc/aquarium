@@ -28,7 +28,7 @@ import net.brilliance.repository.auth.PermissionRepository;
 /**
  * Permission service implementation. Provides implementation of the permission
  * 
- * @author ducbq
+ * @author bqduc
  *
  */
 @Service

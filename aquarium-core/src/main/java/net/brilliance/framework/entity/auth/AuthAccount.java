@@ -22,7 +22,7 @@ import net.brilliance.framework.entity.BizEntity;
 /**
  * An abstract authentication account entity.
  * 
- * @author ducbq
+ * @author bqduc
  */
 public interface AuthAccount extends UserDetails, BizEntity {
 	String getSsoId();

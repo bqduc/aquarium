@@ -11,7 +11,7 @@ import net.brilliance.framework.entity.BizObjectBase;
 
 /**
  * Prawn seed (category)
- * @author ducbq
+ * @author bqduc
  *
  */
 @SuppressWarnings("serial")

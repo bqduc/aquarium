@@ -4,7 +4,7 @@
 package net.brilliance.domain.model;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public enum NavigationElement {

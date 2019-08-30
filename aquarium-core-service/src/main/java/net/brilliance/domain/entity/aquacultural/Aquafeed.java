@@ -15,7 +15,7 @@ import net.brilliance.framework.entity.BizObjectBase;
 
 /**
  * Aquafeed. Food for aquafarming
- * @author ducbq
+ * @author bqduc
  *
  */
 @SuppressWarnings("serial")

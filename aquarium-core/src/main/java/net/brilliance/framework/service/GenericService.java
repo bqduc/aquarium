@@ -45,5 +45,5 @@ public interface GenericService<T extends ObjectBase, K extends Serializable>{
 
 	List<T> imports(Map<Object, Object> parameters);
 
-	ExecutionContext deploy(ExecutionContext executionContext) throws ExecutionContextException;
+	ExecutionContext load(ExecutionContext executionContext) throws ExecutionContextException;
 }

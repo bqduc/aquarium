@@ -4,7 +4,7 @@
 package net.brilliance.framework.model;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public enum SearchOperand {

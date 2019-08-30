@@ -6,7 +6,7 @@ package net.sunrise.engine;
 import org.springframework.stereotype.Service;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Service

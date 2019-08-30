@@ -13,7 +13,7 @@ import net.brilliance.exceptions.EcosysException;
 import net.brilliance.framework.component.ComponentBase;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Component

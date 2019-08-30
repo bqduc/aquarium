@@ -23,7 +23,7 @@ import net.brilliance.domain.entity.admin.UserAccount;
 /**
  * Contains service methods for the management of User accounts
  * 
- * @author ducbq
+ * @author bqduc
  *
  */
 public interface AuthenticationAccountService {

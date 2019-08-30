@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 import net.brilliance.framework.entity.BizObjectBase;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @AllArgsConstructor

@@ -29,7 +29,7 @@ import net.sunrise.service.RouteService;
 /**
  * Category service implementation. Provides implementation of the department
  * 
- * @author ducbq
+ * @author bqduc
  *
  */
 @Service

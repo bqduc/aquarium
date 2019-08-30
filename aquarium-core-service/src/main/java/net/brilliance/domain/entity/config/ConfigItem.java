@@ -34,7 +34,7 @@ import net.brilliance.framework.global.GlobalConstants;
 /**
  * An item.
  * 
- * @author ducbq
+ * @author bqduc
  */
 @AllArgsConstructor
 @NoArgsConstructor

@@ -6,7 +6,7 @@ package net.brilliance.exceptions;
 import org.springframework.security.core.AuthenticationException;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public class UserAuthenticationException extends AuthenticationException {

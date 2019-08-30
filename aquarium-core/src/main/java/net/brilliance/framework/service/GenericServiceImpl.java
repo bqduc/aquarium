@@ -193,7 +193,7 @@ public abstract class GenericServiceImpl<EntityType extends ObjectBase, Key exte
 		return pagedEntities;
 	}
 
-	public ExecutionContext deploy(ExecutionContext executionContext) throws ExecutionContextException {
+	public ExecutionContext load(ExecutionContext executionContext) throws ExecutionContextException {
 		return executionContext;
 	}
 

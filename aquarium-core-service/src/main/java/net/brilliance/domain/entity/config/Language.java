@@ -30,7 +30,7 @@ import net.brilliance.framework.global.GlobalConstants;
 /**
  * A language.
  * 
- * @author ducbq
+ * @author bqduc
  */
 @Data
 @Entity

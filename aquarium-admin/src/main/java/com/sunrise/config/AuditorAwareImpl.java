@@ -10,7 +10,7 @@ import java.util.Optional;
 /**
  * Created on February, 2018
  *
- * @author adilcan
+ * @author bqduc
  */
 public class AuditorAwareImpl implements AuditorAware<String> {
 

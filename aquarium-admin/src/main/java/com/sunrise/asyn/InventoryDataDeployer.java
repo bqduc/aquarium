@@ -26,7 +26,7 @@ import net.brilliance.service.api.invt.LanguageService;
 import net.sunrise.helper.GlobalDataServiceHelper;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 

@@ -31,13 +31,13 @@ import net.brilliance.framework.entity.BizObjectBase;
 /**
  * An authority (a security role) used by Spring Security.
  * 
- * @author ducbq
+ * @author bqduc
  */
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "auth_authority")
+@Table(name = "sa_authority")
 public class Authority extends BizObjectBase {
 	/**
 	 * 

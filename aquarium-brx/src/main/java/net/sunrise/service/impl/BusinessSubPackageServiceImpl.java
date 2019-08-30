@@ -29,7 +29,7 @@ import net.sunrise.service.BusinessSubPackageService;
 /**
  * Category service implementation. Provides implementation of the department
  * 
- * @author ducbq
+ * @author bqduc
  *
  */
 @Service

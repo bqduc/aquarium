@@ -36,7 +36,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 /**
  * Enable spring security for this application that handles Authorization and Authentication
  * https://g00glen00b.be/securing-your-rest-api-with-spring-security/
- * @author DucBQ
+ * @author bqduc
  *
  */
 @Configuration

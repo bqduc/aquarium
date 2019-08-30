@@ -11,7 +11,7 @@ import net.brilliance.domain.entity.aquacultural.LivestockFeed;
 import net.brilliance.framework.repository.CodeBaseRepository;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Repository

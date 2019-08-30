@@ -12,7 +12,7 @@ import net.brilliance.framework.specifications.BrillianceSpecifications;
 import net.brilliance.repository.specification.model.ContactListRequest;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Component

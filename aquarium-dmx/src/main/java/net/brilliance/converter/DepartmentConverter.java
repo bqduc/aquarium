@@ -15,7 +15,7 @@ import net.brilliance.domain.entity.general.Department;
 import net.brilliance.manager.catalog.impl.DepartmentManager;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Component

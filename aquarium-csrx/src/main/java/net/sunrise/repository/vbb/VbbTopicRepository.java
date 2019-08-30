@@ -13,7 +13,7 @@ import net.brilliance.framework.repository.BaseRepository;
 import net.sunrise.domain.entity.vbb.VbbTopic;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Repository

@@ -15,7 +15,7 @@ import net.brilliance.framework.entity.BizObjectBase;
 
 /**
  * Food of shrimp
- * @author ducbq
+ * @author bqduc
  *
  */
 @SuppressWarnings("serial")

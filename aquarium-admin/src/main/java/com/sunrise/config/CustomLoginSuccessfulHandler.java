@@ -29,7 +29,7 @@ import net.brilliance.framework.logging.LogService;
 import net.brilliance.service.api.admin.UserAuthenticationService;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Component

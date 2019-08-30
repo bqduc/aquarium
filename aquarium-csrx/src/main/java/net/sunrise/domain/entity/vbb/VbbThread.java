@@ -34,7 +34,7 @@ import lombok.EqualsAndHashCode;
 /**
  * A forum.
  * 
- * @author ducbq
+ * @author bqduc
  */
 @Data
 @Entity

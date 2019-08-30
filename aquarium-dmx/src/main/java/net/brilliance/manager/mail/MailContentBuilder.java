@@ -12,7 +12,7 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Service

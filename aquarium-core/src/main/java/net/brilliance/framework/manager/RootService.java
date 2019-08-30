@@ -16,7 +16,7 @@ import net.brilliance.common.CommonConstants;
 import net.brilliance.framework.component.BaseComponent;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public abstract class RootService<T, PK extends Serializable> extends BaseComponent{

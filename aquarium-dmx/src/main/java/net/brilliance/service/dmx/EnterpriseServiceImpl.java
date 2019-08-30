@@ -59,7 +59,7 @@ public class EnterpriseServiceImpl extends GenericServiceImpl<Enterprise, Long> 
 	}
 
 	@Override
-	public ExecutionContext deploy(ExecutionContext executionContext) throws ExecutionContextException {
+	public ExecutionContext load(ExecutionContext executionContext) throws ExecutionContextException {
 		GlobalDataServicesRepository globalDataServicesRepository = null;
 		Object projectContextData = null;
 		DataInterfaceModel dataInterfaceModel = null;

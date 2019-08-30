@@ -16,7 +16,7 @@ import net.brilliance.exceptions.EcosysException;
 import net.brilliance.framework.logging.LogService;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 

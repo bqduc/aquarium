@@ -6,7 +6,7 @@ package net.brilliance.common;
 import java.util.HashMap;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public class BrillianceHashMap<K, V> extends HashMap<K, V> {

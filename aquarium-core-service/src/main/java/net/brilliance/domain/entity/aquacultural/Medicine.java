@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import net.brilliance.framework.entity.BizObjectBase;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @SuppressWarnings("serial")

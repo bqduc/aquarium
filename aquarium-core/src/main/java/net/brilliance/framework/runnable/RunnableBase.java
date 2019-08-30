@@ -7,7 +7,7 @@ import net.brilliance.framework.component.RootComponent;
 import net.brilliance.framework.model.ExecutionContext;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public abstract class RunnableBase extends RootComponent implements Runnable {

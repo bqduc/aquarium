@@ -6,7 +6,7 @@ package net.brilliance.framework.deployment;
 import net.brilliance.framework.component.BaseComponent;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public abstract class DeploymentBase extends BaseComponent implements Deployment {

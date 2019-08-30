@@ -30,7 +30,7 @@ import net.brilliance.repository.agricultural.PondRepository;
 /**
  * Provides implementation of the Aquafeed
  * 
- * @author ducbq
+ * @author bqduc
  *
  */
 @Service

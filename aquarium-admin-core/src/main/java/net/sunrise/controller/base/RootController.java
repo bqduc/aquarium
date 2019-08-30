@@ -11,7 +11,7 @@ import org.springframework.context.MessageSource;
 import net.brilliance.framework.component.RootComponent;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public abstract class RootController extends RootComponent {

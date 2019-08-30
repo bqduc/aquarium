@@ -12,7 +12,7 @@ import net.brilliance.framework.specifications.BrillianceSpecifications;
 import net.sunrise.domain.entity.dmx.EnterpriseUnit;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Builder

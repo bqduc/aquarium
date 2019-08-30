@@ -9,7 +9,7 @@ import net.brilliance.domain.entity.security.AccessRight;
 import net.brilliance.framework.repository.JBaseRepository;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Repository

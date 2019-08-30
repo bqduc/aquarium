@@ -7,7 +7,7 @@ import net.brilliance.exceptions.ExecutionContextException;
 import net.brilliance.framework.model.ExecutionContext;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public interface Deployment {

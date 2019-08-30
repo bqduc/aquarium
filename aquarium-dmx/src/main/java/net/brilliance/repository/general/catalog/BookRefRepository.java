@@ -11,7 +11,7 @@ import net.brilliance.domain.entity.general.RefBook;
 import net.brilliance.framework.repository.JBaseRepository;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Repository

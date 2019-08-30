@@ -31,7 +31,7 @@ import net.brilliance.framework.repository.IBaseRepository;
 /**
  * GenericsService implementation. Provides implementation of the generic entity
  * 
- * @author ducbq
+ * @author bqduc
  *
  */
 @Service

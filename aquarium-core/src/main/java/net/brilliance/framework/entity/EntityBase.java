@@ -6,7 +6,7 @@ package net.brilliance.framework.entity;
 import java.io.Serializable;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public interface EntityBase extends Comparable<Object>, Serializable {

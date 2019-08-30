@@ -16,7 +16,7 @@ import lombok.EqualsAndHashCode;
 import net.brilliance.framework.entity.BizObjectBase;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Entity

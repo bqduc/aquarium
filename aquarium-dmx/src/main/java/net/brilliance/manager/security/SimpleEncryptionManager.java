@@ -11,7 +11,7 @@ import net.brilliance.common.CommonUtility;
 import net.brilliance.framework.model.security.CryptoAlgorithm;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Service

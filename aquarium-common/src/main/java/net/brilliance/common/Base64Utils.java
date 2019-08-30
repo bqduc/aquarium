@@ -7,7 +7,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public class Base64Utils {

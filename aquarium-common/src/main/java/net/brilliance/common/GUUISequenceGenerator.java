@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * @author ducbq
+ * @author bqduc
  * 
  * Global Universal Unique Identifier sequential generator
  * 

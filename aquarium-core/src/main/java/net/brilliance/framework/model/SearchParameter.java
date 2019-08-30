@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 import net.brilliance.common.ListUtility;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Builder

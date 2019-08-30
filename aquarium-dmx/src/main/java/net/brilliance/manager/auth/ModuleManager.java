@@ -30,7 +30,7 @@ import net.brilliance.repository.auth.ModuleRepository;
 /**
  * Module service implementation. 
  * 
- * @author ducbq
+ * @author bqduc
  *
  */
 @Service

@@ -6,7 +6,7 @@ package net.sunrise.constants;
 import net.brilliance.common.CommonConstants;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public class ControllerConstants implements CommonConstants{

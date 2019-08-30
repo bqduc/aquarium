@@ -4,7 +4,7 @@
 package com.sunrise.config;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public interface ConfigurationConstants {

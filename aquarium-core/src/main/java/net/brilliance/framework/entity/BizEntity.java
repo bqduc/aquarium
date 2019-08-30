@@ -4,7 +4,7 @@
 package net.brilliance.framework.entity;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public interface BizEntity extends EntityBase {

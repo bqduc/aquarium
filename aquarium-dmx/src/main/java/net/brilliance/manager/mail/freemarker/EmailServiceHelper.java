@@ -19,7 +19,7 @@ import net.brilliance.domain.entity.admin.UserAccount;
 import net.brilliance.manager.mail.MailConstants;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Service

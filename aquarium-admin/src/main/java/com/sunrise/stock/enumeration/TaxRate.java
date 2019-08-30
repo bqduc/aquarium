@@ -3,7 +3,7 @@ package com.sunrise.stock.enumeration;
 /**
  * Created on January, 2018
  *
- * @author adilcan
+ * @author bqduc
  */
 public enum TaxRate{
 

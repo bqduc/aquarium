@@ -4,7 +4,7 @@
 package net.brilliance.model;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public class BuildCatalogBucket {

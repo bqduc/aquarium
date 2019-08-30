@@ -9,7 +9,7 @@ import java.util.Objects;
 import java.util.Random;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public class RandomString {

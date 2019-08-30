@@ -18,7 +18,7 @@ import net.brilliance.service.api.admin.UserAuthenticationService;
 /**
  * Created on February, 2018
  *
- * @author adilcan
+ * @author bqduc
  */
 @Controller
 public class UserController {

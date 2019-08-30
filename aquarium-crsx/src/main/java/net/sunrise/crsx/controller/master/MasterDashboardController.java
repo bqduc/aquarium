@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import net.sunrise.controller.base.BaseController;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Controller
@@ -24,7 +24,7 @@ public class MasterDashboardController extends BaseController {
 
 	@RequestMapping(path={"/", ""}, method=RequestMethod.GET)
 	public String viewDashboard(){
-		System.out.println("Enter view CRSX dashboard");
+		System.out.println("-->Enter view CRSX dashboard");
 		return "pages/hrcx/dashboard";
 	}
 

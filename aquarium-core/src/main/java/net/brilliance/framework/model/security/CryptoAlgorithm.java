@@ -4,7 +4,7 @@
 package net.brilliance.framework.model.security;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public enum CryptoAlgorithm {

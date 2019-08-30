@@ -14,7 +14,7 @@ import net.sunrise.controller.base.BaseController;
 import net.sunrise.service.BookService;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @RequestMapping("/book")

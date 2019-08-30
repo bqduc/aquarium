@@ -25,7 +25,7 @@ import net.sunrise.helper.GlobalRepositoryHelper;
 import net.sunrise.manager.ConfigurationManager;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Component

@@ -21,7 +21,7 @@ import net.brilliance.framework.component.ComponentBase;
 import net.brilliance.manager.auth.AuthenticationServiceManager;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 

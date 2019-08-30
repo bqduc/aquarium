@@ -56,7 +56,7 @@ import net.sunrise.helper.GlobalDataServiceHelper;
 import net.sunrise.manager.ConfigurationManager;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public abstract class BaseController extends RootController {

@@ -13,7 +13,7 @@ import javax.persistence.MappedSuperclass;
 /**
  * Created on January, 2018
  *
- * @author adilcan
+ * @author bqduc
  */
 @Getter
 @Setter

@@ -9,7 +9,7 @@ import lombok.Builder;
 import net.brilliance.framework.model.SearchParameter;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Builder

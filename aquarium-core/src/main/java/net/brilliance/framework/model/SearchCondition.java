@@ -9,7 +9,7 @@ import java.util.Map;
 import org.springframework.data.domain.Pageable;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public class SearchCondition implements Serializable{

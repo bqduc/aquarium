@@ -9,7 +9,7 @@ import net.brilliance.domain.entity.aquacultural.Pond;
 import net.brilliance.framework.repository.CodeBaseRepository;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Repository

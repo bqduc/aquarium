@@ -14,7 +14,7 @@ import net.brilliance.domain.entity.config.Language;
 import net.brilliance.framework.model.SearchCriterion;
 
 *//**
- * @author ducbq
+ * @author bqduc
  *
  *//*
 public class LanguageSpecification implements Specification<Language> {

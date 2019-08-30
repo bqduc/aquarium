@@ -9,7 +9,7 @@ import net.brilliance.framework.model.SearchParameter;
 import net.brilliance.framework.specifications.predicator.base.RepositoryPredicator;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public abstract class BrilliancePredicator<T> extends RepositoryPredicator<T>{

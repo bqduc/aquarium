@@ -8,7 +8,7 @@ import java.util.List;
 import net.brilliance.model.GenderType;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public class GenderTypeUtility {

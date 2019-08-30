@@ -10,7 +10,7 @@ import javax.inject.Inject;
 import net.brilliance.framework.logging.LogService;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public abstract class RootComponent implements Serializable {

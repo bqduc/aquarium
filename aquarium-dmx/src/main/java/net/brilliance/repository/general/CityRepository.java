@@ -15,7 +15,7 @@ import net.brilliance.domain.entity.general.City;
 import net.brilliance.framework.repository.BaseRepository;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Repository

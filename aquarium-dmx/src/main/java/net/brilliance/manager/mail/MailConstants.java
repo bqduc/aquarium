@@ -6,7 +6,7 @@ package net.brilliance.manager.mail;
 import java.nio.charset.Charset;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public interface MailConstants {

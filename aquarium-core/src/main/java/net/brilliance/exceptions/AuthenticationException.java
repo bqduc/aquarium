@@ -12,7 +12,7 @@ package net.brilliance.exceptions;
  * by the execution of the method or constructor and propagate outside
  * the method or constructor boundary.
  *
- * @author ducbq
+ * @author bqduc
  */
 public class AuthenticationException extends RuntimeException {
 	public final static int ERROR_NONE = -1;

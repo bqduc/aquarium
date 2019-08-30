@@ -30,7 +30,7 @@ import com.sunrise.start.WebApplicationStarter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Slf4j

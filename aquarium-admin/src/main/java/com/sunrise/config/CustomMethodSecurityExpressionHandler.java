@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 /**
  * Created on February, 2018
  *
- * @author adilcan
+ * @author bqduc
  */
 @Component
 public class CustomMethodSecurityExpressionHandler extends DefaultMethodSecurityExpressionHandler {

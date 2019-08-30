@@ -24,7 +24,7 @@ import net.brilliance.domain.model.doc.DocumentType;
 import net.brilliance.framework.entity.BizObjectBase;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @NoArgsConstructor

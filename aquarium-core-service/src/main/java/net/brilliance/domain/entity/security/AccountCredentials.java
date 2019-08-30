@@ -4,7 +4,7 @@
 package net.brilliance.domain.entity.security;
 
 /**
- * @author bdq1hc
+ * @author bqduc
  *
  */
 public class AccountCredentials {

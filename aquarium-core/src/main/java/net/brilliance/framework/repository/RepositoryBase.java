@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.NoRepositoryBean;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @NoRepositoryBean

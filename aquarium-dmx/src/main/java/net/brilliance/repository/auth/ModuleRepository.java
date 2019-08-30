@@ -14,7 +14,7 @@ import net.brilliance.domain.entity.security.Module;
 import net.brilliance.framework.repository.SearchRepository;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Repository

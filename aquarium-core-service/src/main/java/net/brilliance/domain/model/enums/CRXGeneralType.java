@@ -4,7 +4,7 @@
 package net.brilliance.domain.model.enums;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public enum CRXGeneralType {

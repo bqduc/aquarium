@@ -15,7 +15,7 @@ import net.brilliance.framework.repository.BaseRepository;
 import net.sunrise.domain.entity.Schedule;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Repository

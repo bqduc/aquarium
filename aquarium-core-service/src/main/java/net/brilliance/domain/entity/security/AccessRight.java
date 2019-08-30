@@ -26,10 +26,10 @@ import net.brilliance.framework.entity.BizObjectBase;
 /**
  * Access right .
  * 
- * @author ducbq
+ * @author bqduc
  */
 @Entity
-@Table(name = "auth_access_right")
+@Table(name = "sa_access_right")
 public class AccessRight extends BizObjectBase {
 	private static final long serialVersionUID = 5474725952032953164L;
 

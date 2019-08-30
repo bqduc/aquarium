@@ -39,7 +39,7 @@ import net.brilliance.repository.general.catalog.ProjectRepository;
 /**
  * Project service implementation. Provides implementation of the project
  * 
- * @author ducbq
+ * @author bqduc
  *
  */
 

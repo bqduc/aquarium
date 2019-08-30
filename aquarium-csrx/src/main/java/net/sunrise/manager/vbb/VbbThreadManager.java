@@ -30,7 +30,7 @@ import net.sunrise.repository.vbb.VbbThreadRepository;
 /**
  * Thread service implementation. Provides implementation of the forum
  * 
- * @author ducbq
+ * @author bqduc
  *
  */
 @Service

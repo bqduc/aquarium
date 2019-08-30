@@ -31,7 +31,7 @@ import net.brilliance.framework.entity.BizObjectBase;
 /**
  * An item.
  * 
- * @author ducbq
+ * @author bqduc
  */
 @NoArgsConstructor
 @AllArgsConstructor

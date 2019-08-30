@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import net.brilliance.framework.manager.ManagerBase;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Component

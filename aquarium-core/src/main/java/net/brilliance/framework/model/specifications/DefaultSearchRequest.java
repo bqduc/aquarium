@@ -4,7 +4,7 @@
 package net.brilliance.framework.model.specifications;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public class DefaultSearchRequest extends SearchRequest{

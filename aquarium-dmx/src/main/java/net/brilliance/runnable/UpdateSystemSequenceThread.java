@@ -13,7 +13,7 @@ import net.brilliance.framework.runnable.RunnableBase;
 import net.brilliance.manager.system.SystemSequenceManager;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Component

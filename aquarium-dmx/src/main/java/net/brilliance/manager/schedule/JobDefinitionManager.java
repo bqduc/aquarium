@@ -37,7 +37,7 @@ import net.brilliance.repository.schedule.JobDefinitionRepository;
 *//**
  * Job definition service implementation. Provides implementation of the job definition
  * 
- * @author ducbq
+ * @author bqduc
  *
  *//*
 @Service

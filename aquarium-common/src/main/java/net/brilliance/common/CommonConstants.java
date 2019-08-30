@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.nio.charset.Charset;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public interface CommonConstants {

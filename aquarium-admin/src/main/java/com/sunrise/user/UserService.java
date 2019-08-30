@@ -13,7 +13,7 @@ import net.brilliance.manager.security.BrillianceEncoder;
 /**
  * Created on February, 2018
  *
- * @author adilcan
+ * @author bqduc
  */
 /*@Service
 public class UserService implements UserDetailsService {

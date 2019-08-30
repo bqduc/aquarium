@@ -8,7 +8,7 @@ import net.brilliance.domain.entity.schedule.JobCategory;
 import net.brilliance.framework.specifications.predicator.BrilliancePredicator;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Builder

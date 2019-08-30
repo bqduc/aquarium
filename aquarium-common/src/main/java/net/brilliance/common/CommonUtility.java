@@ -48,7 +48,7 @@ import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 import net.brilliance.exceptions.VpxRuntimeException;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public class CommonUtility implements CommonConstants {

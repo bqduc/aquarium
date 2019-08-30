@@ -16,7 +16,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @MappedSuperclass

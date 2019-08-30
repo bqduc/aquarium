@@ -10,7 +10,7 @@ import net.brilliance.framework.component.RootComponent;
 import net.brilliance.framework.model.SearchParameter;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public abstract class BaseSpecification<UserType, UserRequest> extends RootComponent {

@@ -4,7 +4,7 @@
 package net.brilliance.dispatch;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public enum ProductMapping {

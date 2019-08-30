@@ -31,7 +31,7 @@ import net.brilliance.repository.agricultural.LivestockFeedRepository;
 /**
  * Provides implementation of the LivestockFeed
  * 
- * @author ducbq
+ * @author bqduc
  *
  */
 @Service

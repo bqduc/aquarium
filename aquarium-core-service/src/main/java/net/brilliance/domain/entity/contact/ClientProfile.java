@@ -38,7 +38,7 @@ import net.brilliance.framework.global.GlobalConstants;
 /**
  * A user.
  * 
- * @author ducbq
+ * @author bqduc
  */
 @Entity
 @Table(name = "client_profile")

@@ -28,7 +28,7 @@ import net.sunrise.enums.DefaultConfigurations;
 import net.sunrise.manager.ConfigurationManager;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 

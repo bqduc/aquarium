@@ -16,7 +16,7 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 import org.thymeleaf.templateresolver.StringTemplateResolver;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Configuration

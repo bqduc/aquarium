@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import net.brilliance.domain.entity.system.DigitalDashlet;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Repository

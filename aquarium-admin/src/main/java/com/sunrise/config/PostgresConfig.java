@@ -24,7 +24,7 @@ import com.sunrise.utility.Profiles;
  * JPA here is standard specification JPA. The underlying datastore is
  * PostgreSQL and/or MySQL
  * 
- * @author ducbq
+ * @author bqduc
  *
  */
 @Profile({ Profiles.POSTGRES, Profiles.HEROKU })

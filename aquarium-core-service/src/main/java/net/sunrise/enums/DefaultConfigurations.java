@@ -4,7 +4,7 @@
 package net.sunrise.enums;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public enum DefaultConfigurations {

@@ -33,7 +33,7 @@ import net.brilliance.repository.general.catalog.CategoryRepository;
 /**
  * Category service implementation. Provides implementation of the category
  * 
- * @author ducbq
+ * @author bqduc
  *
  */
 @Service

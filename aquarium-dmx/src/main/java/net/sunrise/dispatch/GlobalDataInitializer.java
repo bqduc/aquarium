@@ -21,7 +21,7 @@ import net.brilliance.service.api.dmx.EnterpriseService;
 import net.brilliance.service.api.inventory.CatalogueSubtypeService;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Service

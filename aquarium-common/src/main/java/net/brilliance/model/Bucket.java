@@ -10,7 +10,7 @@ import java.util.Map;
 import net.brilliance.common.ListUtility;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public class Bucket {

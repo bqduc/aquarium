@@ -4,7 +4,7 @@
 package net.brilliance.domain.model;
 
 /**
- * @author BDQ1HC
+ * @author bqduc
  *
  */
 public enum AuthorityGroup {

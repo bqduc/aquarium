@@ -32,7 +32,7 @@ import net.brilliance.repository.auth.AuthorityRepository;
 /**
  * Department service implementation. Provides implementation of the department
  * 
- * @author ducbq
+ * @author bqduc
  *
  */
 @Service

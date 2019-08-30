@@ -4,7 +4,7 @@
 package net.brilliance.common;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public interface GeneratorAlgorithm {

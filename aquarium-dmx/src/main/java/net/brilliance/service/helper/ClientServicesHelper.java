@@ -22,7 +22,7 @@ import net.brilliance.manager.mail.freemarker.EmailServiceHelper;
 import net.brilliance.manager.security.BrillianceEncoder;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Service

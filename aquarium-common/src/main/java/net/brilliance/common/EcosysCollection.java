@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public class EcosysCollection<E> extends ArrayList<E> implements Collection<E>{

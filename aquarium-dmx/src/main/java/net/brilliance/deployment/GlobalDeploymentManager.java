@@ -17,7 +17,7 @@ import net.brilliance.service.api.dmx.EnterpriseService;
 import net.brilliance.service.api.dmx.ProjectService;
 
 /**
- * @author ducbq
+ * @author bqduc
  * Query the configured data and deploy all activated deployment entries
  *
  */
@@ -68,7 +68,7 @@ public class GlobalDeploymentManager extends BaseComponent {
 					.toString());
 
 			projectExecutionContext.putContextData(DeploymentSpecification.DEPLOYMENT_DATA_KEY, projectContextData);
-			projectService.deploy(projectExecutionContext);
+			projectService.load(projectExecutionContext);
 		} catch (Exception e) {
 			throw new ExecutionContextException(e);
 		}
@@ -94,7 +94,7 @@ public class GlobalDeploymentManager extends BaseComponent {
 					.toString());*/
 
 			//projectExecutionContext.putContextData(DeploymentSpecification.DEPLOYMENT_DATA_KEY, projectContextData);
-			projectService.deploy(projectExecutionContext);
+			projectService.load(projectExecutionContext);
 		} catch (Exception e) {
 			throw new ExecutionContextException(e);
 		}
@@ -120,7 +120,7 @@ public class GlobalDeploymentManager extends BaseComponent {
 					.toString());
 
 			projectExecutionContext.putContextData(DeploymentSpecification.DEPLOYMENT_DATA_KEY, projectContextData);
-			enterpriseService.deploy(projectExecutionContext);
+			enterpriseService.load(projectExecutionContext);
 		} catch (Exception e) {
 			throw new ExecutionContextException(e);
 		}

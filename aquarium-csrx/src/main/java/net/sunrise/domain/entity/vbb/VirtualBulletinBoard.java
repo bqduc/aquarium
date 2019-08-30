@@ -33,7 +33,7 @@ import net.brilliance.framework.entity.BizObjectBase;
 /**
  * A forum.
  * 
- * @author ducbq
+ * @author bqduc
  */
 @MappedSuperclass
 public abstract class VirtualBulletinBoard extends BizObjectBase{

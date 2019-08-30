@@ -13,7 +13,7 @@ import net.brilliance.domain.entity.general.Department;
 import net.brilliance.framework.repository.AdvancedSearchRepository;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Repository

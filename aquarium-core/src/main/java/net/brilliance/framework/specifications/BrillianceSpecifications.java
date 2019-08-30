@@ -17,7 +17,7 @@ import net.brilliance.common.ListUtility;
 import net.brilliance.framework.model.SearchParameter;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public abstract class BrillianceSpecifications<CustomUserType, CustomUserRequest> extends BaseSpecification<CustomUserType, CustomUserRequest>{

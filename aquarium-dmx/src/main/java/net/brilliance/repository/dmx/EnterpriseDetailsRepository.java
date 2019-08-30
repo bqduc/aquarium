@@ -16,7 +16,7 @@ import net.sunrise.domain.entity.dmx.Enterprise;
 import net.sunrise.domain.entity.dmx.EnterpriseDetail;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Repository

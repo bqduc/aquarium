@@ -24,7 +24,7 @@ import net.brilliance.framework.repository.BrillianceRepository;
  * Repository interface for the {@link UserAccount} entity. It contains methods for
  * regular <code>CRUD</code> operations
  * 
- * @author ducbq
+ * @author bqduc
  *
  */
 @Repository

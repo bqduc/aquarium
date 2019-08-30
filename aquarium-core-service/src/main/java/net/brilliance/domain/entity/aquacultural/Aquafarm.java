@@ -13,7 +13,7 @@ import net.brilliance.domain.entity.contact.ClientProfile;
 import net.brilliance.framework.entity.BizObjectBase;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @SuppressWarnings("serial")

@@ -17,7 +17,7 @@ import net.brilliance.model.base.DataList;
 import net.brilliance.model.ui.UISelectItem;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public class ListUtility {

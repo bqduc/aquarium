@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 import net.brilliance.domain.entity.admin.UserAccount;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Embeddable 

@@ -29,7 +29,7 @@ import net.brilliance.framework.entity.BizObjectBase;
 /**
  * A user.
  * 
- * @author ducbq
+ * @author bqduc
  */
 @Data
 @Entity

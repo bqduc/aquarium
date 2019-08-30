@@ -68,6 +68,12 @@
 
         <dependency>
             <groupId>${project.groupId}</groupId>
+            <artifactId>aquarium-cdix</artifactId>
+            <version>${project.version}</version>
+        </dependency>	
+
+        <dependency>
+            <groupId>${project.groupId}</groupId>
             <artifactId>aquarium-crsx</artifactId>
             <version>${project.version}</version>
         </dependency>	

@@ -11,7 +11,7 @@ import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.data.repository.query.Param;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @NoRepositoryBean

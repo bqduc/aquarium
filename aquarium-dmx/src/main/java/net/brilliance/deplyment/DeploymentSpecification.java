@@ -4,7 +4,7 @@
 package net.brilliance.deplyment;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public interface DeploymentSpecification {

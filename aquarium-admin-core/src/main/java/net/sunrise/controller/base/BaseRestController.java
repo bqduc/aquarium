@@ -25,7 +25,7 @@ import net.brilliance.exceptions.DataFormatException;
 import net.brilliance.exceptions.ResourceNotFoundException;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 public abstract class BaseRestController<T> extends RootController {

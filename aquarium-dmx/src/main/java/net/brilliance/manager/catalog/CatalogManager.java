@@ -31,7 +31,7 @@ import net.brilliance.repository.general.catalog.CatalogRepository;
 /**
  * Catalog service implementation. Provides implementation of the catalog
  * 
- * @author ducbq
+ * @author bqduc
  *
  */
 @Service

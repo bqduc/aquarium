@@ -8,7 +8,7 @@ import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 

@@ -15,7 +15,7 @@ import net.brilliance.framework.model.ExecutionContext;
 import net.brilliance.service.api.dmx.ProjectService;
 
 /**
- * @author ducbq
+ * @author bqduc
  *
  */
 @Component
