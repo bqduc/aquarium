@@ -46,7 +46,7 @@
         <module>aquarium-service</module>
         <module>aquarium-core</module>
         <module>aquarium-core-service</module>
-		<module>aquarium-admin-core</module>
+				<module>aquarium-admin-core</module>
         <module>aquarium-community</module>
         <module>aquarium-dmx</module>
         <module>aquarium-brx</module>
