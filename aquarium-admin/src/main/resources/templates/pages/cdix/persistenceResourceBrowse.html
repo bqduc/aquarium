@@ -33,7 +33,7 @@
 		</div>
 		<!-- /.box-header -->
 		<div class="box-body">
-			<form id="search-form" th:object="${myUploadForm}" method="POST" action="" enctype="multipart/form-data">
+			<form id="search-form" th:object="${myUploadForm}" method="POST" action="/cdix/pr/uploadMultipleResources" enctype="multipart/form-data">
 				<div class="row">
 					<div class="col-sm-2 form-group">
 						<label for="search-term"th:text="#{label.search.keyword}">Search term:</label>
@@ -84,15 +84,15 @@
          <br>
          <input th:field="*{description}" style="width:300px;"/>                
          <br/><br/>  
-         File to upload: <input th:field="*{fileDatas}" type="file"/>
-         File to upload: <input th:field="*{fileDatas}" type="file"/>
-         File to upload: <input th:field="*{fileDatas}" type="file"/>
-         File to upload: <input th:field="*{fileDatas}" type="file"/>
-         File to upload: <input th:field="*{fileDatas}" type="file"/>
-         File to upload: <input th:field="*{fileDatas}" type="file"/>
-         File to upload: <input th:field="*{fileDatas}" type="file"/>
-         File to upload: <input th:field="*{fileDatas}" type="file"/>
-         File to upload: <input th:field="*{fileDatas}" type="file"/>
+         File #1: <input th:field="*{fileDatas}" type="file"/>
+         File #2: <input th:field="*{fileDatas}" type="file"/>
+         File #3: <input th:field="*{fileDatas}" type="file"/>
+         File #4: <input th:field="*{fileDatas}" type="file"/>
+         File #5: <input th:field="*{fileDatas}" type="file"/>
+         File #6: <input th:field="*{fileDatas}" type="file"/>
+         File #7: <input th:field="*{fileDatas}" type="file"/>
+         File #8: <input th:field="*{fileDatas}" type="file"/>
+         File #9: <input th:field="*{fileDatas}" type="file"/>
          <br />  
          <input type="submit" value="Upload">
 			</form>

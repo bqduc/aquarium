@@ -37,11 +37,20 @@ public class PersistenceResourceController extends BaseController {
 	private static final long serialVersionUID = -7161179463290360704L;
 
 	private static final String UPLOAD_FORM = "myUploadForm";
-	private static final String PAGE_UPLOAD_ONE_RESOURCE = "pages/cdix/uploadOneResource";
-	private static final String PAGE_UPLOAD_MULTIPLE_RESOURCES = "pages/cdix/uploadMultipleResources";
+	private static final String PAGE_PREFIX = "pages/cdix/";
 
 	@Inject 
 	private PersistenceResourceService persistenceResourceService;
+
+	@RequestMapping(path = { "/", "" }, method = RequestMethod.GET)
+	public String viewDefaultPage(Model model) {
+		System.out.println("Enter view persistence resources");
+
+		PersistenceResourceUploadForm myUploadForm = new PersistenceResourceUploadForm();
+		model.addAttribute(UPLOAD_FORM, myUploadForm);
+
+		return PAGE_PREFIX + CdixPageFlows.PERSISTENCE_RESOURCE_BROWSE.getPageFlow();
+	}
 
 	// GET: Hiển thị trang form upload
 	@RequestMapping(value = "/uploadOneResource", method = RequestMethod.GET)
@@ -50,7 +59,7 @@ public class PersistenceResourceController extends BaseController {
 		PersistenceResourceUploadForm myUploadForm = new PersistenceResourceUploadForm();
 		model.addAttribute(UPLOAD_FORM, myUploadForm);
 
-		return PAGE_UPLOAD_ONE_RESOURCE;
+		return PAGE_PREFIX + CdixPageFlows.UPLOAD_ONE_RESOURCE.getPageFlow();
 	}
 
 	// POST: Sử lý Upload
@@ -59,7 +68,7 @@ public class PersistenceResourceController extends BaseController {
 			Model model, //
 			@ModelAttribute(UPLOAD_FORM ) PersistenceResourceUploadForm myUploadForm) {
 
-		return this.doUpload(request, model, myUploadForm, PAGE_UPLOAD_ONE_RESOURCE);
+		return this.doUpload(request, model, myUploadForm, PAGE_PREFIX + CdixPageFlows.UPLOAD_ONE_RESOURCE.getPageFlow());
 
 	}
 
@@ -70,7 +79,7 @@ public class PersistenceResourceController extends BaseController {
 		PersistenceResourceUploadForm myUploadForm = new PersistenceResourceUploadForm();
 		model.addAttribute(UPLOAD_FORM, myUploadForm);
 
-		return PAGE_UPLOAD_MULTIPLE_RESOURCES;
+		return PAGE_PREFIX + CdixPageFlows.UPLOAD_MULTIPLE_RESOURCES.getPageFlow();
 	}
 
 	// POST: Sử lý Upload
@@ -79,7 +88,7 @@ public class PersistenceResourceController extends BaseController {
 			Model model, //
 			@ModelAttribute(UPLOAD_FORM) PersistenceResourceUploadForm myUploadForm) {
 
-		return this.doUpload(request, model, myUploadForm, PAGE_UPLOAD_MULTIPLE_RESOURCES);
+		return this.doUpload(request, model, myUploadForm, PAGE_PREFIX + CdixPageFlows.UPLOAD_MULTIPLE_RESOURCES.getPageFlow());
 
 	}
 
@@ -113,10 +122,11 @@ public class PersistenceResourceController extends BaseController {
 				try {
 					// Tạo file tại Server.
 					File serverFile = new File(uploadRootDir.getAbsolutePath() + File.separator + name);
-
+					/*
 					BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
 					stream.write(fileData.getBytes());
 					stream.close();
+					*/
 					//
 					uploadedFiles.add(serverFile);
 					
