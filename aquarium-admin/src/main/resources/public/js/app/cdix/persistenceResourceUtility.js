@@ -1,7 +1,7 @@
 var vnLanguageUrl = "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Vietnamese.json";
 var enLanguageUrl = "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/English.json";
 
-var contextPrefix = '/rapi/enterprise/';
+var contextPrefix = '/rapi/persistenceResource/';
 var currentLanguageUrl = vnLanguageUrl;
 var dataTableObject;
 var objectTableId = '#enterprisesTable';
@@ -94,27 +94,23 @@ $(document).ready( function () {
 		"sAjaxDataProp": "",
 		"order": [[ 0, "asc" ]],
 		"aoColumns": [
-		      {"mData": "id", "width": "2%"},
-	          {"mData": "code",
-		    	  "width": "5%",
+		      {"mData": "id"},
+	          {"mData": "name",
 				  "render": function (data, type, row, meta){
-					  return '<a href="'+row.id+'">' + data +'</a>'; 
+					  return '<a href="/cdix/pr/downloadResource/'+row.id+'">' + data +'</a>'; 
 				  } 
 	          }, 
-	          {"mData": "name"},
+	          {"mData": "type"},/*
 	          {"mData": "nameLocal"},
 	          {"mData": "parent"},
-	          {"mData": "issuedDate"},
-	          {"mData": "activated"},
-	          {"mData": "visible"}
+	          {"mData": "issuedDate"},*/
+	          {"mData": "name"},
+	          {"mData": "name"}
 		],
 		"columns": [
-		            { "width": "2%" },//Id
-		            { "width": "8%" },//Code
-		            { "width": "30%" },//Name
-		            { "width": "30%" },//Translated name
-		            { "width": "15%" },//Parent
-		            { "width": "5%" },//Issue date
+		            { "width": "5%" },//Id
+		            { "width": "35%" },//Name
+		            { "width": "30%" },//Type
 		            { "width": "5%" },//Activated
 		            { "width": "5%" } //Visible
 		          ]	

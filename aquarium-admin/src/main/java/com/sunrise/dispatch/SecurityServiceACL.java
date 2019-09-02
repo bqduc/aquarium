@@ -27,7 +27,7 @@ import net.brilliance.manager.auth.AuthenticationServiceManager;
 
 @Component(value="securityServiceAcl")
 @SessionScope
-public class SecruityServiceACL extends ComponentBase {
+public class SecurityServiceACL extends ComponentBase {
 	/**
 	 * 
 	 */

@@ -39,7 +39,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.LocaleResolver;
 
 import com.sunrise.controller.ControllerConstants;
-import com.sunrise.dispatch.SecruityServiceACL;
+import com.sunrise.dispatch.SecurityServiceACL;
 
 import net.brilliance.common.CommonUtility;
 import net.brilliance.domain.entity.admin.Authority;
@@ -75,7 +75,7 @@ public class AuthenticationConntroller extends BaseController {
 	private AuthenticationServiceManager authenticationServiceManager;
 
 	@Inject
-	private SecruityServiceACL secruityServiceACL;
+	private SecurityServiceACL secruityServiceACL;
 
 	@GetMapping({ "/clientLoginProfile" })
 	public String viewClientLoginProfilePage(Model model, HttpServletRequest request, HttpServletResponse response) {

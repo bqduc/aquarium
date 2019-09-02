@@ -3,15 +3,19 @@
  */
 package net.sunrise.cdix.entity;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
-import net.brilliance.framework.entity.BizObjectBase;
+import net.brilliance.framework.entity.BizObjectAudit;
 
 /**
  * @author bqduc
@@ -22,7 +26,7 @@ import net.brilliance.framework.entity.BizObjectBase;
 @NoArgsConstructor
 @Entity
 @Table(name = "persistence_resource")
-public class PersistenceResource extends BizObjectBase {
+public class PersistenceResource extends BizObjectAudit/*BizObjectBase*/ {
 	/**
 	 * 
 	 */
@@ -35,6 +39,9 @@ public class PersistenceResource extends BizObjectBase {
 	private String type;
 
 	@Lob
+	@Column(name="data")
+	//@Basic(fetch=FetchType.LAZY)
+	@Type(type="org.hibernate.type.BinaryType")
   private byte[] data;
 
 	@Column(name = "description", columnDefinition="TEXT")

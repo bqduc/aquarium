@@ -98,5 +98,6 @@ public class ControllerConstants implements CommonConstants{
 	public static final String URI_REGION = "/region";
 	
 	public static final String URI_CSPX_BOOK = "/cspxBook";
-	
+
+	public static final String URI_PERSISTENCE_RESOURCE = "/persistenceResource";
 }

@@ -11,6 +11,9 @@ import java.nio.charset.Charset;
  *
  */
 public interface CommonConstants {
+	final static int BUFFER_SIZE = 1024;
+	final static int MAX_POST_SIZE = 200000000;//200MB
+	final static String UNDEFINED = "undefined";
 	final static long _sequenceMinValue = 0;
 	final static String ENCODING_NAME_UTF8 = Charset.forName("UTF-8").name();
 
