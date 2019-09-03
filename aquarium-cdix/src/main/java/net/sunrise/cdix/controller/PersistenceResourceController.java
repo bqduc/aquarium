@@ -127,6 +127,7 @@ public class PersistenceResourceController extends BaseController {
 		log.debug("Description: " + description);
 
 		// Thư mục gốc upload file.
+		/*
 		String uploadRootPath = request.getServletContext().getRealPath("upload");
 		log.debug("Upload root path: " + uploadRootPath);
 
@@ -135,6 +136,7 @@ public class PersistenceResourceController extends BaseController {
 		if (!uploadRootDir.exists()) {
 			uploadRootDir.mkdirs();
 		}
+		*/
 		MultipartFile[] fileDatas = myUploadForm.getFileDatas();
 		//
 		List<File> uploadedFiles = new ArrayList<File>();
