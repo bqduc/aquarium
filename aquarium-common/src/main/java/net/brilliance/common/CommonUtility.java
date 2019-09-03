@@ -1089,6 +1089,10 @@ public class CommonUtility implements CommonConstants {
 		return convertedMap;
 	}
 
+	public static String buildStackTrace(Throwable throwable) {
+		return getStackTrace(throwable);
+	}
+
 	public static String getStackTrace(Throwable throwable) {
 		StringWriter sw = new StringWriter();
 		PrintWriter pw = new PrintWriter(sw);
