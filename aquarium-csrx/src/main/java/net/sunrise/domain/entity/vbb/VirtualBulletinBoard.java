@@ -27,8 +27,8 @@ import javax.persistence.MappedSuperclass;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
-import net.brilliance.domain.entity.admin.UserAccount;
-import net.brilliance.framework.entity.BizObjectBase;
+import net.sunrise.domain.entity.admin.UserAccount;
+import net.sunrise.framework.entity.BizObjectBase;
 
 /**
  * A forum.

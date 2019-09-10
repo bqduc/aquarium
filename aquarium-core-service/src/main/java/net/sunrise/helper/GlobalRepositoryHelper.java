@@ -5,7 +5,7 @@ package net.sunrise.helper;
 
 import org.springframework.stereotype.Component;
 
-import net.brilliance.framework.component.BaseComponent;
+import net.sunrise.framework.component.BaseComponent;
 
 /**
  * @author bqduc

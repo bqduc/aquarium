@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.context.MessageSource;
 
-import net.brilliance.framework.component.RootComponent;
+import net.sunrise.framework.component.RootComponent;
 
 /**
  * @author bqduc

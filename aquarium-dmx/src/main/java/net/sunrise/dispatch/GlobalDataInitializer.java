@@ -9,16 +9,16 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import net.brilliance.domain.entity.general.CatalogueSubtype;
-import net.brilliance.domain.entity.schedule.JobCategory;
-import net.brilliance.domain.entity.schedule.JobDefinition;
-import net.brilliance.framework.component.RootComponent;
-import net.brilliance.framework.model.ExecutionContext;
-import net.brilliance.service.api.admin.BusinessUnitService;
-import net.brilliance.service.api.admin.OfficeService;
-import net.brilliance.service.api.admin.quartz.JobCategoryService;
-import net.brilliance.service.api.dmx.EnterpriseService;
-import net.brilliance.service.api.inventory.CatalogueSubtypeService;
+import net.sunrise.domain.entity.general.CatalogueSubtype;
+import net.sunrise.domain.entity.schedule.JobCategory;
+import net.sunrise.domain.entity.schedule.JobDefinition;
+import net.sunrise.framework.component.RootComponent;
+import net.sunrise.framework.model.ExecutionContext;
+import net.sunrise.service.api.admin.BusinessUnitService;
+import net.sunrise.service.api.admin.OfficeService;
+import net.sunrise.service.api.admin.quartz.JobCategoryService;
+import net.sunrise.service.api.dmx.EnterpriseService;
+import net.sunrise.service.api.inventory.CatalogueSubtypeService;
 
 /**
  * @author bqduc

@@ -3,7 +3,7 @@
  */
 package net.sunrise.constants;
 
-import net.brilliance.common.CommonConstants;
+import net.sunrise.common.CommonConstants;
 
 /**
  * @author bqduc

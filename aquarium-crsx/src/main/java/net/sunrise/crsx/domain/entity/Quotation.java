@@ -21,12 +21,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import net.brilliance.domain.entity.admin.UserAccount;
-import net.brilliance.domain.entity.common.Address;
-import net.brilliance.domain.entity.crx.contact.Contact;
-import net.brilliance.domain.model.enums.CRXGeneralStage;
-import net.brilliance.framework.entity.BizObjectBase;
-import net.brilliance.framework.global.GlobalConstants;
+import net.sunrise.domain.entity.admin.UserAccount;
+import net.sunrise.domain.entity.common.Address;
+import net.sunrise.domain.entity.crx.contact.Contact;
+import net.sunrise.domain.enums.CRXGeneralStage;
+import net.sunrise.framework.entity.BizObjectBase;
+import net.sunrise.framework.global.GlobalConstants;
 
 /**
  * An quotation for CRX.

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -34,26 +35,26 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import net.brilliance.common.CommonBeanUtils;
-import net.brilliance.common.CommonConstants;
-import net.brilliance.common.CommonUtility;
-import net.brilliance.common.ListUtility;
-import net.brilliance.domain.entity.config.Configuration;
-import net.brilliance.domain.entity.general.CatalogueSubtype;
-import net.brilliance.domain.entity.general.Category;
-import net.brilliance.domain.entity.general.Department;
-import net.brilliance.domain.model.SelectItem;
-import net.brilliance.exceptions.EcosysException;
-import net.brilliance.framework.model.SearchParameter;
-import net.brilliance.helper.WebServicingHelper;
-import net.brilliance.manager.catalog.CategoryManager;
-import net.brilliance.manager.catalog.impl.DepartmentManager;
-import net.brilliance.manager.system.SystemSequenceManager;
-import net.brilliance.model.Bucket;
-import net.brilliance.service.api.inventory.CatalogueSubtypeService;
+import net.sunrise.cdx.domain.entity.Configuration;
+import net.sunrise.cdx.manager.ConfigurationManager;
+import net.sunrise.common.CommonBeanUtils;
+import net.sunrise.common.CommonConstants;
+import net.sunrise.common.CommonUtility;
+import net.sunrise.common.ListUtility;
 import net.sunrise.constants.ControllerConstants;
+import net.sunrise.domain.SelectItem;
+import net.sunrise.domain.entity.general.CatalogueSubtype;
+import net.sunrise.domain.entity.general.Category;
+import net.sunrise.domain.entity.general.Department;
+import net.sunrise.exceptions.EcosysException;
+import net.sunrise.framework.model.SearchParameter;
 import net.sunrise.helper.GlobalDataServiceHelper;
-import net.sunrise.manager.ConfigurationManager;
+import net.sunrise.helper.WebServicingHelper;
+import net.sunrise.manager.catalog.CategoryManager;
+import net.sunrise.manager.catalog.impl.DepartmentManager;
+import net.sunrise.manager.system.SystemSequenceManager;
+import net.sunrise.model.Bucket;
+import net.sunrise.service.api.inventory.CatalogueSubtypeService;
 
 /**
  * @author bqduc
@@ -230,14 +231,20 @@ public abstract class BaseController extends RootController {
 	}
 
 	protected void postConstructData(String configuredName){
-		Configuration config = configurationManager.getByName(configuredName);
-		if (null==config||CommonUtility.BOOLEAN_STRING_TRUE.equalsIgnoreCase(config.getValue())){
+		Configuration config = null;
+		Optional<Configuration> optConfig = configurationManager.getByName(configuredName);
+		if (!optConfig.isPresent()||CommonUtility.BOOLEAN_STRING_TRUE.equalsIgnoreCase(optConfig.get().getValue())){
 			constructData();
 
 			//Check and save back the configuration to mark that forum data has been setup
-			if (null==config){
-				config = Configuration.getInstance(configuredName, CommonUtility.BOOLEAN_STRING_FALSE);
+			if (!optConfig.isPresent()){
+				config = Configuration
+						.builder()
+						.name(configuredName)
+						.value(CommonUtility.BOOLEAN_STRING_FALSE)
+						.build();
 			}else{
+				config = optConfig.get();
 				config.setValue(CommonUtility.BOOLEAN_STRING_FALSE);
 			}
 

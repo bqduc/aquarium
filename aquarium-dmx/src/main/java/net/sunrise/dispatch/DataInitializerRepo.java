@@ -5,8 +5,8 @@ package net.sunrise.dispatch;
 
 import java.util.List;
 
-import net.brilliance.common.ListUtility;
-import net.brilliance.domain.entity.common.Address;
+import net.sunrise.common.ListUtility;
+import net.sunrise.domain.entity.common.Address;
 
 /**
  * @author bqduc

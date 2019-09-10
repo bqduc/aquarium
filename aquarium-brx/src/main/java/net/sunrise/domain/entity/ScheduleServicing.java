@@ -16,10 +16,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import net.brilliance.domain.entity.crx.contact.Contact;
-import net.brilliance.domain.entity.general.Currency;
-import net.brilliance.domain.model.GeneralStatus;
-import net.brilliance.framework.entity.BizObjectBase;
+import net.sunrise.domain.GeneralStatus;
+import net.sunrise.domain.entity.crx.contact.Contact;
+import net.sunrise.domain.entity.general.Currency;
+import net.sunrise.framework.entity.BizObjectBase;
 
 /**
  * A schedule servicing or BRX.

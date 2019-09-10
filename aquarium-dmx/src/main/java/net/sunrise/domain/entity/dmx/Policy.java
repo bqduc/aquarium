@@ -13,7 +13,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import lombok.EqualsAndHashCode;
-import net.brilliance.framework.entity.BizObjectBase;
+import net.sunrise.framework.entity.BizObjectBase;
 
 /**
  * @author bqduc

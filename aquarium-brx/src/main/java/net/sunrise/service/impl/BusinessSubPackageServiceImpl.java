@@ -20,9 +20,9 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import net.brilliance.framework.repository.BaseRepository;
-import net.brilliance.framework.service.GenericServiceImpl;
 import net.sunrise.domain.entity.BusinessSubPackage;
+import net.sunrise.framework.repository.BaseRepository;
+import net.sunrise.framework.service.GenericServiceImpl;
 import net.sunrise.repository.BusinessSubPackageRepository;
 import net.sunrise.service.BusinessSubPackageService;
 

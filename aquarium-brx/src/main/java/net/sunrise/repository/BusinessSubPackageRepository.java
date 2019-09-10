@@ -10,8 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import net.brilliance.framework.repository.BaseRepository;
 import net.sunrise.domain.entity.BusinessSubPackage;
+import net.sunrise.framework.repository.BaseRepository;
 
 /**
  * @author bqduc

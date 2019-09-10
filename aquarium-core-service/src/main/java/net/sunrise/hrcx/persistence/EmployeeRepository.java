@@ -2,8 +2,8 @@ package net.sunrise.hrcx.persistence;
 
 import org.springframework.stereotype.Repository;
 
-import net.brilliance.domain.entity.hc.Employee;
-import net.brilliance.framework.repository.BaseRepository;
+import net.sunrise.domain.entity.hc.Employee;
+import net.sunrise.framework.repository.BaseRepository;
 
 @Repository
 public interface EmployeeRepository extends BaseRepository<Employee, Long>{

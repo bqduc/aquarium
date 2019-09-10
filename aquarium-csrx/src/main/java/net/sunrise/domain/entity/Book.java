@@ -18,8 +18,8 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
-import net.brilliance.framework.entity.BizObjectBase;
-import net.brilliance.framework.global.GlobalConstants;
+import net.sunrise.framework.entity.BizObjectBase;
+import net.sunrise.framework.global.GlobalConstants;
 
 /**
  * A Book.

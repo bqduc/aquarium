@@ -11,9 +11,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import net.brilliance.domain.entity.crx.BizOrder;
-import net.brilliance.domain.entity.crx.BizOrderDetail;
-import net.brilliance.framework.repository.BaseRepository;
+import net.sunrise.domain.entity.crx.BizOrder;
+import net.sunrise.domain.entity.crx.BizOrderDetail;
+import net.sunrise.framework.repository.BaseRepository;
 
 /**
  * @author bqduc

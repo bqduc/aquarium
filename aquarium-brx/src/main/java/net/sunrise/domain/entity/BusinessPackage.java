@@ -32,10 +32,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import net.brilliance.domain.entity.contact.ClientProfile;
-import net.brilliance.domain.model.GeneralStatus;
-import net.brilliance.framework.entity.BizObjectBase;
-import net.brilliance.framework.global.GlobalConstants;
+import net.sunrise.domain.GeneralStatus;
+import net.sunrise.domain.entity.contact.ClientProfile;
+import net.sunrise.framework.entity.BizObjectBase;
+import net.sunrise.framework.global.GlobalConstants;
 
 /**
  * A user.

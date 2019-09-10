@@ -83,6 +83,11 @@
             <artifactId>aquarium-osx</artifactId>
             <version>${project.version}</version>
         </dependency>	
+		<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>aquarium-cdx</artifactId>
+				<version>${project.version}</version>
+		</dependency>
 	<!-- End of business inside modules -->
 
 		<dependency>

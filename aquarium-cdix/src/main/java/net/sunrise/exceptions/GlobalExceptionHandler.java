@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import net.brilliance.common.CommonUtility;
-import net.brilliance.framework.logging.LogService;
+import net.sunrise.common.CommonUtility;
+import net.sunrise.framework.logging.LogService;
 
 /**
  * @author bqduc

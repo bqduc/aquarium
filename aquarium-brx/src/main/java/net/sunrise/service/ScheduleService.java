@@ -2,9 +2,9 @@ package net.sunrise.service;
 
 import org.springframework.data.domain.Page;
 
-import net.brilliance.framework.model.SearchParameter;
-import net.brilliance.framework.service.GenericService;
 import net.sunrise.domain.entity.Schedule;
+import net.sunrise.framework.model.SearchParameter;
+import net.sunrise.framework.service.GenericService;
 
 public interface ScheduleService extends GenericService<Schedule, Long> {
 	/**

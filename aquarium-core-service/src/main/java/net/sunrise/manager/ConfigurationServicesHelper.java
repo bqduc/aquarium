@@ -7,25 +7,28 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import javax.inject.Inject;
 
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
-import net.brilliance.common.CommonConstants;
-import net.brilliance.common.DateTimeUtility;
-import net.brilliance.common.GenderTypeUtility;
-import net.brilliance.domain.entity.config.Configuration;
-import net.brilliance.domain.entity.config.ConfigurationDetail;
-import net.brilliance.domain.entity.hc.Employee;
-import net.brilliance.domain.model.enums.EmployeeConfigurationModel;
-import net.brilliance.exceptions.EcosysException;
-import net.brilliance.global.WebAdminConstants;
-import net.brilliance.model.Bucket;
+import net.sunrise.cdx.domain.entity.Configuration;
+import net.sunrise.cdx.domain.entity.ConfigurationDetail;
+import net.sunrise.cdx.manager.ConfigurationDetailManager;
+import net.sunrise.cdx.manager.ConfigurationManager;
+import net.sunrise.common.CommonConstants;
+import net.sunrise.common.DateTimeUtility;
+import net.sunrise.common.GenderTypeUtility;
+import net.sunrise.domain.entity.hc.Employee;
+import net.sunrise.domain.enums.EmployeeConfigurationModel;
 import net.sunrise.enums.DefaultConfigurations;
+import net.sunrise.exceptions.EcosysException;
+import net.sunrise.global.WebAdminConstants;
 import net.sunrise.helper.GlobalDataServiceHelper;
 import net.sunrise.hrcx.manager.EmployeeManager;
+import net.sunrise.model.Bucket;
 
 /**
  * @author bqduc
@@ -144,321 +147,325 @@ public class ConfigurationServicesHelper {
 	}*/
 
 	public Configuration setupEmployeeConfigurations() throws EcosysException {
-		Configuration configuration = configurationManager.getByName(DefaultConfigurations.setupEmployees.getConfigurationName());
-		if (null==configuration){
-			configuration = new Configuration()
-					.setGroup(WebAdminConstants.CONFIG_GROUP_GENERAL)
-					.setName(DefaultConfigurations.setupEmployees.getConfigurationName())
-					.setValue(CommonConstants.OPTION_DISABLED)
-					.setValueExtended(new StringBuilder(
+		Optional<Configuration> optConfiguration = configurationManager.getByName(DefaultConfigurations.setupEmployees.getConfigurationName());
+		Configuration config = null;
+		if (!optConfiguration.isPresent()){
+			config = Configuration.builder()
+					.group(WebAdminConstants.CONFIG_GROUP_GENERAL)
+					.name(DefaultConfigurations.setupEmployees.getConfigurationName())
+					.value(CommonConstants.OPTION_DISABLED)
+					.valueExtended(new StringBuilder(
 							EmployeeConfigurationModel.DataSource.getModel())
 							.append(";")
 							.append(EmployeeConfigurationModel.DataSource.getDataPattern())
 							.append(";")
 							.append(EmployeeConfigurationModel.DataSource.getIndex()).toString())
+					.build()
 					;
 
-			configurationManager.save(configuration);
+			configurationManager.save(config);
+		} else {
+			config = optConfiguration.get();
 		}
 
-		if (null==configurationDetailManager.getByConfigurationAndName(configuration, EmployeeConfigurationModel.Code.getModel())){
-			configuration.addConfigurationDetail(
+		if (null==configurationDetailManager.getByConfigurationAndName(config, EmployeeConfigurationModel.Code.getModel())){
+			config.addConfigurationDetail(
 					ConfigurationDetail.getInstance(
-							configuration, 
+							config, 
 							EmployeeConfigurationModel.Code.getModel(), 
 							String.valueOf(EmployeeConfigurationModel.Code.getIndex()), 
 							EmployeeConfigurationModel.Code.getDataPattern()));
 		}
 		
-		if (null==configurationDetailManager.getByConfigurationAndName(configuration, EmployeeConfigurationModel.FirstName.getModel())){
-			configuration.addConfigurationDetail(
+		if (null==configurationDetailManager.getByConfigurationAndName(config, EmployeeConfigurationModel.FirstName.getModel())){
+			config.addConfigurationDetail(
 					ConfigurationDetail.getInstance(
-							configuration, 
+							config, 
 							EmployeeConfigurationModel.FirstName.getModel(), 
 							String.valueOf(EmployeeConfigurationModel.FirstName.getIndex()), 
 							EmployeeConfigurationModel.FirstName.getDataPattern()));
 		}
 
-		if (null==configurationDetailManager.getByConfigurationAndName(configuration, EmployeeConfigurationModel.LastName.getModel())){
-			configuration.addConfigurationDetail(
+		if (null==configurationDetailManager.getByConfigurationAndName(config, EmployeeConfigurationModel.LastName.getModel())){
+			config.addConfigurationDetail(
 					ConfigurationDetail.getInstance(
-							configuration, 
+							config, 
 							EmployeeConfigurationModel.LastName.getModel(), 
 							String.valueOf(EmployeeConfigurationModel.LastName.getIndex()), 
 							EmployeeConfigurationModel.LastName.getDataPattern()));
 		}
 
-		if (null==configurationDetailManager.getByConfigurationAndName(configuration, EmployeeConfigurationModel.DateOfBirth.getModel())){
-			configuration.addConfigurationDetail(
+		if (null==configurationDetailManager.getByConfigurationAndName(config, EmployeeConfigurationModel.DateOfBirth.getModel())){
+			config.addConfigurationDetail(
 					ConfigurationDetail.getInstance(
-							configuration, 
+							config, 
 							EmployeeConfigurationModel.DateOfBirth.getModel(), 
 							String.valueOf(EmployeeConfigurationModel.DateOfBirth.getIndex()), 
 							EmployeeConfigurationModel.DateOfBirth.getDataPattern()));
 		}
 
-		if (null==configurationDetailManager.getByConfigurationAndName(configuration, EmployeeConfigurationModel.PlaceOfBirth.getModel())){
-			configuration.addConfigurationDetail(
+		if (null==configurationDetailManager.getByConfigurationAndName(config, EmployeeConfigurationModel.PlaceOfBirth.getModel())){
+			config.addConfigurationDetail(
 					ConfigurationDetail.getInstance(
-							configuration, 
+							config, 
 							EmployeeConfigurationModel.PlaceOfBirth.getModel(), 
 							String.valueOf(EmployeeConfigurationModel.PlaceOfBirth.getIndex()), 
 							EmployeeConfigurationModel.PlaceOfBirth.getDataPattern()));
 		}
 
-		if (null==configurationDetailManager.getByConfigurationAndName(configuration, EmployeeConfigurationModel.NationalId.getModel())){
-			configuration.addConfigurationDetail(
+		if (null==configurationDetailManager.getByConfigurationAndName(config, EmployeeConfigurationModel.NationalId.getModel())){
+			config.addConfigurationDetail(
 					ConfigurationDetail.getInstance(
-							configuration, 
+							config, 
 							EmployeeConfigurationModel.NationalId.getModel(), 
 							String.valueOf(EmployeeConfigurationModel.NationalId.getIndex()), 
 							EmployeeConfigurationModel.NationalId.getDataPattern()));
 		}
 
-		if (null==configurationDetailManager.getByConfigurationAndName(configuration, EmployeeConfigurationModel.NationalIdIssueDate.getModel())){
-			configuration.addConfigurationDetail(
+		if (null==configurationDetailManager.getByConfigurationAndName(config, EmployeeConfigurationModel.NationalIdIssueDate.getModel())){
+			config.addConfigurationDetail(
 					ConfigurationDetail.getInstance(
-							configuration, 
+							config, 
 							EmployeeConfigurationModel.NationalIdIssueDate.getModel(), 
 							String.valueOf(EmployeeConfigurationModel.NationalIdIssueDate.getIndex()), 
 							EmployeeConfigurationModel.NationalIdIssueDate.getDataPattern()));
 		}
 
-		if (null==configurationDetailManager.getByConfigurationAndName(configuration, EmployeeConfigurationModel.NationalIdIssuePlace.getModel())){
-			configuration.addConfigurationDetail(
+		if (null==configurationDetailManager.getByConfigurationAndName(config, EmployeeConfigurationModel.NationalIdIssuePlace.getModel())){
+			config.addConfigurationDetail(
 					ConfigurationDetail.getInstance(
-							configuration, 
+							config, 
 							EmployeeConfigurationModel.NationalIdIssuePlace.getModel(), 
 							String.valueOf(EmployeeConfigurationModel.NationalIdIssuePlace.getIndex()), 
 							EmployeeConfigurationModel.NationalIdIssuePlace.getDataPattern()));
 		}
 
-		if (null==configurationDetailManager.getByConfigurationAndName(configuration, EmployeeConfigurationModel.NationalIdExpiredDate.getModel())){
-			configuration.addConfigurationDetail(
+		if (null==configurationDetailManager.getByConfigurationAndName(config, EmployeeConfigurationModel.NationalIdExpiredDate.getModel())){
+			config.addConfigurationDetail(
 					ConfigurationDetail.getInstance(
-							configuration, 
+							config, 
 							EmployeeConfigurationModel.NationalIdExpiredDate.getModel(), 
 							String.valueOf(EmployeeConfigurationModel.NationalIdExpiredDate.getIndex()), 
 							EmployeeConfigurationModel.NationalIdExpiredDate.getDataPattern()));
 		}
 
-		if (null==configurationDetailManager.getByConfigurationAndName(configuration, EmployeeConfigurationModel.Address.getModel())){
-			configuration.addConfigurationDetail(
+		if (null==configurationDetailManager.getByConfigurationAndName(config, EmployeeConfigurationModel.Address.getModel())){
+			config.addConfigurationDetail(
 					ConfigurationDetail.getInstance(
-							configuration, 
+							config, 
 							EmployeeConfigurationModel.Address.getModel(), 
 							String.valueOf(EmployeeConfigurationModel.Address.getIndex()), 
 							EmployeeConfigurationModel.Address.getDataPattern()));
 		}
 
-		if (null==configurationDetailManager.getByConfigurationAndName(configuration, EmployeeConfigurationModel.Phone.getModel())){
-			configuration.addConfigurationDetail(
+		if (null==configurationDetailManager.getByConfigurationAndName(config, EmployeeConfigurationModel.Phone.getModel())){
+			config.addConfigurationDetail(
 					ConfigurationDetail.getInstance(
-							configuration, 
+							config, 
 							EmployeeConfigurationModel.Phone.getModel(), 
 							String.valueOf(EmployeeConfigurationModel.Phone.getIndex()), 
 							EmployeeConfigurationModel.Phone.getDataPattern()));
 		}
 
-		if (null==configurationDetailManager.getByConfigurationAndName(configuration, EmployeeConfigurationModel.PhoneMobile.getModel())){
-			configuration.addConfigurationDetail(
+		if (null==configurationDetailManager.getByConfigurationAndName(config, EmployeeConfigurationModel.PhoneMobile.getModel())){
+			config.addConfigurationDetail(
 					ConfigurationDetail.getInstance(
-							configuration, 
+							config, 
 							EmployeeConfigurationModel.PhoneMobile.getModel(), 
 							String.valueOf(EmployeeConfigurationModel.PhoneMobile.getIndex()), 
 							EmployeeConfigurationModel.PhoneMobile.getDataPattern()));
 		}
 
-		if (null==configurationDetailManager.getByConfigurationAndName(configuration, EmployeeConfigurationModel.Email.getModel())){
-			configuration.addConfigurationDetail(
+		if (null==configurationDetailManager.getByConfigurationAndName(config, EmployeeConfigurationModel.Email.getModel())){
+			config.addConfigurationDetail(
 					ConfigurationDetail.getInstance(
-							configuration, 
+							config, 
 							EmployeeConfigurationModel.Email.getModel(), 
 							String.valueOf(EmployeeConfigurationModel.Email.getIndex()), 
 							EmployeeConfigurationModel.Email.getDataPattern()));
 		}
 
-		if (null==configurationDetailManager.getByConfigurationAndName(configuration, EmployeeConfigurationModel.Gender.getModel())){
-			configuration.addConfigurationDetail(
+		if (null==configurationDetailManager.getByConfigurationAndName(config, EmployeeConfigurationModel.Gender.getModel())){
+			config.addConfigurationDetail(
 					ConfigurationDetail.getInstance(
-							configuration, 
+							config, 
 							EmployeeConfigurationModel.Gender.getModel(), 
 							String.valueOf(EmployeeConfigurationModel.Gender.getIndex()), 
 							EmployeeConfigurationModel.Gender.getDataPattern()));
 		}
 
-		if (null==configurationDetailManager.getByConfigurationAndName(configuration, EmployeeConfigurationModel.MaritalStatus.getModel())){
-			configuration.addConfigurationDetail(
+		if (null==configurationDetailManager.getByConfigurationAndName(config, EmployeeConfigurationModel.MaritalStatus.getModel())){
+			config.addConfigurationDetail(
 					ConfigurationDetail.getInstance(
-							configuration, 
+							config, 
 							EmployeeConfigurationModel.MaritalStatus.getModel(), 
 							String.valueOf(EmployeeConfigurationModel.MaritalStatus.getIndex()), 
 							EmployeeConfigurationModel.MaritalStatus.getDataPattern()));
 		}
 
-		if (null==configurationDetailManager.getByConfigurationAndName(configuration, EmployeeConfigurationModel.Education.getModel())){
-			configuration.addConfigurationDetail(
+		if (null==configurationDetailManager.getByConfigurationAndName(config, EmployeeConfigurationModel.Education.getModel())){
+			config.addConfigurationDetail(
 					ConfigurationDetail.getInstance(
-							configuration, 
+							config, 
 							EmployeeConfigurationModel.Education.getModel(), 
 							String.valueOf(EmployeeConfigurationModel.Education.getIndex()), 
 							EmployeeConfigurationModel.Education.getDataPattern()));
 		}
 
-		if (null==configurationDetailManager.getByConfigurationAndName(configuration, EmployeeConfigurationModel.Info.getModel())){
-			configuration.addConfigurationDetail(
+		if (null==configurationDetailManager.getByConfigurationAndName(config, EmployeeConfigurationModel.Info.getModel())){
+			config.addConfigurationDetail(
 					ConfigurationDetail.getInstance(
-							configuration, 
+							config, 
 							EmployeeConfigurationModel.Info.getModel(), 
 							String.valueOf(EmployeeConfigurationModel.Info.getIndex()), 
 							EmployeeConfigurationModel.Info.getDataPattern()));
 		}
 
-		configurationManager.save(configuration);
+		configurationManager.save(config);
 
-		/*if (null==configurationDetailManager.getByConfigurationAndName(configuration, EmployeeConfigurationModel.FirstName.getModel())){
+		/*if (null==configurationDetailManager.getByConfigurationAndName(config, EmployeeConfigurationModel.FirstName.getModel())){
 			configurationDetailManager.save(
 					ConfigurationDetail.getInstance(
-							configuration, 
+							config, 
 							EmployeeConfigurationModel.FirstName.getModel(), 
 							String.valueOf(EmployeeConfigurationModel.FirstName.getIndex()), 
 							EmployeeConfigurationModel.FirstName.getDataPattern()));
 		}
 		
-		if (null==configurationDetailManager.getByConfigurationAndName(configuration, EmployeeConfigurationModel.LastName.getModel())){
+		if (null==configurationDetailManager.getByConfigurationAndName(config, EmployeeConfigurationModel.LastName.getModel())){
 			configurationDetailManager.save(
 					ConfigurationDetail.getInstance(
-							configuration, 
+							config, 
 							EmployeeConfigurationModel.LastName.getModel(), 
 							String.valueOf(EmployeeConfigurationModel.LastName.getIndex()), 
 							EmployeeConfigurationModel.LastName.getDataPattern()));
 		}
 
-		if (null==configurationDetailManager.getByConfigurationAndName(configuration, EmployeeConfigurationModel.DateOfBirth.getModel())){
+		if (null==configurationDetailManager.getByConfigurationAndName(config, EmployeeConfigurationModel.DateOfBirth.getModel())){
 			configurationDetailManager.save(
 					ConfigurationDetail.getInstance(
-							configuration, 
+							config, 
 							EmployeeConfigurationModel.DateOfBirth.getModel(), 
 							String.valueOf(EmployeeConfigurationModel.DateOfBirth.getIndex()), 
 							EmployeeConfigurationModel.DateOfBirth.getDataPattern()));
 		}
 
-		if (null==configurationDetailManager.getByConfigurationAndName(configuration, EmployeeConfigurationModel.PlaceOfBirth.getModel())){
+		if (null==configurationDetailManager.getByConfigurationAndName(config, EmployeeConfigurationModel.PlaceOfBirth.getModel())){
 			configurationDetailManager.save(
 					ConfigurationDetail.getInstance(
-							configuration, 
+							config, 
 							EmployeeConfigurationModel.PlaceOfBirth.getModel(), 
 							String.valueOf(EmployeeConfigurationModel.PlaceOfBirth.getIndex()), 
 							EmployeeConfigurationModel.PlaceOfBirth.getDataPattern()));
 		}
 
-		if (null==configurationDetailManager.getByConfigurationAndName(configuration, EmployeeConfigurationModel.NationalId.getModel())){
+		if (null==configurationDetailManager.getByConfigurationAndName(config, EmployeeConfigurationModel.NationalId.getModel())){
 			configurationDetailManager.save(
 					ConfigurationDetail.getInstance(
-							configuration, 
+							config, 
 							EmployeeConfigurationModel.NationalId.getModel(), 
 							String.valueOf(EmployeeConfigurationModel.NationalId.getIndex()), 
 							EmployeeConfigurationModel.NationalId.getDataPattern()));
 		}
 
-		if (null==configurationDetailManager.getByConfigurationAndName(configuration, EmployeeConfigurationModel.NationalIdIssueDate.getModel())){
+		if (null==configurationDetailManager.getByConfigurationAndName(config, EmployeeConfigurationModel.NationalIdIssueDate.getModel())){
 			configurationDetailManager.save(
 					ConfigurationDetail.getInstance(
-							configuration, 
+							config, 
 							EmployeeConfigurationModel.NationalIdIssueDate.getModel(), 
 							String.valueOf(EmployeeConfigurationModel.NationalIdIssueDate.getIndex()), 
 							EmployeeConfigurationModel.NationalIdIssueDate.getDataPattern()));
 		}
 
-		if (null==configurationDetailManager.getByConfigurationAndName(configuration, EmployeeConfigurationModel.NationalIdIssuePlace.getModel())){
+		if (null==configurationDetailManager.getByConfigurationAndName(config, EmployeeConfigurationModel.NationalIdIssuePlace.getModel())){
 			configurationDetailManager.save(
 					ConfigurationDetail.getInstance(
-							configuration, 
+							config, 
 							EmployeeConfigurationModel.NationalIdIssuePlace.getModel(), 
 							String.valueOf(EmployeeConfigurationModel.NationalIdIssuePlace.getIndex()), 
 							EmployeeConfigurationModel.NationalIdIssuePlace.getDataPattern()));
 		}
 
-		if (null==configurationDetailManager.getByConfigurationAndName(configuration, EmployeeConfigurationModel.NationalIdExpiredDate.getModel())){
+		if (null==configurationDetailManager.getByConfigurationAndName(config, EmployeeConfigurationModel.NationalIdExpiredDate.getModel())){
 			configurationDetailManager.save(
 					ConfigurationDetail.getInstance(
-							configuration, 
+							config, 
 							EmployeeConfigurationModel.NationalIdExpiredDate.getModel(), 
 							String.valueOf(EmployeeConfigurationModel.NationalIdExpiredDate.getIndex()), 
 							EmployeeConfigurationModel.NationalIdExpiredDate.getDataPattern()));
 		}
 
-		if (null==configurationDetailManager.getByConfigurationAndName(configuration, EmployeeConfigurationModel.Address.getModel())){
+		if (null==configurationDetailManager.getByConfigurationAndName(config, EmployeeConfigurationModel.Address.getModel())){
 			configurationDetailManager.save(
 					ConfigurationDetail.getInstance(
-							configuration, 
+							config, 
 							EmployeeConfigurationModel.Address.getModel(), 
 							String.valueOf(EmployeeConfigurationModel.Address.getIndex()), 
 							EmployeeConfigurationModel.Address.getDataPattern()));
 		}
 
-		if (null==configurationDetailManager.getByConfigurationAndName(configuration, EmployeeConfigurationModel.Phone.getModel())){
+		if (null==configurationDetailManager.getByConfigurationAndName(config, EmployeeConfigurationModel.Phone.getModel())){
 			configurationDetailManager.save(
 					ConfigurationDetail.getInstance(
-							configuration, 
+							config, 
 							EmployeeConfigurationModel.Phone.getModel(), 
 							String.valueOf(EmployeeConfigurationModel.Phone.getIndex()), 
 							EmployeeConfigurationModel.Phone.getDataPattern()));
 		}
 
-		if (null==configurationDetailManager.getByConfigurationAndName(configuration, EmployeeConfigurationModel.PhoneMobile.getModel())){
+		if (null==configurationDetailManager.getByConfigurationAndName(config, EmployeeConfigurationModel.PhoneMobile.getModel())){
 			configurationDetailManager.save(
 					ConfigurationDetail.getInstance(
-							configuration, 
+							config, 
 							EmployeeConfigurationModel.PhoneMobile.getModel(), 
 							String.valueOf(EmployeeConfigurationModel.PhoneMobile.getIndex()), 
 							EmployeeConfigurationModel.PhoneMobile.getDataPattern()));
 		}
 
-		if (null==configurationDetailManager.getByConfigurationAndName(configuration, EmployeeConfigurationModel.Email.getModel())){
+		if (null==configurationDetailManager.getByConfigurationAndName(config, EmployeeConfigurationModel.Email.getModel())){
 			configurationDetailManager.save(
 					ConfigurationDetail.getInstance(
-							configuration, 
+							config, 
 							EmployeeConfigurationModel.Email.getModel(), 
 							String.valueOf(EmployeeConfigurationModel.Email.getIndex()), 
 							EmployeeConfigurationModel.Email.getDataPattern()));
 		}
 
-		if (null==configurationDetailManager.getByConfigurationAndName(configuration, EmployeeConfigurationModel.Gender.getModel())){
+		if (null==configurationDetailManager.getByConfigurationAndName(config, EmployeeConfigurationModel.Gender.getModel())){
 			configurationDetailManager.save(
 					ConfigurationDetail.getInstance(
-							configuration, 
+							config, 
 							EmployeeConfigurationModel.Gender.getModel(), 
 							String.valueOf(EmployeeConfigurationModel.Gender.getIndex()), 
 							EmployeeConfigurationModel.Gender.getDataPattern()));
 		}
 
-		if (null==configurationDetailManager.getByConfigurationAndName(configuration, EmployeeConfigurationModel.MaritalStatus.getModel())){
+		if (null==configurationDetailManager.getByConfigurationAndName(config, EmployeeConfigurationModel.MaritalStatus.getModel())){
 			configurationDetailManager.save(
 					ConfigurationDetail.getInstance(
-							configuration, 
+							config, 
 							EmployeeConfigurationModel.MaritalStatus.getModel(), 
 							String.valueOf(EmployeeConfigurationModel.MaritalStatus.getIndex()), 
 							EmployeeConfigurationModel.MaritalStatus.getDataPattern()));
 		}
 
-		if (null==configurationDetailManager.getByConfigurationAndName(configuration, EmployeeConfigurationModel.Education.getModel())){
+		if (null==configurationDetailManager.getByConfigurationAndName(config, EmployeeConfigurationModel.Education.getModel())){
 			configurationDetailManager.save(
 					ConfigurationDetail.getInstance(
-							configuration, 
+							config, 
 							EmployeeConfigurationModel.Education.getModel(), 
 							String.valueOf(EmployeeConfigurationModel.Education.getIndex()), 
 							EmployeeConfigurationModel.Education.getDataPattern()));
 		}
 
-		if (null==configurationDetailManager.getByConfigurationAndName(configuration, EmployeeConfigurationModel.Info.getModel())){
+		if (null==configurationDetailManager.getByConfigurationAndName(config, EmployeeConfigurationModel.Info.getModel())){
 			configurationDetailManager.save(
 					ConfigurationDetail.getInstance(
-							configuration, 
+							config, 
 							EmployeeConfigurationModel.Info.getModel(), 
 							String.valueOf(EmployeeConfigurationModel.Info.getIndex()), 
 							EmployeeConfigurationModel.Info.getDataPattern()));
 		}*/
-		return configuration;
+		return config;
 	}
 }

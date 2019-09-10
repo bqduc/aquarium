@@ -26,19 +26,19 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.google.gson.Gson;
 
 import lombok.extern.slf4j.Slf4j;
-import net.brilliance.common.CommonConstants;
-import net.brilliance.common.CommonUtility;
-import net.brilliance.common.ListUtility;
-import net.brilliance.domain.entity.crx.Opportunity;
-import net.brilliance.domain.entity.crx.contact.Contact;
-import net.brilliance.domain.model.SelectItem;
-import net.brilliance.framework.model.SearchParameter;
-import net.brilliance.model.ui.UISelectItem;
-import net.brilliance.runnable.UpdateSystemSequenceThread;
-import net.brilliance.service.api.contact.ContactService;
-import net.brilliance.service.api.crx.OpportunityService;
+import net.sunrise.common.CommonConstants;
+import net.sunrise.common.CommonUtility;
+import net.sunrise.common.ListUtility;
 import net.sunrise.constants.ControllerConstants;
 import net.sunrise.controller.base.BaseController;
+import net.sunrise.domain.SelectItem;
+import net.sunrise.domain.entity.crx.Opportunity;
+import net.sunrise.domain.entity.crx.contact.Contact;
+import net.sunrise.framework.model.SearchParameter;
+import net.sunrise.model.ui.UISelectItem;
+import net.sunrise.runnable.UpdateSystemSequenceThread;
+import net.sunrise.service.api.contact.ContactService;
+import net.sunrise.service.api.crx.OpportunityService;
 
 @Slf4j
 @Controller
@@ -90,7 +90,7 @@ public class OpportunityController extends BaseController {
 		Opportunity newOpportunity = Opportunity
 		.builder()
 		.build();
-		model.addAttribute(net.brilliance.common.CommonConstants.FETCHED_OBJECT, newOpportunity);
+		model.addAttribute(net.sunrise.common.CommonConstants.FETCHED_OBJECT, newOpportunity);
 		return PAGE_CONTEXT_PREFIX + ControllerConstants.EDIT;
 	}
 
@@ -103,7 +103,7 @@ public class OpportunityController extends BaseController {
 			RedirectAttributes redirectAttributes, Locale locale) {
 		
 		if (bindingResult.hasErrors()) {
-			model.addAttribute(net.brilliance.common.CommonConstants.FETCHED_OBJECT, uiBizObject);
+			model.addAttribute(net.sunrise.common.CommonConstants.FETCHED_OBJECT, uiBizObject);
 			return PAGE_CONTEXT_PREFIX + ControllerConstants.EDIT;
 		}
 
@@ -127,7 +127,7 @@ public class OpportunityController extends BaseController {
 	 */
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public String updateForm(@PathVariable("id") Long id, Model model) {
-			model.addAttribute(net.brilliance.common.CommonConstants.FETCHED_OBJECT, businessManager.getObject(id));
+			model.addAttribute(net.sunrise.common.CommonConstants.FETCHED_OBJECT, businessManager.getObject(id));
 			return PAGE_CONTEXT_PREFIX + ControllerConstants.EDIT;
     }
 

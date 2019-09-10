@@ -7,8 +7,8 @@ import java.io.InputStream;
 import java.util.Map;
 
 import lombok.Builder;
-import net.brilliance.common.CommonUtility;
-import net.brilliance.exceptions.EcosysException;
+import net.sunrise.common.CommonUtility;
+import net.sunrise.exceptions.EcosysException;
 import net.sunrise.osx.engine.SpreadsheetXSSFEventBasedExtractor;
 import net.sunrise.osx.model.DataBucket;
 

@@ -11,7 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import net.brilliance.framework.entity.BizObjectBase;
+import net.sunrise.framework.entity.BizObjectBase;
 
 /**
  * A team.

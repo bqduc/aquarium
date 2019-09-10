@@ -13,10 +13,10 @@ import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
-import net.brilliance.domain.entity.admin.UserAccount;
-import net.brilliance.domain.entity.general.Catalogue;
-import net.brilliance.framework.entity.BizObjectBase;
-import net.brilliance.framework.global.GlobalConstants;
+import net.sunrise.domain.entity.admin.UserAccount;
+import net.sunrise.domain.entity.general.Catalogue;
+import net.sunrise.framework.entity.BizObjectBase;
+import net.sunrise.framework.global.GlobalConstants;
 
 /**
  * An office or business unit.

@@ -20,9 +20,9 @@ import org.springframework.web.context.request.WebRequest;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import net.brilliance.domain.model.RestErrorInfo;
-import net.brilliance.exceptions.DataFormatException;
-import net.brilliance.exceptions.ResourceNotFoundException;
+import net.sunrise.domain.RestErrorInfo;
+import net.sunrise.exceptions.DataFormatException;
+import net.sunrise.exceptions.ResourceNotFoundException;
 
 /**
  * @author bqduc

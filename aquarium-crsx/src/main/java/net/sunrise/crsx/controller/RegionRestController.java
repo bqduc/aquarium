@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import net.brilliance.common.CommonUtility;
-import net.brilliance.framework.model.SearchParameter;
+import net.sunrise.common.CommonUtility;
 import net.sunrise.constants.ControllerConstants;
 import net.sunrise.controller.base.BaseRestController;
 import net.sunrise.crsx.domain.entity.Region;
 import net.sunrise.crsx.service.RegionService;
+import net.sunrise.framework.model.SearchParameter;
 
 
 @RequestMapping(ControllerConstants.REST_API + ControllerConstants.URI_REGION)

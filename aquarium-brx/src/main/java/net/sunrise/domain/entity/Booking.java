@@ -20,10 +20,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import net.brilliance.domain.entity.admin.UserAccount;
-import net.brilliance.domain.entity.crx.contact.Contact;
-import net.brilliance.domain.model.GeneralStatus;
-import net.brilliance.framework.entity.BizObjectBase;
+import net.sunrise.domain.GeneralStatus;
+import net.sunrise.domain.entity.admin.UserAccount;
+import net.sunrise.domain.entity.crx.contact.Contact;
+import net.sunrise.framework.entity.BizObjectBase;
 
 /**
  * A Campaign or CRX.

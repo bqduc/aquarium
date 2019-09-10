@@ -2,10 +2,10 @@ package net.sunrise.crsx.service;
 
 import org.springframework.data.domain.Page;
 
-import net.brilliance.domain.entity.crx.Opportunity;
-import net.brilliance.framework.model.SearchParameter;
-import net.brilliance.framework.service.GenericService;
-import net.brilliance.exceptions.ObjectNotFoundException;
+import net.sunrise.domain.entity.crx.Opportunity;
+import net.sunrise.exceptions.ObjectNotFoundException;
+import net.sunrise.framework.model.SearchParameter;
+import net.sunrise.framework.service.GenericService;
 
 public interface OpportunityService extends GenericService<Opportunity, Long> {
 

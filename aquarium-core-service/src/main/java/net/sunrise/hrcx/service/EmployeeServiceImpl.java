@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import net.brilliance.domain.entity.hc.Employee;
+import net.sunrise.domain.entity.hc.Employee;
 import net.sunrise.hrcx.persistence.EmployeeRepository;
 
 @Service

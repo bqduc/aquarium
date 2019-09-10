@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
-import net.brilliance.domain.entity.crx.contact.Contact;
-import net.brilliance.framework.model.SearchParameter;
-import net.brilliance.service.api.contact.ContactService;
 import net.sunrise.constants.ControllerConstants;
 import net.sunrise.controller.base.BaseRestController;
+import net.sunrise.domain.entity.crx.contact.Contact;
+import net.sunrise.framework.model.SearchParameter;
+import net.sunrise.service.api.contact.ContactService;
 
 @Slf4j
 @RestController

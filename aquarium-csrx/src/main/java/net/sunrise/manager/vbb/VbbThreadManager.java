@@ -22,9 +22,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import net.brilliance.framework.manager.BaseManager;
-import net.brilliance.framework.repository.BaseRepository;
 import net.sunrise.domain.entity.vbb.VbbThread;
+import net.sunrise.framework.manager.BaseManager;
+import net.sunrise.framework.repository.BaseRepository;
 import net.sunrise.repository.vbb.VbbThreadRepository;
 
 /**

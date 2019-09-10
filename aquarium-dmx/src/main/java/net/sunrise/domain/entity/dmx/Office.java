@@ -22,10 +22,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import net.brilliance.domain.entity.admin.UserAccount;
-import net.brilliance.domain.entity.common.Address;
-import net.brilliance.framework.entity.BizObjectBase;
-import net.brilliance.framework.global.GlobalConstants;
+import net.sunrise.domain.entity.admin.UserAccount;
+import net.sunrise.domain.entity.common.Address;
+import net.sunrise.framework.entity.BizObjectBase;
+import net.sunrise.framework.global.GlobalConstants;
 
 /**
  * An office or POS.

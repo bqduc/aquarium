@@ -4,9 +4,9 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import net.brilliance.framework.repository.BaseRepository;
-import net.brilliance.framework.service.GenericServiceImpl;
 import net.sunrise.domain.entity.Station;
+import net.sunrise.framework.repository.BaseRepository;
+import net.sunrise.framework.service.GenericServiceImpl;
 import net.sunrise.repository.StationRepository;
 import net.sunrise.service.StationService;
 

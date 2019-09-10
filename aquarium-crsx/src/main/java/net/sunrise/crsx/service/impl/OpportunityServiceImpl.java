@@ -6,20 +6,20 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import net.brilliance.common.CommonUtility;
-import net.brilliance.deplyment.DeploymentSpecification;
-import net.brilliance.domain.entity.crx.Opportunity;
-import net.brilliance.domain.model.DataInterfaceModel;
-import net.brilliance.domain.model.DataSourceType;
-import net.brilliance.exceptions.ExecutionContextException;
-import net.brilliance.exceptions.ObjectNotFoundException;
-import net.brilliance.framework.model.ExecutionContext;
-import net.brilliance.framework.repository.BaseRepository;
-import net.brilliance.framework.service.GenericServiceImpl;
-import net.brilliance.helper.GlobalDataServicesRepository;
-import net.brilliance.model.base.IDataContainer;
-import net.brilliance.service.api.crx.OpportunityService;
+import net.sunrise.common.CommonUtility;
 import net.sunrise.crsx.repository.OpportunityRepository;
+import net.sunrise.deplyment.DeploymentSpecification;
+import net.sunrise.domain.DataInterfaceModel;
+import net.sunrise.domain.DataSourceType;
+import net.sunrise.domain.entity.crx.Opportunity;
+import net.sunrise.exceptions.ExecutionContextException;
+import net.sunrise.exceptions.ObjectNotFoundException;
+import net.sunrise.framework.model.ExecutionContext;
+import net.sunrise.framework.repository.BaseRepository;
+import net.sunrise.framework.service.GenericServiceImpl;
+import net.sunrise.helper.GlobalDataServicesRepository;
+import net.sunrise.model.base.IDataContainer;
+import net.sunrise.service.api.crx.OpportunityService;
 
 
 @Service

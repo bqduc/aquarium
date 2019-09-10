@@ -11,8 +11,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import net.brilliance.domain.entity.crx.Opportunity;
-import net.brilliance.framework.repository.BaseRepository;
+import net.sunrise.domain.entity.crx.Opportunity;
+import net.sunrise.framework.repository.BaseRepository;
 
 /**
  * @author bqduc

@@ -1,0 +1,21 @@
+package net.sunrise.config;
+
+import org.springframework.data.domain.AuditorAware;
+import org.springframework.security.core.context.SecurityContextHolder;
+
+import net.sunrise.domain.User;
+
+import java.util.Optional;
+
+/**
+ * Created on February, 2018
+ *
+ * @author bqduc
+ */
+public class AuditorAwareImpl implements AuditorAware<String> {
+
+	@Override
+	public Optional<String> getCurrentAuditor() {
+		return Optional.of(((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername());
+	}
+}

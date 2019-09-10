@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import net.brilliance.domain.entity.general.CatalogueSubtype;
-import net.brilliance.domain.model.SelectItem;
-import net.brilliance.framework.logging.LogService;
-import net.brilliance.framework.model.SearchParameter;
-import net.brilliance.manager.catalog.CategoryManager;
-import net.brilliance.manager.catalog.impl.DepartmentManager;
-import net.brilliance.service.api.inventory.CatalogueSubtypeService;
 import net.sunrise.controller.base.BaseController;
+import net.sunrise.domain.SelectItem;
+import net.sunrise.domain.entity.general.CatalogueSubtype;
+import net.sunrise.framework.logging.LogService;
+import net.sunrise.framework.model.SearchParameter;
+import net.sunrise.manager.catalog.CategoryManager;
+import net.sunrise.manager.catalog.impl.DepartmentManager;
+import net.sunrise.service.api.inventory.CatalogueSubtypeService;
 
 /**
  * @author bqduc

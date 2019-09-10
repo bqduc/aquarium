@@ -3,24 +3,25 @@ package net.sunrise.hrcx.manager;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Optional;
 
 import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import net.brilliance.common.CommonConstants;
-import net.brilliance.common.CommonUtility;
-import net.brilliance.domain.entity.config.Configuration;
-import net.brilliance.domain.entity.hc.Employee;
-import net.brilliance.exceptions.EcosysException;
-import net.brilliance.framework.manager.BaseManager;
-import net.brilliance.framework.repository.BaseRepository;
-import net.brilliance.model.Bucket;
+import net.sunrise.cdx.domain.entity.Configuration;
+import net.sunrise.cdx.manager.ConfigurationManager;
+import net.sunrise.common.CommonConstants;
+import net.sunrise.common.CommonUtility;
+import net.sunrise.domain.entity.hc.Employee;
 import net.sunrise.enums.DefaultConfigurations;
+import net.sunrise.exceptions.EcosysException;
+import net.sunrise.framework.manager.BaseManager;
+import net.sunrise.framework.repository.BaseRepository;
 import net.sunrise.helper.GlobalDataServiceHelper;
 import net.sunrise.hrcx.persistence.EmployeeRepository;
-import net.sunrise.manager.ConfigurationManager;
+import net.sunrise.model.Bucket;
 
 @Service("employeeManager")
 public class EmployeeManager extends BaseManager<Employee, Long> {
@@ -81,8 +82,8 @@ public class EmployeeManager extends BaseManager<Employee, Long> {
 	}
 
 	public void initDefaultData() throws EcosysException{
-		Configuration configuration = configurationManager.getByName(DefaultConfigurations.setupEmployees.getConfigurationName());
-		if (null != configuration && true==CommonUtility.getBooleanValue(configuration.getValue())){
+		Optional<Configuration> configuration = configurationManager.getByName(DefaultConfigurations.setupEmployees.getConfigurationName());
+		if (!configuration.isPresent() && true==CommonUtility.getBooleanValue(configuration.get().getValue())){
 			return;
 		}
 
@@ -90,8 +91,8 @@ public class EmployeeManager extends BaseManager<Employee, Long> {
 			String fileInputName = "salesman.xlsx";
 			String sheetName = "sheet1";
 			String startedRowIndex = "1"; //The first row often is column headers
-			if (CommonUtility.isNotEmpty(configuration.getValueExtended())){
-				String[] extendedValue = configuration.getValueExtended().split(CommonUtility.SEPARATORS[1]);
+			if (CommonUtility.isNotEmpty(configuration.get().getValueExtended())){
+				String[] extendedValue = configuration.get().getValueExtended().split(CommonUtility.SEPARATORS[1]);
 				fileInputName = extendedValue[0];
 				sheetName = extendedValue[1];
 				startedRowIndex = extendedValue[2];
@@ -100,8 +101,8 @@ public class EmployeeManager extends BaseManager<Employee, Long> {
 		} catch (Exception e) {
 			throw new EcosysException(e);
 		} finally {
-			configuration = Configuration.getInstance(DefaultConfigurations.setupEmployees.getConfigurationName(), "true");
-			configurationManager.save(Configuration.getInstance(DefaultConfigurations.setupEmployees.getConfigurationName(), "true"));
+			Configuration config = Configuration.builder().name(DefaultConfigurations.setupEmployees.getConfigurationName()).value("true").build();
+			configurationManager.save(config);
 		}
 	}
 }

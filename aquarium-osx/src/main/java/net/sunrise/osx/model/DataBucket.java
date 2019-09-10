@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.brilliance.common.ListUtility;
+import net.sunrise.common.ListUtility;
 
 /**
  * @author bqduc

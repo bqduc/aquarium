@@ -22,16 +22,16 @@ import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
-import net.brilliance.domain.entity.crx.contact.Contact;
-import net.brilliance.domain.entity.general.Category;
-import net.brilliance.domain.entity.general.Department;
-import net.brilliance.domain.model.BindingType;
-import net.brilliance.domain.model.DustJacketType;
-import net.brilliance.domain.model.InventoryCodeType;
-import net.brilliance.domain.model.InventoryConditionType;
-import net.brilliance.domain.model.InventoryType;
-import net.brilliance.framework.entity.BizObjectBase;
-import net.brilliance.framework.global.GlobalConstants;
+import net.sunrise.domain.BindingType;
+import net.sunrise.domain.DustJacketType;
+import net.sunrise.domain.InventoryCodeType;
+import net.sunrise.domain.InventoryConditionType;
+import net.sunrise.domain.InventoryType;
+import net.sunrise.domain.entity.crx.contact.Contact;
+import net.sunrise.domain.entity.general.Category;
+import net.sunrise.domain.entity.general.Department;
+import net.sunrise.framework.entity.BizObjectBase;
+import net.sunrise.framework.global.GlobalConstants;
 
 /**
  * A Book.

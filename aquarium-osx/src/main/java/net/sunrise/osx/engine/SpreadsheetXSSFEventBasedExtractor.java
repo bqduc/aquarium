@@ -28,8 +28,8 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
-import net.brilliance.common.ListUtility;
-import net.brilliance.exceptions.EcosysException;
+import net.sunrise.common.ListUtility;
+import net.sunrise.exceptions.EcosysException;
 import net.sunrise.osx.model.DataBucket;
 
 /**

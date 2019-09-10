@@ -20,12 +20,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import net.brilliance.domain.entity.admin.UserAccount;
-import net.brilliance.domain.entity.crx.Team;
-import net.brilliance.domain.entity.general.Currency;
-import net.brilliance.domain.model.GeneralStatus;
-import net.brilliance.domain.model.enums.CRXGeneralType;
-import net.brilliance.framework.entity.BizObjectBase;
+import net.sunrise.domain.GeneralStatus;
+import net.sunrise.domain.entity.admin.UserAccount;
+import net.sunrise.domain.entity.crx.Team;
+import net.sunrise.domain.entity.general.Currency;
+import net.sunrise.domain.enums.CRXGeneralType;
+import net.sunrise.framework.entity.BizObjectBase;
 
 /**
  * A schedule or BRX.

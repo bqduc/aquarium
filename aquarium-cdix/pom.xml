@@ -15,12 +15,18 @@
     <description>Module that contains all entities and services to be used in the project. </description>
 
 	<dependencies>
-    <dependency>
-        <groupId>${project.groupId}</groupId>
-        <artifactId>aquarium-admin-core</artifactId>
-        <version>${project.version}</version>
-    </dependency>	
+	    <dependency>
+	        <groupId>${project.groupId}</groupId>
+	        <artifactId>aquarium-admin-core</artifactId>
+	        <version>${project.version}</version>
+	    </dependency>	
 
+	    <dependency>
+	        <groupId>${project.groupId}</groupId>
+	        <artifactId>aquarium-cdx</artifactId>
+	        <version>${project.version}</version>
+	    </dependency>	
+	
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
@@ -43,5 +49,44 @@
 			<artifactId>lombok</artifactId>
 			<scope>provided</scope>
 		</dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${version.google.guava}</version>
+        </dependency>		
+		<dependency>
+		    <groupId>com.dropbox.core</groupId>
+		    <artifactId>dropbox-core-sdk</artifactId>
+		    <version>${version.dropbox-core-sdk}</version>
+		</dependency>
+
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-text</artifactId>
+		    <version>${version.commons-text}</version>
+		</dependency>
+
+
+<!--		
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.7.4</version>
+</dependency>
+
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-core</artifactId>
+    <version>2.7.4</version>
+</dependency>
+
+<dependency>
+    <groupId>org.apache.commons</groupId>
+    <artifactId>commons-lang3</artifactId>
+    <version>3.4</version>
+</dependency>
+-->		
+		
 	</dependencies>
 </project>

@@ -16,12 +16,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import lombok.extern.slf4j.Slf4j;
-import net.brilliance.common.CommonUtility;
-import net.brilliance.domain.entity.crx.contact.Contact;
-import net.brilliance.framework.model.SearchParameter;
-import net.brilliance.service.api.contact.ContactService;
+import net.sunrise.common.CommonUtility;
 import net.sunrise.constants.ControllerConstants;
 import net.sunrise.controller.base.BaseController;
+import net.sunrise.domain.entity.crx.contact.Contact;
+import net.sunrise.framework.model.SearchParameter;
+import net.sunrise.service.api.contact.ContactService;
 
 @Slf4j
 @Controller
@@ -73,7 +73,7 @@ public class ContactController extends BaseController {
 	 */
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String showCreateForm(Model model) {
-		model.addAttribute(net.brilliance.common.CommonConstants.FETCHED_OBJECT, new Contact());
+		model.addAttribute(net.sunrise.common.CommonConstants.FETCHED_OBJECT, new Contact());
 		return PAGE_CONTEXT_EDIT;
 	}
 
@@ -82,7 +82,7 @@ public class ContactController extends BaseController {
 	 */
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
 	public String updateForm(@PathVariable("id") Long id, Model model) {
-		model.addAttribute(net.brilliance.common.CommonConstants.FETCHED_OBJECT, businessServiceManager.getObject(id));
+		model.addAttribute(net.sunrise.common.CommonConstants.FETCHED_OBJECT, businessServiceManager.getObject(id));
 		return PAGE_CONTEXT_EDIT;
 	}
 

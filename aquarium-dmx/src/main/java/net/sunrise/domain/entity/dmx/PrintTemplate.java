@@ -20,8 +20,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import net.brilliance.domain.model.doc.DocumentType;
-import net.brilliance.framework.entity.BizObjectBase;
+import net.sunrise.domain.doc.DocumentType;
+import net.sunrise.framework.entity.BizObjectBase;
 
 /**
  * @author bqduc

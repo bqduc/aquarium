@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
-import net.brilliance.common.CommonUtility;
-import net.brilliance.domain.entity.crx.Opportunity;
-import net.brilliance.framework.model.SearchParameter;
-import net.brilliance.service.api.crx.OpportunityService;
+import net.sunrise.common.CommonUtility;
 import net.sunrise.constants.ControllerConstants;
 import net.sunrise.controller.base.BaseRestController;
+import net.sunrise.domain.entity.crx.Opportunity;
+import net.sunrise.framework.model.SearchParameter;
+import net.sunrise.service.api.crx.OpportunityService;
 
 @Slf4j
 @RequestMapping(ControllerConstants.REST_API + ControllerConstants.URI_OPPORTUNITY)

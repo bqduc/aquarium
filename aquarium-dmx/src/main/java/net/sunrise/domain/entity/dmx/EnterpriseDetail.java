@@ -36,11 +36,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import net.brilliance.domain.entity.common.Address;
-import net.brilliance.domain.entity.contact.ContactProc;
-import net.brilliance.domain.entity.stock.Store;
-import net.brilliance.domain.model.EnterpriseClassType;
-import net.brilliance.framework.entity.BizObjectBase;
+import net.sunrise.domain.EnterpriseClassType;
+import net.sunrise.domain.entity.common.Address;
+import net.sunrise.domain.entity.contact.ContactProc;
+import net.sunrise.domain.entity.stock.Store;
+import net.sunrise.framework.entity.BizObjectBase;
 
 /**
  * An enterprise base abstract class .

@@ -6,23 +6,23 @@ package net.sunrise.cdix.repository.specification;
 import org.springframework.data.jpa.domain.Specification;
 
 import lombok.Builder;
-import net.brilliance.framework.model.SearchParameter;
-import net.brilliance.framework.model.specifications.SearchRequest;
-import net.brilliance.framework.specifications.BrillianceSpecifications;
-import net.sunrise.cdix.entity.PersistenceResource;
+import net.sunrise.cdix.entity.ReserveResource;
+import net.sunrise.framework.model.SearchParameter;
+import net.sunrise.framework.model.specifications.SearchRequest;
+import net.sunrise.framework.specifications.BrillianceSpecifications;
 
 /**
  * @author bqduc
  *
  */
 @Builder
-public class PersistenceResourceRepoSpecification extends BrillianceSpecifications<PersistenceResource, SearchRequest>{
+public class PersistenceResourceRepoSpecification extends BrillianceSpecifications<ReserveResource, SearchRequest>{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 6974549290535666144L;
 
-	public static Specification<PersistenceResource> buildSpecification(final SearchParameter searchParameter) {
+	public static Specification<ReserveResource> buildSpecification(final SearchParameter searchParameter) {
 		return PersistenceResourceRepoSpecification
 				.builder()
 				.build()

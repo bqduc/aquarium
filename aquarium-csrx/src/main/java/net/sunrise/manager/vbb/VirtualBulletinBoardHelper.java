@@ -4,6 +4,7 @@
 package net.sunrise.manager.vbb;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.inject.Inject;
 
@@ -11,18 +12,18 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import net.brilliance.common.CommonUtility;
-import net.brilliance.domain.entity.config.Configuration;
-import net.brilliance.exceptions.EcosysException;
-import net.brilliance.model.Bucket;
+import net.sunrise.cdx.domain.entity.Configuration;
+import net.sunrise.cdx.manager.ConfigurationManager;
+import net.sunrise.common.CommonUtility;
 import net.sunrise.domain.entity.vbb.VbbForum;
 import net.sunrise.domain.entity.vbb.VbbPost;
 import net.sunrise.domain.entity.vbb.VbbThread;
 import net.sunrise.domain.entity.vbb.VbbTopic;
 import net.sunrise.enums.DefaultConfigurations;
+import net.sunrise.exceptions.EcosysException;
 import net.sunrise.helper.GlobalDataServiceHelper;
 import net.sunrise.helper.GlobalRepositoryHelper;
-import net.sunrise.manager.ConfigurationManager;
+import net.sunrise.model.Bucket;
 
 /**
  * @author bqduc
@@ -65,14 +66,18 @@ public class VirtualBulletinBoardHelper {
 
 	@Transactional
 	public void setupDefaultData() throws EcosysException {
-		Configuration setupForumConfig = configurationManager.getByName(DefaultConfigurations.setupForum.getConfigurationName());
-		if (null==setupForumConfig||CommonUtility.BOOLEAN_STRING_FALSE.equalsIgnoreCase(setupForumConfig.getValue())){
+		Configuration setupForumConfig = null;
+		Optional<Configuration> optSetupForumConfig = configurationManager.getByName(DefaultConfigurations.setupForum.getConfigurationName());
+		if (!optSetupForumConfig.isPresent()||CommonUtility.BOOLEAN_STRING_FALSE.equalsIgnoreCase(optSetupForumConfig.get().getValue())){
 			importForums();
 			
 			//Check and save back the configuration to mark that forum data has been setup
-			if (null==setupForumConfig){
-				setupForumConfig = Configuration.getInstance(DefaultConfigurations.setupForum.getConfigurationName(), CommonUtility.BOOLEAN_STRING_TRUE);
+			if (!optSetupForumConfig.isPresent()){
+				setupForumConfig = Configuration.builder().name(DefaultConfigurations.setupForum.getConfigurationName())
+						.value(CommonUtility.BOOLEAN_STRING_TRUE)
+						.build();
 			}else{
+				setupForumConfig = optSetupForumConfig.get();
 				setupForumConfig.setValue(CommonUtility.BOOLEAN_STRING_TRUE);
 			}
 			configurationManager.save(setupForumConfig);

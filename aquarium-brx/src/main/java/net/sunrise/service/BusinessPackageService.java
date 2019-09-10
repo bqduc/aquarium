@@ -15,8 +15,8 @@
 */
 package net.sunrise.service;
 
-import net.brilliance.framework.service.GenericService;
 import net.sunrise.domain.entity.BusinessPackage;
+import net.sunrise.framework.service.GenericService;
 
 /**
  * Business package service methods for the management of Department accounts

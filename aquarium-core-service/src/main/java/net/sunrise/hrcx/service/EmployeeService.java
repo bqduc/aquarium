@@ -2,7 +2,7 @@ package net.sunrise.hrcx.service;
 
 import java.util.List;
 
-import net.brilliance.domain.entity.hc.Employee;
+import net.sunrise.domain.entity.hc.Employee;
 
 public interface EmployeeService {
 	
