@@ -274,7 +274,10 @@ public class DropboxServiceManager {
     log.info("Uploaded to Dropbox. Metadata information: " + metadata.toStringMultiline());
   }
 
-  
+  public DropboxUser getConfiguredDropboxUser() throws DropboxException {
+  	return this.dropboxClientServiceFactory.getDropboxUser();
+  }
+
   public void main(String[] args) throws IOException {
       // Only display important log messages.
       Logger.getLogger("").setLevel(Level.WARNING);

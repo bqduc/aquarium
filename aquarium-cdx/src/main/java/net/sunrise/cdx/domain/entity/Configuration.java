@@ -9,6 +9,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -44,7 +45,7 @@ public class Configuration extends BizObjectBase {
 	private String info;
 
 	@Builder.Default
-	@OneToMany(mappedBy="configuration", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="configuration", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<ConfigurationDetail> configurationDetails = new HashSet<>();
 
 	public String getName() {
@@ -108,5 +109,19 @@ public class Configuration extends BizObjectBase {
 
 		this.configurationDetails.add(configurationDetail);
 		return this;
+	}
+
+	public Configuration() {
+	}
+
+	public Configuration(String name, String value, String valueExtended, String group, String info,
+			Set<ConfigurationDetail> configurationDetails) {
+		super();
+		this.name = name;
+		this.value = value;
+		this.valueExtended = valueExtended;
+		this.group = group;
+		this.info = info;
+		this.configurationDetails = configurationDetails;
 	}
 }

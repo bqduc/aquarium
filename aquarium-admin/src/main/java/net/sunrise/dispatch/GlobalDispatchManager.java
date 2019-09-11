@@ -42,23 +42,26 @@ public class GlobalDispatchManager extends RootComponent {
 	}
 
 	protected void initializeDropboxService() {
+		String clientId = "";
+		String workingDir = "/";
+		Configuration dbxConfig = null;
 		try {
 			Optional<Configuration> optDbxConfig = configurationService.getBusinessObject(CommonCdixConstants.DROPBOX_CONFIG_NAME);
 			if (!optDbxConfig.isPresent()) {
-				log.error("There is no configuration for dropbox in repository. Please check and setup the configuration accordingly. ");
-				return;
+				log.error("There is no configuration for dropbox in repository. Please check and setup the configuration accordingly.");
+				dbxConfig = dropboxClientServiceFactory.initDropboxConfigurations();
+			} else {
+				dbxConfig = optDbxConfig.get();
+				if (dbxConfig.getConfigurationDetails().isEmpty()) {
+					dbxConfig = dropboxClientServiceFactory.initDropboxConfigurations();
+				}
 			}
-
-			String clientId = "";
-			String workingDir = "/";
-			if (!optDbxConfig.get().getConfigurationDetails().isEmpty()) {
-				clientId = optDbxConfig.get().getConfigurationDetails().iterator().next().getValue();
-				workingDir = optDbxConfig.get().getConfigurationDetails().iterator().next().getValueExtended();
-			}
+			clientId = dbxConfig.getConfigurationDetails().iterator().next().getValue();
+			workingDir = dbxConfig.getConfigurationDetails().iterator().next().getValueExtended();
 			DropboxUser dropboxUser = DropboxUser.builder()
 					.clientIdentifier(clientId)
-					.clientLocale(optDbxConfig.get().getValueExtended())
-					.accessToken(optDbxConfig.get().getValue())
+					.clientLocale(dbxConfig.getValueExtended())
+					.accessToken(dbxConfig.getValue())
 					.workingDirectory(workingDir)
 					.build();
 			dropboxClientServiceFactory.init(dropboxUser);

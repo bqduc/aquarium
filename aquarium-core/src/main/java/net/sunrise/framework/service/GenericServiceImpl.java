@@ -255,7 +255,7 @@ public abstract class GenericServiceImpl<ClassType extends ObjectBase, Key exten
 		if (fetchedBizObject.get() instanceof BizObjectBase && 
 				(!Boolean.TRUE.equals(((BizObjectBase)fetchedBizObject.get()).isActivated())||!Boolean.TRUE.equals(((BizObjectBase)fetchedBizObject.get()).isVisible()))) {
 			log.error("The business object with key: [" + key + "] not activated or visible yet. ");
-			return null;
+			return Optional.empty();
 		}
 
 		return fetchedBizObject;

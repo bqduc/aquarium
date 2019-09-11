@@ -34,6 +34,9 @@ import net.sunrise.cdx.domain.entity.Configuration;
 import net.sunrise.cdx.service.ConfigurationService;
 import net.sunrise.common.utility.CompressionUtility;
 import net.sunrise.controller.base.BaseController;
+import net.sunrise.engine.dropbox.DropboxServiceManager;
+import net.sunrise.engine.dropbox.DropboxUser;
+import net.sunrise.exceptions.DropboxException;
 
 /**
  * @author bqduc
@@ -55,6 +58,9 @@ public class ReserveResourceController extends BaseController {
 
 	@Inject
 	private ConfigurationService configurationService;
+
+	@Inject
+	private DropboxServiceManager dropboxServiceManager;
 
 	@RequestMapping(path = { "/", "" }, method = RequestMethod.GET)
 	public String viewDefaultPage(Model model) {
@@ -143,6 +149,12 @@ public class ReserveResourceController extends BaseController {
 			uploadRootDir.mkdirs();
 		}
 		*/
+		try {
+			uploadToDropbox(uploadFilesForm.getFileDatas());
+		} catch (DropboxException | IOException e1) {
+			e1.printStackTrace();
+		}
+		/*
 		Optional<Configuration> drbxConfig = configurationService.getOne("DRBX_token");
 		System.out.println(drbxConfig);
 		MultipartFile[] fileDatas = uploadFilesForm.getFileDatas();
@@ -161,11 +173,6 @@ public class ReserveResourceController extends BaseController {
 				try {
 					// Tạo file tại Server.
 					//File serverFile = new File(uploadRootDir.getAbsolutePath() + File.separator + name);
-					/*
-					 * BufferedOutputStream stream = new BufferedOutputStream(new
-					 * FileOutputStream(serverFile)); stream.write(fileData.getBytes());
-					 * stream.close();
-					 */
 					//
 					//uploadedFiles.add(serverFile);
 					compressedBytes = compressionUtility.compress(fileData.getBytes());
@@ -182,6 +189,18 @@ public class ReserveResourceController extends BaseController {
 		model.addAttribute("description", description);
 		model.addAttribute("uploadedFiles", uploadedFiles);
 		model.addAttribute("failedFiles", failedFiles);
+		*/
 		return targetPage;// "uploadResult";
+	}
+
+	protected void uploadToDropbox(MultipartFile[] multipartFiles) throws DropboxException, IOException {
+		DropboxUser dropboxUser = this.dropboxServiceManager.getConfiguredDropboxUser();
+		for (MultipartFile multipartFile :multipartFiles) {
+			this.dropboxServiceManager.uploadFile(
+					dropboxUser, 
+					multipartFile.getInputStream(), 
+					dropboxUser.getWorkingDirectory(), 
+					multipartFile.getOriginalFilename());
+		}
 	}
 }
