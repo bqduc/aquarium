@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Component;
 
 import com.dropbox.core.DbxRequestConfig;
+import com.dropbox.core.http.OkHttp3Requestor;
 import com.dropbox.core.v2.DbxClientV2;
 
 import net.sunrise.cdx.domain.entity.Configuration;
@@ -42,8 +43,7 @@ public class DropboxClientServiceFactory extends RootComponent {
 		if (sDbxClient == null) {
 			requestConfig = DbxRequestConfig.newBuilder(dropboxUser.getClientIdentifier())
 					.withUserLocale(dropboxUser.getClientLocale())
-					// .withHttpRequestor(new
-					// OkHttp3Requestor(OkHttp3Requestor.defaultOkHttpClient()))
+					 .withHttpRequestor(new OkHttp3Requestor(OkHttp3Requestor.defaultOkHttpClient()))
 					.build();
 
 			sDbxClient = new DbxClientV2(requestConfig, dropboxUser.getAccessToken());

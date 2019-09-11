@@ -196,11 +196,15 @@ public class ReserveResourceController extends BaseController {
 	protected void uploadToDropbox(MultipartFile[] multipartFiles) throws DropboxException, IOException {
 		DropboxUser dropboxUser = this.dropboxServiceManager.getConfiguredDropboxUser();
 		for (MultipartFile multipartFile :multipartFiles) {
-			this.dropboxServiceManager.uploadFile(
-					dropboxUser, 
-					multipartFile.getInputStream(), 
-					dropboxUser.getWorkingDirectory(), 
-					multipartFile.getOriginalFilename());
+			try {
+				this.dropboxServiceManager.uploadFile(
+						dropboxUser, 
+						multipartFile.getInputStream(), 
+						dropboxUser.getWorkingDirectory(), 
+						multipartFile.getOriginalFilename());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }
