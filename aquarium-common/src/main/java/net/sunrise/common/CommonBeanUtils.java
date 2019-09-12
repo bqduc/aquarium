@@ -17,8 +17,6 @@ import java.util.StringTokenizer;
 
 import org.apache.commons.beanutils.BeanUtils;
 
-import com.sun.javafx.fxml.PropertyNotFoundException;
-
 /**
  * @author bqduc
  *
