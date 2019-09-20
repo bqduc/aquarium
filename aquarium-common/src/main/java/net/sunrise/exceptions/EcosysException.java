@@ -14,7 +14,7 @@ package net.sunrise.exceptions;
  *
  * @author bqduc
  */
-public class EcosysException extends Exception {
+public class EcosysException extends RuntimeException {
 
 	/**
 	 * 

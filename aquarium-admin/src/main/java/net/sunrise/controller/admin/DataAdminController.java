@@ -18,12 +18,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.extern.slf4j.Slf4j;
+import net.sunrise.asyn.AsyncExtendedDataLoader;
 import net.sunrise.asyn.ImportContactsThread;
 import net.sunrise.asyn.InventoryDataDeployer;
 import net.sunrise.common.CommonUtility;
 import net.sunrise.common.ListUtility;
 import net.sunrise.controller.ControllerConstants;
 import net.sunrise.controller.base.BaseController;
+import net.sunrise.dispatch.GlobalDataLoadingManager;
 import net.sunrise.dispatch.GlobalDataRepositoryManager;
 import net.sunrise.domain.entity.config.Language;
 import net.sunrise.domain.entity.config.LocalizedItem;
@@ -51,6 +53,10 @@ public class DataAdminController extends BaseController {
 	 */
 	private static final long serialVersionUID = 6037064426276941676L;
 	private static boolean isDeploying = false;
+
+	@Inject
+	private GlobalDataLoadingManager globalDataLoadingManager;
+
 	@Inject
 	private ConfigurationServicesHelper configurationServicesHelper;
 
@@ -81,7 +87,7 @@ public class DataAdminController extends BaseController {
   @Inject 
 	private GlobalDataRepositoryManager globalDataRepositoryManager;
   
-	@Override
+  @Override
 	protected String performSearch(SearchParameter params) {
 		// TODO Auto-generated method stub
 		return null;
@@ -188,6 +194,23 @@ public class DataAdminController extends BaseController {
 		} catch (Exception e) {
 			log.error(e.getMessage());
 		}
+		return "pages/system/dataAdminBrowse";
+	}
+
+	@GetMapping("/loadingExtendedData")
+	public String loadingExtendedData(Model model, HttpServletRequest request) {
+		log.info("Enter DataAdminController::loadingExtendedData.");
+		try {
+			ExecutionContext executionContext  = ExecutionContext.builder()
+					.build()
+					.context("AA", "xx")
+					.context("DD", "ss");
+			AsyncExtendedDataLoader asyncExtendedDataLoader = applicationContext.getBean(AsyncExtendedDataLoader.class, executionContext);
+			this.taskExecutor.execute(asyncExtendedDataLoader);
+		} catch (Exception e) {
+			log.error(e.getMessage());
+		}
+		log.info("Leave DataAdminController::loadingExtendedData.");
 		return "pages/system/dataAdminBrowse";
 	}
 

@@ -119,7 +119,7 @@ public class AspectConfig {
 		taskExecutor.setCorePoolSize(5);
 		taskExecutor.setMaxPoolSize(25);
 		taskExecutor.setQueueCapacity(100);
-
+		taskExecutor.initialize();
 		return taskExecutor;
 	}
 }

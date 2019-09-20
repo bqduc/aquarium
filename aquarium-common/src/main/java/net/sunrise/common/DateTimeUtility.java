@@ -24,6 +24,11 @@ public final class DateTimeUtility {
 
 	//private static final Logger logger = LogManager.getLogger(DateTimeUtility.class);
 
+	private Calendar getCalendarInstance() {
+		Calendar resp = new GregorianCalendar();
+		return resp;
+	}
+
 	public static DateTimeUtility instance(){
 		return instance;
 	}
@@ -37,7 +42,7 @@ public final class DateTimeUtility {
 	}
 
 	public Date fillSystemTimeParts(Date date){
-		Calendar fromCalendar = new GregorianCalendar();
+		Calendar fromCalendar = getCalendarInstance();
 		fromCalendar.setTime(date);
 
 		Calendar calendar = Calendar.getInstance();
@@ -49,7 +54,7 @@ public final class DateTimeUtility {
 	}
 
 	public Date getSystemTime(){
-		return new GregorianCalendar().getTime();
+		return getCalendarInstance().getTime();
 	}
 
 	public static long getUtcTime(){
@@ -96,7 +101,7 @@ public final class DateTimeUtility {
 	}
 
 	public static Date getSystemDate() {
-		Calendar sysCal = Calendar.getInstance();
+		Calendar sysCal = instance().getCalendarInstance();
 		sysCal.setTime(Calendar.getInstance().getTime());
 		sysCal.set(Calendar.HOUR_OF_DAY, 0);
 		sysCal.set(Calendar.MINUTE, 0);
@@ -220,7 +225,7 @@ public final class DateTimeUtility {
 	}
 
 	public static long generateTimeStamp(){
-		return Calendar.getInstance().getTimeInMillis();
+		return instance().getCalendarInstance().getTimeInMillis();
 	}
 
 	public static Date getDummyMaxDate() {

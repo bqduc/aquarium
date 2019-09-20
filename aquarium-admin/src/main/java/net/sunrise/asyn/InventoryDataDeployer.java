@@ -6,11 +6,13 @@ package net.sunrise.asyn;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Future;
 
 import javax.inject.Inject;
 
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Component;
 
 import net.sunrise.common.CommonConstants;
@@ -52,7 +54,7 @@ public class InventoryDataDeployer extends ComponentBase {
 	private final static String[] sheetIds = new String[]{"languages", "items", "localized-items"}; 
 
 	@Async
-	public void asyncDeployConstructionData(Map<?, ?> contextParams) throws EcosysException {
+	public Future<?> asyncDeployConstructionData(Map<?, ?> contextParams) throws EcosysException {
 		System.out.println("Enter InventoryDataDeployer::asyncDeployConstructionData .....");
 		for (int idx = 0; idx < CommonConstants.DUMMY_LARGE_COUNT; idx++){
 			try {
@@ -62,6 +64,7 @@ public class InventoryDataDeployer extends ComponentBase {
 			}
 		}
 		System.out.println("Enter InventoryDataDeployer::asyncDeployConstructionData .....");
+		return new AsyncResult<>("OK");
 		/*Bucket bucket = loadConfigurationData("/config/data/data-catalog.xlsx", sheetIds, new int[]{1, 1, 1});
 		deployDataItems(bucket);*/
 	}

@@ -6,6 +6,8 @@ package net.sunrise.common;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
@@ -27,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -35,6 +38,8 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.PropertyUtils;
@@ -45,7 +50,7 @@ import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 
-import net.sunrise.exceptions.VpxRuntimeException;
+import net.sunrise.exceptions.EcosysException;
 
 /**
  * @author bqduc
@@ -1168,7 +1173,7 @@ public class CommonUtility implements CommonConstants {
 		try {
 			return Integer.parseInt(s);
 		} catch (Exception x) {
-			throw new VpxRuntimeException(parseErrorMessage);
+			throw new EcosysException(parseErrorMessage);
 		}
 	}
 
@@ -1185,7 +1190,7 @@ public class CommonUtility implements CommonConstants {
 			return Double.parseDouble(s);
 		} catch (Exception x) {
 			if (mandatory) {
-				throw new VpxRuntimeException(parseErrorMessage);
+				throw new EcosysException(parseErrorMessage);
 			}
 			else {
 				return 0;
@@ -1205,11 +1210,6 @@ public class CommonUtility implements CommonConstants {
 		return (data==null);
 	}
 
-	/*public static String encodeHex(String plainText){
-		byte[] encodedBytes = Base64Utils.encode(plainText.getBytes());
-		return Hex.encodeHexString(encodedBytes);
-	}*/
-
 	public static String safeSubString(String source, int begin, int end){
 		if (source.length() <= end)
 			return source;
@@ -1217,11 +1217,23 @@ public class CommonUtility implements CommonConstants {
 		return source.substring(begin, end);
 	}
 
-	/*public static String decodeHex(String encodedHex) throws Exception{
-		byte[] hexDecodedBytes = Hex.decodeHex(encodedHex.toCharArray());
-		byte[] decodedBytes = Base64Utils.decode(hexDecodedBytes);
-		return new String(decodedBytes);
-	}*/
+	public static List<InputStream> getZipFileInputStreams(File file) throws EcosysException {
+		List<InputStream> resp = ListUtility.createArrayList();
+		ZipFile zipFile;
+		try {
+			zipFile = new ZipFile(file);
+			Enumeration<? extends ZipEntry> zipEntries = zipFile.entries();
+			ZipEntry zipEntry = null;
+			while (zipEntries.hasMoreElements()) {
+				zipEntry = (ZipEntry) zipEntries.nextElement();
+				resp.add(buildInputStream(zipFile.getInputStream(zipEntry)));
+			}
+			zipFile.close();
+		} catch (IOException e) {
+			throw new EcosysException(e);
+		}
+		return resp;
+	}
 
 	public static boolean regularExpressionCompiled(final String patternExpression, final String value){
 		Pattern pattern = Pattern.compile(patternExpression);
@@ -1229,11 +1241,24 @@ public class CommonUtility implements CommonConstants {
 		return matcher.find();
 	}
 
-	/*public static InputStream getClassPathResourceInputStream(String relativePath) throws FileNotFoundException, IOException{
+	/*
+	public static String decodeHex(String encodedHex) throws Exception{
+  	byte[] hexDecodedBytes = Hex.decodeHex(encodedHex.toCharArray());
+  	byte[] decodedBytes = Base64Utils.decode(hexDecodedBytes);
+  	return new String(decodedBytes);
+	}
+	
+	public static InputStream getClassPathResourceInputStream(String relativePath) throws FileNotFoundException, IOException{
 		ClassPathResource resource = new ClassPathResource(relativePath);
 		InputStream is = new FileInputStream(resource.getFile());
 		return is;
-	}*/
+	}
+
+	public static String encodeHex(String plainText){
+		byte[] encodedBytes = Base64Utils.encode(plainText.getBytes());
+		return Hex.encodeHexString(encodedBytes);
+	}
+	*/
 
 	public static void closeInputStream(InputStream inputStream) throws IOException{
 		if (null != inputStream){
@@ -1241,13 +1266,60 @@ public class CommonUtility implements CommonConstants {
 		}
 	}
 
+	public static InputStream buildInputStream(final File file) throws EcosysException {
+		try {
+			return buildInputStream(new FileInputStream(file));
+		} catch (FileNotFoundException e) {
+			throw new EcosysException(e);
+		}
+	}
+
+	public static InputStream buildInputStream(final InputStream inputStream) throws EcosysException {
+		InputStream clonedInputStream = null;
+		ByteArrayOutputStream outputStream = null;
+		byte[] buffer = null;
+		int readLength = 0;
+		try {
+		  if (null == inputStream)
+				return null;
+
+		  inputStream.mark(0);
+			outputStream = new ByteArrayOutputStream();
+			buffer = new byte[1024];
+			readLength = 0;
+			while ((readLength = inputStream.read(buffer)) != -1) {
+				outputStream.write(buffer, 0, readLength);
+			}
+			//inputStream.reset();
+			outputStream.flush();
+			clonedInputStream = new ByteArrayInputStream(outputStream.toByteArray());
+		} catch (Exception ex) {
+			throw new EcosysException(ex);
+		}
+		return clonedInputStream;
+	}
+
 	public static void main(String[] args){
+		String fileName = "C:\\Users\\ducbq\\Downloads\\data_sheets.zip";
+		File zipFile = new File(/*
+														 * "D:\\opt\\oss\\aquarium\\aquarium-admin\\src\\main\\resources\\config\\data\\data-catalogues.zip"
+														 */
+				fileName);
+		try {
+			List<InputStream> zipEntries = getZipFileInputStreams(zipFile);
+			System.out.println(zipEntries);
+		} catch (EcosysException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		/*
 		String patternExp = "^\\d{2}[.]\\d{2}$";
 		String string = "03.02";//"98.12";
 		
 		Pattern pattern = Pattern.compile(patternExp);
 		Matcher matcher = pattern.matcher(string);
 		System.out.println(matcher.find());
+		*/
 	}
 
 }

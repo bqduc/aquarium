@@ -74,7 +74,11 @@ import net.sunrise.manager.mail.freemarker.FreeMarkerEmailConfiguration;
 @SpringBootApplication(/* scanBasePackageClasses = { Controllers.class, Services.class } */)
 @EnableConfigurationProperties({ MailProperties.class })
 @EnableAspectJAutoProxy
-@Import(value = { BaseConfiguration.class, JpaAuditingConfig.class, PostgresConfig.class, AspectConfig.class,
+@Import(value = { 
+		BaseConfiguration.class, 
+		JpaAuditingConfig.class, 
+		PostgresConfig.class, 
+		AspectConfig.class,
 		WebSecurityConfiguration.class,
 		// SecurityConfig.class,
 		ThymeleafMailConfig.class, FreeMarkerEmailConfiguration.class })

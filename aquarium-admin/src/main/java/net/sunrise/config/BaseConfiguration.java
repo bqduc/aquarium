@@ -5,18 +5,23 @@ package net.sunrise.config;
 
 import java.util.Locale;
 
+import javax.inject.Inject;
+
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
@@ -40,6 +45,9 @@ import net.sunrise.start.WebApplicationStarter;
 @EntityScan(basePackages={"net.sunrise"})
 @EnableTransactionManagement
 public class BaseConfiguration {
+	@Inject
+	private ApplicationContext applicationContext;
+	
 	/**
 	 * {@link PasswordEncoder} bean.
 	 * 
@@ -123,6 +131,45 @@ public class BaseConfiguration {
         return new SpringSecurityDialect();
     }
 		
+
+		@Bean
+		public ThreadPoolTaskExecutor taskExecutor() {
+			ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
+			taskExecutor.setCorePoolSize(5);
+			taskExecutor.setMaxPoolSize(25);
+			taskExecutor.setQueueCapacity(100);
+			taskExecutor.initialize();
+			return taskExecutor;
+		}
+
+		/*
+    @Bean
+    public SpringResourceTemplateResolver templateResolver() {
+        SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
+        templateResolver.setApplicationContext(applicationContext);
+        templateResolver.setPrefix("/templates/");
+        templateResolver.setSuffix(".html");
+        templateResolver.setTemplateMode(TemplateMode.HTML);
+        templateResolver.setCacheable(true);
+        return templateResolver;
+    }
+
+    @Bean
+    public SpringTemplateEngine templateEngine() {
+        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+        templateEngine.setTemplateResolver(templateResolver());
+        templateEngine.setEnableSpringELCompiler(true);
+        templateEngine.addDialect(new SpringSecurityDialect()); 
+        return templateEngine;
+    }
+
+    @Bean
+    public ViewResolver viewResolver() {
+        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
+        viewResolver.setTemplateEngine(templateEngine());
+        return viewResolver;
+    }
+    */
 		/*@Bean
 		public SpringTemplateEngine templateEngine() {
 		    SpringTemplateEngine templateEngine = new SpringTemplateEngine();
