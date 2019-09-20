@@ -346,7 +346,7 @@ public class UserAccount extends BizObjectBase implements AuthAccount {
 		Iterator<Authority> itr = null;
 		Authority authority = null;
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-		if (CommonUtility.isEmpty(this.authorities)) {
+		if (CommonUtility.isNotEmpty(this.authorities)) {
 			itr = this.authorities.iterator();
 			while (itr.hasNext()) {
 				authority = itr.next();

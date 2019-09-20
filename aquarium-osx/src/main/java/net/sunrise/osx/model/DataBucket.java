@@ -20,6 +20,9 @@ public class DataBucket {
 	public final static String PARAM_DATA_SHEETS = "dataSheets";
 	public final static String PARAM_DATA_INDEXES = "dataIndexes";
 	public final static String PARAM_STARTED_ROW_INDEX = "startedRowIndex";
+	public final static String PARAM_ENCRYPTION_KEY = "encryptionKey";
+	public final static String PARAM_LIMITED_COLUMNS = "limitedColumns";
+	public final static String PARAM_LIMITED_ROWS = "limitedRows";
 
 	private OfficeSuiteTarget suiteTargeted;
 	private Map<Object, Object> bucketData = null;

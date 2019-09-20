@@ -29,9 +29,13 @@ public class ExecutionContext implements Serializable{
 		return context;
 	}
 
-	public void setContext(Map<String, Object> context) {
-		this.context = context;
-	}
+	/*
+	 * public void setContext(Map<String, Object> context) { this.context = context;
+	 * }
+	 * 
+	 * public void setContext(String key, Object value) { this.context.put(key,
+	 * value); }
+	 */
 
 	public boolean containKey(String key){
 		return this.context.containsKey(key);
@@ -63,6 +67,11 @@ public class ExecutionContext implements Serializable{
 
 	public ExecutionContext buildFromOther(ExecutionContext executionContext){
 		this.context.putAll(executionContext.getContext());
+		return this;
+	}
+
+	public ExecutionContext context(String key, Object value){
+		this.context.put(key, value);
 		return this;
 	}
 }
