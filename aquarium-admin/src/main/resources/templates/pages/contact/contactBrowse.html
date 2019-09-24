@@ -2,7 +2,8 @@
 <html 
 	xmlns:th="http://www.thymeleaf.org" 
 	xmlns:sd="http://www.thymeleaf.org/spring-data" 
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" 
 	layout:decorator="layout">
 <head>
 	<title th:text="#{label.contact.definitions}"></title>
@@ -27,9 +28,9 @@
 		<div class="box-header with-border">
 		  <h3 class="box-title" th:text="#{label.general.filters}"></h3>
 		  <div class="box-tools pull-right">
-	    	<a href="/contact/create" type="button" class="btn btn-box-tool"sec:authorize="hasRole('ROLE_ADMIN')"><i class="fa fa-plus-circle"></i></a>
-	    	<a href="/contact/import" type="button" class="btn btn-box-tool"sec:authorize="hasRole('ROLE_ADMIN')" th:attr="title=#{label.general.import}"><i class="fa fa-arrow-left"></i></a>
-	    	<a href="/contact/export" type="button" class="btn btn-box-tool"sec:authorize="hasRole('ROLE_ADMIN')" th:attr="title=#{label.general.export}"><i class="fa fa-arrow-right"></i></a>
+	    	<a href="/contact/create" type="button" class="btn btn-box-tool" sec:authorize="hasAuthority('ROLE_ADMIN')"><i class="fa fa-plus-circle"></i></a>
+	    	<a href="/contact/import" type="button" class="btn btn-box-tool" sec:authorize="hasAuthority('ROLE_ADMIN')" th:attr="title=#{label.general.import}"><i class="fa fa-arrow-left"></i></a>
+	    	<a href="/contact/export" type="button" class="btn btn-box-tool" sec:authorize="hasRole('ROLE_ADMIN')" th:attr="title=#{label.general.export}"><i class="fa fa-arrow-right"></i></a>
 		    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
 		  </div>
 		</div>
