@@ -40,7 +40,7 @@ public class ListUtility {
 		return (T[])objects.toArray();
 	}
 
-	public static <K, T> HashMap <K, T> createMap(Object ...keyValuePairs){
+	public static <K, T> Map <K, T> createMap(Object ...keyValuePairs){
 		Map<K, T> retMap = new HashMap<>();
 		for (int i = 0; i < keyValuePairs.length; i+= 2) {
 			K key = (K)keyValuePairs[i];
@@ -48,7 +48,7 @@ public class ListUtility {
 			retMap.put(key, value);
 		}
 
-		return new HashMap<>();
+		return retMap;
 	}
 
 	public static <T> HashSet <T> newHashSet(){

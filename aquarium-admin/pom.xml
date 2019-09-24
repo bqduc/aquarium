@@ -112,11 +112,15 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
-		<dependency>
+		<!-- <dependency>
 		    <groupId>org.thymeleaf.extras</groupId>
 		    <artifactId>thymeleaf-extras-springsecurity5</artifactId>
 		    <version>3.0.4.RELEASE</version>
-		</dependency>
+		</dependency> -->
+<dependency>
+    <groupId>org.thymeleaf.extras</groupId>
+    <artifactId>thymeleaf-extras-springsecurity5</artifactId>
+</dependency>
 
 		<!-- database dependencies -->
 		<dependency>
@@ -171,6 +175,16 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<!-- 
+		<resources>
+			<resource>
+				<directory>src/main/resources/config/data</directory>
+				<excludes>
+					<exclude>**/*.xlsx</exclude>
+				</excludes>
+			</resource>
+		</resources>
+		-->
 	</build>
 
 	<repositories>

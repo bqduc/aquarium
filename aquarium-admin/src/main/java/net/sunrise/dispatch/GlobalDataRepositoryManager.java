@@ -24,7 +24,8 @@ import net.sunrise.framework.model.ExecutionContext;
 import net.sunrise.manager.auth.AuthenticationServiceManager;
 import net.sunrise.manager.system.SystemSequenceManager;
 import net.sunrise.osx.OfficeSuiteServiceProvider;
-import net.sunrise.osx.model.DataBucket;
+import net.sunrise.osx.model.BucketContainer;
+import net.sunrise.osx.model.WorkbookContainer;
 import net.sunrise.utility.ClassPathResourceUtility;
 
 /**
@@ -113,15 +114,15 @@ public class GlobalDataRepositoryManager extends BaseComponent {
 		log.info("Start to parse Excel data");
 		Map<Object, Object> params = ListUtility.createMap();
 		String[] sheetIds = new String[]{"languages", "items", "localized-items"}; 
-		DataBucket dataBucket = null;
+		WorkbookContainer workbookContainer = null;
 		try {
-			params.put(DataBucket.PARAM_INPUT_STREAM, ClassPathResourceUtility.builder().build().getInputStream("config/data/data-catalog.xlsx"));
-			params.put(DataBucket.PARAM_DATA_SHEETS, sheetIds);
-			params.put(DataBucket.PARAM_STARTED_ROW_INDEX, new Integer[] {1, 1, 1});
-			dataBucket = OfficeSuiteServiceProvider.builder()
+			params.put(BucketContainer.PARAM_INPUT_STREAM, ClassPathResourceUtility.builder().build().getInputStream("config/data/data-catalog.xlsx"));
+			params.put(BucketContainer.PARAM_DATA_SHEET_IDS, sheetIds);
+			params.put(BucketContainer.PARAM_STARTED_ROW_INDEX, new Integer[] {1, 1, 1});
+			workbookContainer = OfficeSuiteServiceProvider.builder()
 			.build()
-			.readXlsxData(params);
-			System.out.println(dataBucket);
+			.readExcelFile(params);
+			System.out.println(workbookContainer);
 		} catch (Exception e) {
 			log.error(e);
 		}

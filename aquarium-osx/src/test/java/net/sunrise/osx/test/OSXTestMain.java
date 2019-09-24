@@ -9,7 +9,8 @@ import java.util.Map;
 
 import net.sunrise.common.ListUtility;
 import net.sunrise.osx.OfficeSuiteServiceProvider;
-import net.sunrise.osx.model.DataBucket;
+import net.sunrise.osx.model.BucketContainer;
+import net.sunrise.osx.model.WorkbookContainer;
 
 /**
  * @author bqduc
@@ -26,15 +27,15 @@ public class OSXTestMain {
 	protected static void doTestReadXlsx() {
 		Map<Object, Object> params = ListUtility.createMap();
 		String[] sheetIds = new String[]{/*"languages", "items", "localized-items"*/"online-books", "Forthcoming"}; 
-		DataBucket dataBucket = null;
+		BucketContainer dataBucket = null;
 		String dataSheet = "D:\\workspace\\aquariums.git\\aquarium\\aquarium-admin\\src\\main\\resources\\config\\data\\data-catalog.xlsx";
 		try {
-			params.put(DataBucket.PARAM_INPUT_STREAM, new FileInputStream(dataSheet));
-			params.put(DataBucket.PARAM_DATA_SHEETS, sheetIds);
-			params.put(DataBucket.PARAM_STARTED_ROW_INDEX, new Integer[] {1, 1, 1});
-			dataBucket = OfficeSuiteServiceProvider.builder()
+			params.put(BucketContainer.PARAM_INPUT_STREAM, new FileInputStream(dataSheet));
+			params.put(BucketContainer.PARAM_DATA_SHEET_IDS, sheetIds);
+			params.put(BucketContainer.PARAM_STARTED_ROW_INDEX, new Integer[] {1, 1, 1});
+			WorkbookContainer workbookContainer = OfficeSuiteServiceProvider.builder()
 			.build()
-			.readXlsxData(params);
+			.readExcelFile(params);
 			List<?> details = null;
 			List<?> forthcomingBooks = (List<?>)dataBucket.getBucketData().get("Forthcoming");
 			List<?> onlineBooks = (List<?>)dataBucket.getBucketData().get("online-books");

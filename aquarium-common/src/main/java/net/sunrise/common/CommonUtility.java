@@ -1235,6 +1235,58 @@ public class CommonUtility implements CommonConstants {
 		return resp;
 	}
 
+	public static List<InputStream> extractZipFile(File zipFile, List<String> zipEntryNames) throws EcosysException {
+		List<InputStream> resp = ListUtility.createArrayList();
+		ZipFile innerZipFile = null;
+		Enumeration<? extends ZipEntry> zipEntries = null;
+		ZipEntry zipEntry = null;
+		try {
+			innerZipFile = new ZipFile(zipFile);
+			zipEntries = innerZipFile.entries();
+			while (zipEntries.hasMoreElements()) {
+				zipEntry = (ZipEntry) zipEntries.nextElement();
+				if (zipEntryNames.contains(zipEntry.getName())) {
+					resp.add(buildInputStream(innerZipFile.getInputStream(zipEntry)));
+				}
+			}
+		} catch (IOException e) {
+			throw new EcosysException(e);
+		} finally {
+      try {
+      	innerZipFile.close();
+      } catch (Exception e2) {
+      	e2.printStackTrace();
+      }			
+		}
+		return resp;
+	}
+
+	public static Map<String, InputStream> extractZipInputStreams(File zipFile, List<String> zipEntryNames) throws EcosysException {
+		Map<String, InputStream> resp = ListUtility.createMap();
+		ZipFile innerZipFile = null;
+		Enumeration<? extends ZipEntry> zipEntries = null;
+		ZipEntry zipEntry = null;
+		try {
+			innerZipFile = new ZipFile(zipFile);
+			zipEntries = innerZipFile.entries();
+			while (zipEntries.hasMoreElements()) {
+				zipEntry = (ZipEntry) zipEntries.nextElement();
+				if (zipEntryNames.contains(zipEntry.getName())) {
+					resp.put(zipEntry.getName(), buildInputStream(innerZipFile.getInputStream(zipEntry)));
+				}
+			}
+		} catch (IOException e) {
+			throw new EcosysException(e);
+		} finally {
+      try {
+      	innerZipFile.close();
+      } catch (Exception e2) {
+      	e2.printStackTrace();
+      }			
+		}
+		return resp;
+	}
+
 	public static boolean regularExpressionCompiled(final String patternExpression, final String value){
 		Pattern pattern = Pattern.compile(patternExpression);
 		Matcher matcher = pattern.matcher(value);
@@ -1274,7 +1326,7 @@ public class CommonUtility implements CommonConstants {
 		}
 	}
 
-	public static InputStream buildInputStream(final InputStream inputStream) throws EcosysException {
+	protected static InputStream buildInputStream(final InputStream inputStream) throws EcosysException {
 		InputStream clonedInputStream = null;
 		ByteArrayOutputStream outputStream = null;
 		byte[] buffer = null;

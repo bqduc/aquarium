@@ -33,12 +33,15 @@ import org.xml.sax.XMLReader;
 
 import net.sunrise.common.ListUtility;
 import net.sunrise.exceptions.EcosysException;
-import net.sunrise.osx.model.DataBucket;
+import net.sunrise.osx.model.BucketContainer;
+import net.sunrise.osx.model.WorkbookContainer;
+import net.sunrise.osx.model.WorksheetContainer;
 
 /**
  * @author bqduc
  *
  */
+@SuppressWarnings({ "unused", "unchecked" })
 public class XSSFEventDataHelper {
 	public static final String MISSING_ENTRY = "";
 	List<List<String>> stringTable = null;
@@ -152,14 +155,14 @@ public class XSSFEventDataHelper {
 		this.parameters.putAll(params);
 
 		int procLimitedColumns = defaultNumberOfCells;
-		if (this.parameters.containsKey(DataBucket.PARAM_LIMITED_COLUMNS)) {
-			procLimitedColumns = (Integer)this.parameters.get(DataBucket.PARAM_LIMITED_COLUMNS);
+		if (this.parameters.containsKey(BucketContainer.PARAM_LIMITED_COLUMNS)) {
+			procLimitedColumns = (Integer)this.parameters.get(BucketContainer.PARAM_LIMITED_COLUMNS);
 		}
 		this.limitedColumns = procLimitedColumns;
 	}
 
 	public static XSSFEventDataHelper instance(Map<?, ?> params) throws EcosysException {
-		if (!params.containsKey(DataBucket.PARAM_INPUT_STREAM))
+		if (!params.containsKey(BucketContainer.PARAM_INPUT_STREAM))
 			throw new EcosysException("No input stream parameter!");
 
 		OPCPackage opcPackage = null;
@@ -168,13 +171,13 @@ public class XSSFEventDataHelper {
 		EncryptionInfo encryptionInfo = null;
 		Decryptor decryptor = null;
 		try {
-			if (params.containsKey(DataBucket.PARAM_ENCRYPTION_KEY)) {
-				filesystem = new POIFSFileSystem((InputStream) params.get(DataBucket.PARAM_INPUT_STREAM));
+			if (params.containsKey(BucketContainer.PARAM_ENCRYPTION_KEY)) {
+				filesystem = new POIFSFileSystem((InputStream) params.get(BucketContainer.PARAM_INPUT_STREAM));
 				encryptionInfo = new EncryptionInfo(filesystem);
 				decryptor = Decryptor.getInstance(encryptionInfo);
 
 				try {
-				    if (!decryptor.verifyPassword((String)params.get(DataBucket.PARAM_ENCRYPTION_KEY))) {
+				    if (!decryptor.verifyPassword((String)params.get(BucketContainer.PARAM_ENCRYPTION_KEY))) {
 				        throw new RuntimeException("Unable to process: document is encrypted");
 				    }
 
@@ -184,7 +187,7 @@ public class XSSFEventDataHelper {
 				}
 				opcPackage = OPCPackage.open(decryptedDataStream);
 			} else {
-				opcPackage = OPCPackage.open((InputStream)params.get(DataBucket.PARAM_INPUT_STREAM));
+				opcPackage = OPCPackage.open((InputStream)params.get(BucketContainer.PARAM_INPUT_STREAM));
 			}
 		} catch (Exception e) {
 			throw new EcosysException(e);
@@ -230,9 +233,9 @@ public class XSSFEventDataHelper {
 		return actualMaxPhysicalCells;
 	}
 
-	public DataBucket extractData(List<String> sheets, Map<Object, Object> configParams) throws InvalidOperationException, IOException, OpenXML4JException, SAXException{
+	public BucketContainer extractData(List<String> sheets, Map<Object, Object> configParams) throws InvalidOperationException, IOException, OpenXML4JException, SAXException{
 		InputStream stream = null;
-		DataBucket dataBucket = DataBucket.getInstance();
+		BucketContainer dataBucket = BucketContainer.instance();
 		ReadOnlySharedStringsTable strings = new ReadOnlySharedStringsTable(this.xlsxPackage);
 		XSSFReader xssfReader = new XSSFReader(this.xlsxPackage);
 		StylesTable styles = xssfReader.getStylesTable();
@@ -245,7 +248,7 @@ public class XSSFEventDataHelper {
 			if (sheets.contains(iter.getSheetName())){
 				this.stringTable = ListUtility.createArrayList();
 				//Process the started row index 
-				rowIndexKey = iter.getSheetName() + DataBucket.PARAM_STARTED_ROW_INDEX;
+				rowIndexKey = iter.getSheetName() + BucketContainer.PARAM_STARTED_ROW_INDEX;
 				if (null != configParams && configParams.containsKey(rowIndexKey)){
 					startedRowIndex = (Integer)configParams.get(rowIndexKey);
 				}
@@ -266,14 +269,14 @@ public class XSSFEventDataHelper {
 		return dataBucket;
 	}
 
-	private DataBucket extractXlsxData() throws EcosysException {
-		List<String> sheets = (List<String>)this.parameters.get(DataBucket.PARAM_DATA_SHEETS);
+	private BucketContainer extractXlsxData() throws EcosysException {
+		List<String> sheets = (List<String>)this.parameters.get(BucketContainer.PARAM_DATA_SHEET_IDS);
 		AesZipFileZipEntrySource aesZipFileZipEntrySource = null;
 		InputStream stream = null;
-		DataBucket dataBucket = DataBucket.getInstance();
+		BucketContainer dataBucket = BucketContainer.instance();
 		try {
-			if (this.parameters.containsKey(DataBucket.PARAM_ENCRYPTION_KEY)) {
-				aesZipFileZipEntrySource = AesZipFileZipEntrySource.createZipEntrySource((InputStream) this.parameters.get(DataBucket.PARAM_INPUT_STREAM));
+			if (this.parameters.containsKey(BucketContainer.PARAM_ENCRYPTION_KEY)) {
+				aesZipFileZipEntrySource = AesZipFileZipEntrySource.createZipEntrySource((InputStream) this.parameters.get(BucketContainer.PARAM_INPUT_STREAM));
 			}
 
 			ReadOnlySharedStringsTable strings = new ReadOnlySharedStringsTable(this.xlsxPackage);
@@ -288,7 +291,7 @@ public class XSSFEventDataHelper {
 				if (sheets.contains(iter.getSheetName())){
 					this.stringTable = ListUtility.createArrayList();
 					//Process the started row index 
-					rowIndexKey = iter.getSheetName() + DataBucket.PARAM_STARTED_ROW_INDEX;
+					rowIndexKey = iter.getSheetName() + BucketContainer.PARAM_STARTED_ROW_INDEX;
 					if (this.parameters.containsKey(rowIndexKey)){
 						startedRowIndex = (Integer)this.parameters.get(rowIndexKey);
 					}
@@ -313,15 +316,18 @@ public class XSSFEventDataHelper {
 		return dataBucket;
 	}
 
-	public DataBucket parseXlsxData() throws EcosysException {
-		InputStream stream = null;
+	public BucketContainer parseXlsxData() throws EcosysException {
+		InputStream inputStream = null;
 		String sheetName = null;
-		DataBucket dataBucket = DataBucket.getInstance();
+		BucketContainer dataBucket = BucketContainer.instance();
 		ReadOnlySharedStringsTable sharedStringTable = null;
 		XSSFReader xssfReader = null;
 		StylesTable styles = null;
 		XSSFReader.SheetIterator iter = null;
 		SheetContentsHandler sheetContentsHandler = null;
+		List<String> sheetIds = (List<String>)this.parameters.get(BucketContainer.PARAM_DATA_SHEET_IDS);
+		String rowIndexKey = null;
+		Integer startedRowIndex = null;
 		try {
 			sharedStringTable = new ReadOnlySharedStringsTable(this.xlsxPackage);
 			xssfReader = new XSSFReader(this.xlsxPackage);
@@ -330,11 +336,26 @@ public class XSSFEventDataHelper {
 			sheetContentsHandler = new BufferedSheetContentsHandler();
 			while (iter.hasNext()) {
 				this.stringTable = ListUtility.createArrayList();
-				stream = iter.next();
+				inputStream = iter.next();
+				if (!sheetIds.contains(iter.getSheetName()))
+					continue;
+
 				sheetName = iter.getSheetName();
-				processSheet(styles, sharedStringTable, sheetContentsHandler, stream);
+				rowIndexKey = iter.getSheetName() + BucketContainer.PARAM_STARTED_ROW_INDEX;
+				if (this.parameters.containsKey(rowIndexKey)){
+					startedRowIndex = (Integer)this.parameters.get(rowIndexKey);
+				}
+
+				if (null==startedRowIndex) {
+					startedRowIndex = 0;
+				}
+
+				processSheet(styles, sharedStringTable, sheetContentsHandler, inputStream);
+				for (int idx = 0; idx < startedRowIndex; ++idx){
+					this.stringTable.remove(0);
+				}
 				dataBucket.put(sheetName, this.stringTable);
-				stream.close();
+				inputStream.close();
 			}
 			this.xlsxPackage.close();
 		} catch (Exception e) {
@@ -343,4 +364,64 @@ public class XSSFEventDataHelper {
 		return dataBucket;
 	}
 
+	public WorkbookContainer readXlsx() throws EcosysException {
+		InputStream inputStream = null;
+		String sheetName = null;
+		ReadOnlySharedStringsTable sharedStringTable = null;
+		XSSFReader xssfReader = null;
+		StylesTable styles = null;
+		XSSFReader.SheetIterator iter = null;
+		SheetContentsHandler sheetContentsHandler = null;
+		List<String> sheetIds = (List<String>)this.parameters.get(BucketContainer.PARAM_DATA_SHEET_IDS);
+		String rowIndexKey = null;
+		Integer startedRowIndex = null;
+		WorksheetContainer worksheetContainer = null;
+		WorkbookContainer workbookContainer = null;
+		List<String> dataRows = null;
+		try {
+			workbookContainer = WorkbookContainer.builder().build();
+
+			sharedStringTable = new ReadOnlySharedStringsTable(this.xlsxPackage);
+			xssfReader = new XSSFReader(this.xlsxPackage);
+			styles = xssfReader.getStylesTable();
+			iter = (XSSFReader.SheetIterator) xssfReader.getSheetsData();
+			sheetContentsHandler = new BufferedSheetContentsHandler();
+			while (iter.hasNext()) {
+				this.stringTable = ListUtility.createArrayList();
+				inputStream = iter.next();
+				if (!sheetIds.contains(iter.getSheetName()))
+					continue;
+
+				sheetName = iter.getSheetName();
+				worksheetContainer = WorksheetContainer.builder()
+						.id(sheetName)
+						.build();
+
+				rowIndexKey = iter.getSheetName() + BucketContainer.PARAM_STARTED_ROW_INDEX;
+				if (this.parameters.containsKey(rowIndexKey)){
+					startedRowIndex = (Integer)this.parameters.get(rowIndexKey);
+				}
+
+				if (null==startedRowIndex) {
+					startedRowIndex = 0;
+				}
+
+				processSheet(styles, sharedStringTable, sheetContentsHandler, inputStream);
+				for (int idx = 0; idx < startedRowIndex; ++idx){
+					this.stringTable.remove(0);
+				}
+
+				for (int idx=0; idx < this.stringTable.size(); idx++) {
+					dataRows = this.stringTable.get(idx);
+					worksheetContainer.addDataRows(idx, dataRows);
+				}
+				workbookContainer.put(sheetName, worksheetContainer);
+				inputStream.close();
+			}
+			this.xlsxPackage.close();
+		} catch (Exception e) {
+			throw new EcosysException(e);
+		}
+		return workbookContainer;
+	}
 }

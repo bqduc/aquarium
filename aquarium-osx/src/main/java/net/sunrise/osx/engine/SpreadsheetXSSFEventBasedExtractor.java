@@ -31,7 +31,7 @@ import org.xml.sax.XMLReader;
 
 import net.sunrise.common.ListUtility;
 import net.sunrise.exceptions.EcosysException;
-import net.sunrise.osx.model.DataBucket;
+import net.sunrise.osx.model.BucketContainer;
 
 /**
  * @author bqduc
@@ -157,8 +157,8 @@ public class SpreadsheetXSSFEventBasedExtractor {
 		return getInstance(new FileInputStream(xlsxFilePath));
 	}
 
-	public static DataBucket extractSpreadsheetData(String spreadsheetFilePath, String[] sheets, Map<Object, Object> configParams) throws EcosysException {
-		DataBucket bucket = null;
+	public static BucketContainer extractSpreadsheetData(String spreadsheetFilePath, String[] sheets, Map<Object, Object> configParams) throws EcosysException {
+		BucketContainer bucket = null;
 		try {
 			bucket = getInstance(spreadsheetFilePath).extractData(sheets, configParams);
 		} catch (Exception e) {
@@ -167,11 +167,11 @@ public class SpreadsheetXSSFEventBasedExtractor {
 		return bucket;
 	}
 
-	public static DataBucket extractSpreadsheetData(InputStream spreadsheetInputStream, Map<Object, Object> configParams) throws EcosysException {
-		DataBucket bucket = null;
+	public static BucketContainer extractSpreadsheetData(InputStream spreadsheetInputStream, Map<Object, Object> configParams) throws EcosysException {
+		BucketContainer bucket = null;
 		String[] sheetNames = null;
 		try {
-			sheetNames = (String[])configParams.get(DataBucket.PARAM_DATA_SHEETS);
+			sheetNames = (String[])configParams.get(BucketContainer.PARAM_DATA_SHEET_IDS);
 			bucket = getInstance(spreadsheetInputStream).extractData(sheetNames, configParams);
 		} catch (Exception e) {
 			throw new EcosysException("Extract spreadsheet data error. ", e);
@@ -217,17 +217,17 @@ public class SpreadsheetXSSFEventBasedExtractor {
 		return actualMaxPhysicalCells;
 	}
 
-	public DataBucket extractData(String[] sheets, Map<Object, Object> configParams) throws InvalidOperationException, IOException, OpenXML4JException, SAXException{
+	public BucketContainer extractData(String[] sheets, Map<Object, Object> configParams) throws InvalidOperationException, IOException, OpenXML4JException, SAXException{
 		return extractData(ListUtility.arraysAsList(sheets), configParams);
 	}
 
-	public DataBucket getData(Map<Object, Object> configParams) throws InvalidOperationException, IOException, OpenXML4JException, SAXException{
+	public BucketContainer getData(Map<Object, Object> configParams) throws InvalidOperationException, IOException, OpenXML4JException, SAXException{
 		return extractXlsxData(configParams);
 	}
 
-	public DataBucket extractData(List<String> sheets, Map<Object, Object> configParams) throws InvalidOperationException, IOException, OpenXML4JException, SAXException{
+	public BucketContainer extractData(List<String> sheets, Map<Object, Object> configParams) throws InvalidOperationException, IOException, OpenXML4JException, SAXException{
 		InputStream stream = null;
-		DataBucket dataBucket = DataBucket.getInstance();
+		BucketContainer dataBucket = BucketContainer.instance();
 		ReadOnlySharedStringsTable strings = new ReadOnlySharedStringsTable(this.xlsxPackage);
 		XSSFReader xssfReader = new XSSFReader(this.xlsxPackage);
 		StylesTable styles = xssfReader.getStylesTable();
@@ -240,7 +240,7 @@ public class SpreadsheetXSSFEventBasedExtractor {
 			if (sheets.contains(iter.getSheetName())){
 				this.stringTable = ListUtility.createArrayList();
 				//Process the started row index 
-				rowIndexKey = iter.getSheetName() + DataBucket.PARAM_STARTED_ROW_INDEX;
+				rowIndexKey = iter.getSheetName() + BucketContainer.PARAM_STARTED_ROW_INDEX;
 				if (null != configParams && configParams.containsKey(rowIndexKey)){
 					startedRowIndex = (Integer)configParams.get(rowIndexKey);
 				}
@@ -261,14 +261,14 @@ public class SpreadsheetXSSFEventBasedExtractor {
 		return dataBucket;
 	}
 
-	private DataBucket extractXlsxData(final Map<Object, Object> configParams) throws InvalidOperationException, IOException, OpenXML4JException, SAXException{
-		List<String> sheets = (List<String>)configParams.get(DataBucket.PARAM_DATA_SHEETS);
+	private BucketContainer extractXlsxData(final Map<Object, Object> configParams) throws InvalidOperationException, IOException, OpenXML4JException, SAXException{
+		List<String> sheets = (List<String>)configParams.get(BucketContainer.PARAM_DATA_SHEET_IDS);
 		AesZipFileZipEntrySource aesZipFileZipEntrySource = null;
-		if (null!= configParams.get(DataBucket.PARAM_ENCRYPTION_KEY)) {
-			aesZipFileZipEntrySource = AesZipFileZipEntrySource.createZipEntrySource((InputStream) configParams.get(DataBucket.PARAM_INPUT_STREAM));
+		if (null!= configParams.get(BucketContainer.PARAM_ENCRYPTION_KEY)) {
+			aesZipFileZipEntrySource = AesZipFileZipEntrySource.createZipEntrySource((InputStream) configParams.get(BucketContainer.PARAM_INPUT_STREAM));
 		}
 		InputStream stream = null;
-		DataBucket dataBucket = DataBucket.getInstance();
+		BucketContainer dataBucket = BucketContainer.instance();
 		ReadOnlySharedStringsTable strings = new ReadOnlySharedStringsTable(this.xlsxPackage);
 		XSSFReader xssfReader = new XSSFReader(this.xlsxPackage);
 		StylesTable styles = xssfReader.getStylesTable();
@@ -281,7 +281,7 @@ public class SpreadsheetXSSFEventBasedExtractor {
 			if (sheets.contains(iter.getSheetName())){
 				this.stringTable = ListUtility.createArrayList();
 				//Process the started row index 
-				rowIndexKey = iter.getSheetName() + DataBucket.PARAM_STARTED_ROW_INDEX;
+				rowIndexKey = iter.getSheetName() + BucketContainer.PARAM_STARTED_ROW_INDEX;
 				if (null != configParams && configParams.containsKey(rowIndexKey)){
 					startedRowIndex = (Integer)configParams.get(rowIndexKey);
 				}
@@ -302,8 +302,8 @@ public class SpreadsheetXSSFEventBasedExtractor {
 		return dataBucket;
 	}
 
-	public DataBucket parseXlsxData() throws InvalidOperationException, IOException, OpenXML4JException, SAXException{
-		DataBucket dataBucket = DataBucket.getInstance();
+	public BucketContainer parseXlsxData() throws InvalidOperationException, IOException, OpenXML4JException, SAXException{
+		BucketContainer dataBucket = BucketContainer.instance();
 		ReadOnlySharedStringsTable strings = new ReadOnlySharedStringsTable(this.xlsxPackage);
 		XSSFReader xssfReader = new XSSFReader(this.xlsxPackage);
 		StylesTable styles = xssfReader.getStylesTable();
