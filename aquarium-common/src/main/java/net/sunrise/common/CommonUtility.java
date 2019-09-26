@@ -40,6 +40,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+import java.util.zip.ZipInputStream;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.PropertyUtils;
@@ -1235,6 +1236,31 @@ public class CommonUtility implements CommonConstants {
 		return resp;
 	}
 
+	/*
+	public static List<InputStream> getZipFileInputStreams(File file, String encryptionKey) throws EcosysException {
+		List<InputStream> resp = ListUtility.createArrayList();
+		ZipFile zipFile;
+		try {
+			ZipDecryptInputStream zipDecryptInputStream = new ZipDecryptInputStream(new FileInputStream(file), encryptionKey);
+			ZipInputStream zipInputStream = new ZipInputStream(zipDecryptInputStream);
+			ZipEntry zipEntry = null;
+			while ((zipEntry = zipInputStream.getNextEntry()) != null) {
+			}
+			
+			zipFile = new ZipFile(file);
+			Enumeration<? extends ZipEntry> zipEntries = zipFile.entries();
+			while (zipEntries.hasMoreElements()) {
+				zipEntry = (ZipEntry) zipEntries.nextElement();
+				resp.add(buildInputStream(zipFile.getInputStream(zipEntry)));
+			}
+			zipFile.close();
+		} catch (IOException e) {
+			throw new EcosysException(e);
+		}
+		return resp;
+	}
+	*/
+
 	public static List<InputStream> extractZipFile(File zipFile, List<String> zipEntryNames) throws EcosysException {
 		List<InputStream> resp = ListUtility.createArrayList();
 		ZipFile innerZipFile = null;
@@ -1352,7 +1378,7 @@ public class CommonUtility implements CommonConstants {
 	}
 
 	public static void main(String[] args){
-		String fileName = "C:\\Users\\ducbq\\Downloads\\data_sheets.zip";
+		String fileName = "d:/development_data/development_data.zip";//"C:\\Users\\ducbq\\Downloads\\data_sheets.zip";
 		File zipFile = new File(/*
 														 * "D:\\opt\\oss\\aquarium\\aquarium-admin\\src\\main\\resources\\config\\data\\data-catalogues.zip"
 														 */

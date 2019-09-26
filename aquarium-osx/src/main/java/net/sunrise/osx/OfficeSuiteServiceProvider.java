@@ -137,19 +137,29 @@ public class OfficeSuiteServiceProvider {
 		return bucketContainer;
 	}
 
+	protected void buildStockData() {
+		
+	}
+
 	public static void main(String[] args) throws Exception {
 		String encryptKey = "thanhcong";
 		Map<String, Object> params = ListUtility.createMap();
 		
-		Map<String, String> secretKeyMap = ListUtility.createMap("4.000 CHU DOANH NGHIEP HANOI.xlsx", "thanhcong1", "Mobifone tra sau Ha Noi -36890.xlsx", "thanhcongbqduc", "Danh bạ toàn hệ thống Ngân hàng Vietinbank_Khoảng 14.000.xlsx", "thanhcong");
+		Map<String, String> secretKeyMap = ListUtility.createMap("Mobifone_36890.xlsx", "thanhcongbqduc", "Vietbank_14.000.xlsx", "thanhcong");
 		Map<String, List<String>> sheetIdMap = ListUtility.createMap();
-		sheetIdMap.put("4.000 CHU DOANH NGHIEP HANOI.xlsx", ListUtility.arraysAsList(new String[] {"LIST1", "LIST2", "LIST3", "LIST4"}));
-		sheetIdMap.put("Mobifone tra sau Ha Noi -36890.xlsx", ListUtility.arraysAsList(new String[] {"Mobifone", "Viettel"}));
-		sheetIdMap.put("Danh bạ toàn hệ thống Ngân hàng Vietinbank_Khoảng 14.000.xlsx", ListUtility.arraysAsList(new String[] {"File Tổng hợp", "Các trưởng phó phòng", "9"}));
-		String zipFileName = "C:/Users/ducbq/Downloads/data_sheets/data_sheets.zip";
+		sheetIdMap.put("Bieu thue XNK 2019.07.11.xlsx", ListUtility.arraysAsList(new String[] {"BIEU THUE 2019"}));
+		sheetIdMap.put("Mobifone_36890.xlsx", ListUtility.arraysAsList(new String[] {"Mobifone", "Viettel"}));
+		sheetIdMap.put("Vietbank_14.000.xlsx", ListUtility.arraysAsList(new String[] {"File Tổng hợp", "Các trưởng phó phòng", "9"}));
+		sheetIdMap.put("Danh sách các tài liệu.xlsx", ListUtility.arraysAsList(new String[] {"Ebook (Sách điện tử)"}));
+		
+		String zipFileName = "D:/development_data/data_sheets.zip";
 		params.put(BucketContainer.PARAM_COMPRESSED_FILE, new File(zipFileName));
 		params.put(BucketContainer.PARAM_ENCRYPTION_KEY, secretKeyMap);
-		params.put(BucketContainer.PARAM_ZIP_ENTRY, ListUtility.arraysAsList(new String[] {"4.000 CHU DOANH NGHIEP HANOI.xlsx", "Mobifone tra sau Ha Noi -36890.xlsx", "Danh bạ toàn hệ thống Ngân hàng Vietinbank_Khoảng 14.000.xlsx"}));
+		params.put(BucketContainer.PARAM_ZIP_ENTRY, ListUtility.arraysAsList(new String[] {
+				"Bieu thue XNK 2019.07.11.xlsx", 
+				"Danh sách các tài liệu.xlsx", 
+				"Mobifone_36890.xlsx", 
+				"Vietbank_14.000.xlsx"}));
 		params.put(BucketContainer.PARAM_EXCEL_MARSHALLING_TYPE, OfficeMarshalType.STREAMING);
 		params.put(BucketContainer.PARAM_DATA_SHEET_IDS, sheetIdMap);
 		BucketContainer bucketContainer = OfficeSuiteServiceProvider
@@ -223,7 +233,7 @@ public class OfficeSuiteServiceProvider {
 			for (List<?> dataRow :worksheetContainer.getValues()) {
 				System.out.println(dataRow);
 			}
-			System.out.println("==========================================================");
+			System.out.println("============================DONE==============================");
 		}
 	}
 }
