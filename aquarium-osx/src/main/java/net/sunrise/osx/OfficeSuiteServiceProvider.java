@@ -17,7 +17,6 @@ import lombok.Builder;
 import net.sunrise.common.CommonUtility;
 import net.sunrise.common.ListUtility;
 import net.sunrise.exceptions.EcosysException;
-import net.sunrise.osx.engine.SpreadsheetXSSFEventBasedExtractor;
 import net.sunrise.osx.engine.XSSFEventDataHelper;
 import net.sunrise.osx.model.BucketContainer;
 import net.sunrise.osx.model.OfficeDocumentType;
@@ -46,23 +45,6 @@ public class OfficeSuiteServiceProvider {
 		}
 		return excelSheetType;
   }
-
-	protected BucketContainer readXlsxData(Map<Object, Object> params) throws EcosysException {
-		BucketContainer bucket = null;
-		String[] sheetNames = null;
-		InputStream inputStream = null;
-		if (CommonUtility.isEmpty(params))
-			throw new EcosysException("The map of parameters is empty. ");
-
-		try {
-			inputStream = (InputStream) params.get(BucketContainer.PARAM_INPUT_STREAM);
-			sheetNames = (String[]) params.get(BucketContainer.PARAM_DATA_SHEET_IDS);
-			bucket = SpreadsheetXSSFEventBasedExtractor.getInstance(inputStream).extractData(sheetNames, params);
-		} catch (Exception e) {
-			throw new EcosysException("Extract spreadsheet data error. ", e);
-		}
-		return bucket;
-	}
 
 	protected WorkbookContainer readXlsxByEventHandler(final Map<?, ?> params) throws EcosysException {
 		return XSSFEventDataHelper
@@ -152,7 +134,7 @@ public class OfficeSuiteServiceProvider {
 		sheetIdMap.put("Vietbank_14.000.xlsx", ListUtility.arraysAsList(new String[] {"File Tổng hợp", "Các trưởng phó phòng", "9"}));
 		sheetIdMap.put("Danh sách các tài liệu.xlsx", ListUtility.arraysAsList(new String[] {"Ebook (Sách điện tử)"}));
 		
-		String zipFileName = "D:/development_data/data_sheets.zip";
+		String zipFileName = "D:/git/aquarium/aquarium-admin/src/main/resources/config/data/develop_data.zip";
 		params.put(BucketContainer.PARAM_COMPRESSED_FILE, new File(zipFileName));
 		params.put(BucketContainer.PARAM_ENCRYPTION_KEY, secretKeyMap);
 		params.put(BucketContainer.PARAM_ZIP_ENTRY, ListUtility.arraysAsList(new String[] {
