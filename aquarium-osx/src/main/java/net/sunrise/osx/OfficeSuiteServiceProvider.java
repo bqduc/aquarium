@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.poi.poifs.filesystem.FileMagic;
+import org.springframework.stereotype.Component;
 
 import lombok.Builder;
 import net.sunrise.common.CommonUtility;
@@ -19,15 +20,16 @@ import net.sunrise.common.ListUtility;
 import net.sunrise.exceptions.EcosysException;
 import net.sunrise.osx.engine.XSSFEventDataHelper;
 import net.sunrise.osx.model.BucketContainer;
+import net.sunrise.osx.model.DataWorkbook;
+import net.sunrise.osx.model.DataWorksheet;
 import net.sunrise.osx.model.OfficeDocumentType;
 import net.sunrise.osx.model.OfficeMarshalType;
-import net.sunrise.osx.model.WorkbookContainer;
-import net.sunrise.osx.model.WorksheetContainer;
 
 /**
  * @author bqduc
  *
  */
+@Component
 @Builder
 public class OfficeSuiteServiceProvider {
 	protected OfficeDocumentType detectOfficeDocumentType(InputStream inputStream) throws EcosysException {
@@ -46,20 +48,20 @@ public class OfficeSuiteServiceProvider {
 		return excelSheetType;
   }
 
-	protected WorkbookContainer readXlsxByEventHandler(final Map<?, ?> params) throws EcosysException {
+	protected DataWorkbook readXlsxByEventHandler(final Map<?, ?> params) throws EcosysException {
 		return XSSFEventDataHelper
 				.instance(params)
 				.readXlsx();
 	}
 	
-	protected WorkbookContainer readXlsxByStreaming(final Map<?, ?> params) throws EcosysException {
+	protected DataWorkbook readXlsxByStreaming(final Map<?, ?> params) throws EcosysException {
 		return OfficeStreamingReaderHealper
 				.builder().build()
 				.readXlsx(params);
 	}
 
-	public WorkbookContainer readExcelFile(final Map<?, ?> parameters) throws EcosysException {
-		WorkbookContainer workbookContainer = null;
+	public DataWorkbook readExcelFile(final Map<?, ?> parameters) throws EcosysException {
+		DataWorkbook workbookContainer = null;
 		OfficeMarshalType officeMarshalType = OfficeMarshalType.STREAMING;
 		if (parameters.containsKey(BucketContainer.PARAM_EXCEL_MARSHALLING_TYPE)) {
 			officeMarshalType = (OfficeMarshalType)parameters.get(BucketContainer.PARAM_EXCEL_MARSHALLING_TYPE);
@@ -81,7 +83,7 @@ public class OfficeSuiteServiceProvider {
 		Map<String, InputStream> zipInputStreams = null;
 		Map<String, Object> processingParameters = ListUtility.createMap();
 		OfficeDocumentType officeDocumentType = OfficeDocumentType.INVALID;
-		WorkbookContainer workbookContainer = null;
+		DataWorkbook workbookContainer = null;
 		InputStream zipInputStream = null;
 		Map<String, List<String>> sheetIdsMap = null;
 		List<String> worksheetIds = null;
@@ -119,39 +121,58 @@ public class OfficeSuiteServiceProvider {
 		return bucketContainer;
 	}
 
-	protected void buildStockData() {
-		
+	public void loadDefaultConfigureData(final File sourceZipFile) throws EcosysException {
+		try {
+			Map<String, Object> params = ListUtility.createMap();
+			
+			Map<String, String> secretKeyMap = ListUtility.createMap("Vietbank_14.000.xlsx", "thanhcong");
+			Map<String, List<String>> sheetIdMap = ListUtility.createMap();
+			sheetIdMap.put("Bieu thue XNK 2019.07.11.xlsx", ListUtility.arraysAsList(new String[] {"BIEU THUE 2019"}));
+			sheetIdMap.put("Vietbank_14.000.xlsx", ListUtility.arraysAsList(new String[] {"File Tổng hợp", "Các trưởng phó phòng", "9"}));
+			
+			params.put(BucketContainer.PARAM_COMPRESSED_FILE, sourceZipFile);
+			params.put(BucketContainer.PARAM_ENCRYPTION_KEY, secretKeyMap);
+			params.put(BucketContainer.PARAM_ZIP_ENTRY, ListUtility.arraysAsList(new String[] {"Bieu thue XNK 2019.07.11.xlsx", "Final_PL5_Thuoc tan duoc.xlsx", "Vietbank_14.000.xlsx", "data-catalog.xlsx"}));
+			params.put(BucketContainer.PARAM_EXCEL_MARSHALLING_TYPE, OfficeMarshalType.STREAMING);
+			params.put(BucketContainer.PARAM_DATA_SHEET_IDS, sheetIdMap);
+			BucketContainer bucketContainer = OfficeSuiteServiceProvider
+					.builder()
+					.build()
+					.readOfficeDataInZip(params);
+			DataWorkbook workbookContainer = null;
+			Set<Object> keys = bucketContainer.getKeys();
+			for (Object key :keys) {
+				workbookContainer = (DataWorkbook)bucketContainer.get(key);
+				displayWorkbookContainer(workbookContainer);
+			}
+		} catch (Exception e) {
+			throw new EcosysException(e);
+		}
 	}
 
 	public static void main(String[] args) throws Exception {
 		String encryptKey = "thanhcong";
 		Map<String, Object> params = ListUtility.createMap();
 		
-		Map<String, String> secretKeyMap = ListUtility.createMap("Mobifone_36890.xlsx", "thanhcongbqduc", "Vietbank_14.000.xlsx", "thanhcong");
+		Map<String, String> secretKeyMap = ListUtility.createMap("Vietbank_14.000.xlsx", "thanhcong");
 		Map<String, List<String>> sheetIdMap = ListUtility.createMap();
 		sheetIdMap.put("Bieu thue XNK 2019.07.11.xlsx", ListUtility.arraysAsList(new String[] {"BIEU THUE 2019"}));
-		sheetIdMap.put("Mobifone_36890.xlsx", ListUtility.arraysAsList(new String[] {"Mobifone", "Viettel"}));
 		sheetIdMap.put("Vietbank_14.000.xlsx", ListUtility.arraysAsList(new String[] {"File Tổng hợp", "Các trưởng phó phòng", "9"}));
-		sheetIdMap.put("Danh sách các tài liệu.xlsx", ListUtility.arraysAsList(new String[] {"Ebook (Sách điện tử)"}));
 		
 		String zipFileName = "D:/git/aquarium/aquarium-admin/src/main/resources/config/data/develop_data.zip";
 		params.put(BucketContainer.PARAM_COMPRESSED_FILE, new File(zipFileName));
 		params.put(BucketContainer.PARAM_ENCRYPTION_KEY, secretKeyMap);
-		params.put(BucketContainer.PARAM_ZIP_ENTRY, ListUtility.arraysAsList(new String[] {
-				"Bieu thue XNK 2019.07.11.xlsx", 
-				"Danh sách các tài liệu.xlsx", 
-				"Mobifone_36890.xlsx", 
-				"Vietbank_14.000.xlsx"}));
+		params.put(BucketContainer.PARAM_ZIP_ENTRY, ListUtility.arraysAsList(new String[] {"Bieu thue XNK 2019.07.11.xlsx", "Final_PL5_Thuoc tan duoc.xlsx", "Vietbank_14.000.xlsx", "data-catalog.xlsx"}));
 		params.put(BucketContainer.PARAM_EXCEL_MARSHALLING_TYPE, OfficeMarshalType.STREAMING);
 		params.put(BucketContainer.PARAM_DATA_SHEET_IDS, sheetIdMap);
 		BucketContainer bucketContainer = OfficeSuiteServiceProvider
 				.builder()
 				.build()
 				.readOfficeDataInZip(params);
-		WorkbookContainer workbookContainer = null;
+		DataWorkbook workbookContainer = null;
 		Set<Object> keys = bucketContainer.getKeys();
 		for (Object key :keys) {
-			workbookContainer = (WorkbookContainer)bucketContainer.get(key);
+			workbookContainer = (DataWorkbook)bucketContainer.get(key);
 			//System.out.println(workbookContainer.getValues().size());
 			displayWorkbookContainer(workbookContainer);
 		}
@@ -171,7 +192,7 @@ public class OfficeSuiteServiceProvider {
 
 		keys = bucketContainer.getKeys();
 		for (Object key :keys) {
-			workbookContainer = (WorkbookContainer)bucketContainer.get(key);
+			workbookContainer = (DataWorkbook)bucketContainer.get(key);
 			System.out.println(workbookContainer.getValues().size());
 			//displayWorkbookContainer(workbookContainer);
 		}
@@ -187,7 +208,7 @@ public class OfficeSuiteServiceProvider {
 		System.out.println("Streaming: " + duration);
 		workbookContainer = null;
 		for (Object key :bucketContainer.getKeys()) {
-			workbookContainer = (WorkbookContainer)bucketContainer.get(key);
+			workbookContainer = (DataWorkbook)bucketContainer.get(key);
 			System.out.println(workbookContainer.getValues().size());
 			displayWorkbookContainer(workbookContainer);
 		}
@@ -209,13 +230,17 @@ public class OfficeSuiteServiceProvider {
 		*/
 	}
 	
-	protected static void displayWorkbookContainer(WorkbookContainer workbookContainer) {
-		for (WorksheetContainer worksheetContainer :workbookContainer.getValues()) {
+	protected static void displayWorkbookContainer(DataWorkbook workbookContainer) {
+		for (DataWorksheet worksheetContainer :workbookContainer.getValues()) {
 			System.out.println("Sheet: " + worksheetContainer.getId());
 			for (List<?> dataRow :worksheetContainer.getValues()) {
 				System.out.println(dataRow);
 			}
 			System.out.println("============================DONE==============================");
 		}
+	}
+
+	protected static void testReadXlsxDocuments() {
+		
 	}
 }

@@ -34,8 +34,8 @@ import org.xml.sax.XMLReader;
 import net.sunrise.common.ListUtility;
 import net.sunrise.exceptions.EcosysException;
 import net.sunrise.osx.model.BucketContainer;
-import net.sunrise.osx.model.WorkbookContainer;
-import net.sunrise.osx.model.WorksheetContainer;
+import net.sunrise.osx.model.DataWorkbook;
+import net.sunrise.osx.model.DataWorksheet;
 
 /**
  * @author bqduc
@@ -364,7 +364,7 @@ public class XSSFEventDataHelper {
 		return dataBucket;
 	}
 
-	public WorkbookContainer readXlsx() throws EcosysException {
+	public DataWorkbook readXlsx() throws EcosysException {
 		InputStream inputStream = null;
 		String sheetName = null;
 		ReadOnlySharedStringsTable sharedStringTable = null;
@@ -375,11 +375,11 @@ public class XSSFEventDataHelper {
 		List<String> sheetIds = (List<String>)this.parameters.get(BucketContainer.PARAM_DATA_SHEET_IDS);
 		String rowIndexKey = null;
 		Integer startedRowIndex = null;
-		WorksheetContainer worksheetContainer = null;
-		WorkbookContainer workbookContainer = null;
+		DataWorksheet worksheetContainer = null;
+		DataWorkbook workbookContainer = null;
 		List<String> dataRows = null;
 		try {
-			workbookContainer = WorkbookContainer.builder().build();
+			workbookContainer = DataWorkbook.builder().build();
 
 			sharedStringTable = new ReadOnlySharedStringsTable(this.xlsxPackage);
 			xssfReader = new XSSFReader(this.xlsxPackage);
@@ -393,7 +393,7 @@ public class XSSFEventDataHelper {
 					continue;
 
 				sheetName = iter.getSheetName();
-				worksheetContainer = WorksheetContainer.builder()
+				worksheetContainer = DataWorksheet.builder()
 						.id(sheetName)
 						.build();
 

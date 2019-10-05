@@ -3,6 +3,7 @@
  */
 package net.sunrise.common;
 
+import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -1227,7 +1228,7 @@ public class CommonUtility implements CommonConstants {
 			ZipEntry zipEntry = null;
 			while (zipEntries.hasMoreElements()) {
 				zipEntry = (ZipEntry) zipEntries.nextElement();
-				resp.add(buildInputStream(zipFile.getInputStream(zipEntry)));
+				resp.add(cloneInputStream(zipFile.getInputStream(zipEntry)));
 			}
 			zipFile.close();
 		} catch (IOException e) {
@@ -1272,7 +1273,7 @@ public class CommonUtility implements CommonConstants {
 			while (zipEntries.hasMoreElements()) {
 				zipEntry = (ZipEntry) zipEntries.nextElement();
 				if (zipEntryNames.contains(zipEntry.getName())) {
-					resp.add(buildInputStream(innerZipFile.getInputStream(zipEntry)));
+					resp.add(cloneInputStream(innerZipFile.getInputStream(zipEntry)));
 				}
 			}
 		} catch (IOException e) {
@@ -1287,7 +1288,35 @@ public class CommonUtility implements CommonConstants {
 		return resp;
 	}
 
+	public static Map<String, InputStream> extractZipInputStreams(File zipFile) throws EcosysException {
+		Map<String, InputStream> resp = ListUtility.createMap();
+		ZipFile innerZipFile = null;
+		Enumeration<? extends ZipEntry> zipEntries = null;
+		ZipEntry zipEntry = null;
+		try {
+			innerZipFile = new ZipFile(zipFile);
+			zipEntries = innerZipFile.entries();
+			while (zipEntries.hasMoreElements()) {
+				zipEntry = (ZipEntry) zipEntries.nextElement();
+				resp.put(zipEntry.getName(), cloneInputStream(innerZipFile.getInputStream(zipEntry)));
+			}
+		} catch (IOException e) {
+			throw new EcosysException(e);
+		} finally {
+      try {
+      	innerZipFile.close();
+      } catch (Exception e2) {
+      	e2.printStackTrace();
+      }			
+		}
+		return resp;
+	}
+
 	public static Map<String, InputStream> extractZipInputStreams(File zipFile, List<String> zipEntryNames) throws EcosysException {
+		if (isEmpty(zipEntryNames)) {
+			return extractZipInputStreams(zipFile);
+		}
+
 		Map<String, InputStream> resp = ListUtility.createMap();
 		ZipFile innerZipFile = null;
 		Enumeration<? extends ZipEntry> zipEntries = null;
@@ -1298,7 +1327,7 @@ public class CommonUtility implements CommonConstants {
 			while (zipEntries.hasMoreElements()) {
 				zipEntry = (ZipEntry) zipEntries.nextElement();
 				if (zipEntryNames.contains(zipEntry.getName())) {
-					resp.put(zipEntry.getName(), buildInputStream(innerZipFile.getInputStream(zipEntry)));
+					resp.put(zipEntry.getName(), cloneInputStream(innerZipFile.getInputStream(zipEntry)));
 				}
 			}
 		} catch (IOException e) {
@@ -1344,15 +1373,7 @@ public class CommonUtility implements CommonConstants {
 		}
 	}
 
-	public static InputStream buildInputStream(final File file) throws EcosysException {
-		try {
-			return buildInputStream(new FileInputStream(file));
-		} catch (FileNotFoundException e) {
-			throw new EcosysException(e);
-		}
-	}
-
-	protected static InputStream buildInputStream(final InputStream inputStream) throws EcosysException {
+	public static InputStream cloneInputStream(final InputStream inputStream) throws EcosysException {
 		InputStream clonedInputStream = null;
 		ByteArrayOutputStream outputStream = null;
 		byte[] buffer = null;

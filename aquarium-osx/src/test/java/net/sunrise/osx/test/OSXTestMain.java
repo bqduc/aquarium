@@ -10,7 +10,7 @@ import java.util.Map;
 import net.sunrise.common.ListUtility;
 import net.sunrise.osx.OfficeSuiteServiceProvider;
 import net.sunrise.osx.model.BucketContainer;
-import net.sunrise.osx.model.WorkbookContainer;
+import net.sunrise.osx.model.DataWorkbook;
 
 /**
  * @author bqduc
@@ -33,7 +33,7 @@ public class OSXTestMain {
 			params.put(BucketContainer.PARAM_INPUT_STREAM, new FileInputStream(dataSheet));
 			params.put(BucketContainer.PARAM_DATA_SHEET_IDS, sheetIds);
 			params.put(BucketContainer.PARAM_STARTED_ROW_INDEX, new Integer[] {1, 1, 1});
-			WorkbookContainer workbookContainer = OfficeSuiteServiceProvider.builder()
+			DataWorkbook workbookContainer = OfficeSuiteServiceProvider.builder()
 			.build()
 			.readExcelFile(params);
 			List<?> details = null;

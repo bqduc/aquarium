@@ -3,6 +3,7 @@
  */
 package net.sunrise.utility;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -18,5 +19,9 @@ import lombok.Builder;
 public class ClassPathResourceUtility {
 	public InputStream getInputStream(String resource) throws IOException {
 		return 	new ClassPathResource(resource).getInputStream();
+	}
+
+	public File getFile(String resource) throws IOException {
+		return 	new ClassPathResource(resource).getFile();
 	}
 }

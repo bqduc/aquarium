@@ -25,7 +25,7 @@ import net.sunrise.manager.auth.AuthenticationServiceManager;
 import net.sunrise.manager.system.SystemSequenceManager;
 import net.sunrise.osx.OfficeSuiteServiceProvider;
 import net.sunrise.osx.model.BucketContainer;
-import net.sunrise.osx.model.WorkbookContainer;
+import net.sunrise.osx.model.DataWorkbook;
 import net.sunrise.utility.ClassPathResourceUtility;
 
 /**
@@ -114,7 +114,7 @@ public class GlobalDataRepositoryManager extends BaseComponent {
 		log.info("Start to parse Excel data");
 		Map<Object, Object> params = ListUtility.createMap();
 		String[] sheetIds = new String[]{"languages", "items", "localized-items"}; 
-		WorkbookContainer workbookContainer = null;
+		DataWorkbook workbookContainer = null;
 		try {
 			params.put(BucketContainer.PARAM_INPUT_STREAM, ClassPathResourceUtility.builder().build().getInputStream("config/data/data-catalog.xlsx"));
 			params.put(BucketContainer.PARAM_DATA_SHEET_IDS, sheetIds);

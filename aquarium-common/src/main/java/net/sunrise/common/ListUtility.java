@@ -40,6 +40,12 @@ public class ListUtility {
 		return (T[])objects.toArray();
 	}
 
+	public static <K, T> HashMap <K, T> cloneMap(Map<K, T> srcMap){
+		HashMap <K, T> clonedMap = createMap();
+		clonedMap.putAll(srcMap);
+		return clonedMap;
+	}
+
 	public static <K, T> Map <K, T> createMap(Object ...keyValuePairs){
 		Map<K, T> retMap = new HashMap<>();
 		for (int i = 0; i < keyValuePairs.length; i+= 2) {

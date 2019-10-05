@@ -3,6 +3,7 @@
  */
 package net.sunrise.osx;
 
+import java.io.File;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
@@ -16,11 +17,13 @@ import org.apache.poi.ss.usermodel.Workbook;
 import com.monitorjbl.xlsx.StreamingReader;
 
 import lombok.Builder;
+import net.sunrise.common.CommonUtility;
 import net.sunrise.common.ListUtility;
 import net.sunrise.exceptions.EcosysException;
 import net.sunrise.osx.model.BucketContainer;
-import net.sunrise.osx.model.WorkbookContainer;
-import net.sunrise.osx.model.WorksheetContainer;
+import net.sunrise.osx.model.DataWorkbook;
+import net.sunrise.osx.model.DataWorksheet;
+import net.sunrise.osx.model.OfficeDataPackage;
 
 /**
  * @author ducbq
@@ -28,18 +31,43 @@ import net.sunrise.osx.model.WorksheetContainer;
  */
 @Builder
 public class OfficeStreamingReaderHealper {
+	/**
+	 * 
+	 */
+	public OfficeDataPackage readXlsxDocuments(Map<?, ?> parameters) throws EcosysException {
+		if (parameters.containsKey(BucketContainer.PARAM_COMPRESSED_FILE)) {
+			throw new EcosysException("There is no zip file in parameters!!");
+		}
 
-	public WorkbookContainer readXlsx(Map<?, ?> parameters) throws EcosysException {
+		OfficeDataPackage result = OfficeDataPackage.builder().build();
+		Map<Object, Object> clonedParameters = (Map<Object, Object>) ListUtility.cloneMap(parameters);
+		DataWorkbook dataWorkbook = null;
+		InputStream zipInputStream = null;
+		File compressedFile = (File)parameters.get(BucketContainer.PARAM_COMPRESSED_FILE);
+		Map<String, InputStream> inputStreamMap = CommonUtility.extractZipInputStreams(compressedFile);
+		for (String zipEntry :inputStreamMap.keySet()) {
+			zipInputStream = inputStreamMap.get(zipEntry);
+			clonedParameters.put(BucketContainer.PARAM_INPUT_STREAM, zipInputStream);
+			dataWorkbook = readXlsx(clonedParameters);
+			if (null != dataWorkbook) {
+				result.put(zipEntry, dataWorkbook);
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * 
+	 */
+	public DataWorkbook readXlsx(Map<?, ?> parameters) throws EcosysException {
 		InputStream inputStream = null;
 		Workbook workbook = null;
 
-		List<String> sheetIds = null;
-		WorksheetContainer worksheet = null;
-		WorkbookContainer workbookContainer = WorkbookContainer.builder().build();
+		DataWorksheet worksheet = null;
+		DataWorkbook dataWorkbook = DataWorkbook.builder().build();
 		List<Object> dataRow = null;
 		try {
 			inputStream = (InputStream)parameters.get(BucketContainer.PARAM_INPUT_STREAM);
-			sheetIds = (List<String>)parameters.get(BucketContainer.PARAM_DATA_SHEET_IDS);
 			if (parameters.containsKey(BucketContainer.PARAM_ENCRYPTION_KEY)) {
 				workbook = StreamingReader.builder()
 						.rowCacheSize(100)
@@ -54,10 +82,10 @@ public class OfficeStreamingReaderHealper {
 			}
 
 			for (Sheet sheet : workbook) {
-				if (!sheetIds.contains(sheet.getSheetName()))
+				if (!isValidSheet(sheet, parameters))
 					continue;
 
-				worksheet = WorksheetContainer.builder()
+				worksheet = DataWorksheet.builder()
 						.id(sheet.getSheetName())
 						.build();
 				for (Row currentRow : sheet) {
@@ -77,11 +105,22 @@ public class OfficeStreamingReaderHealper {
 					}
 					worksheet.addDataRows(Integer.valueOf(currentRow.getRowNum()), dataRow);
 				}
-				workbookContainer.put(worksheet.getId(), worksheet);
+				dataWorkbook.put(worksheet.getId(), worksheet);
 			}
 		} catch (Exception e) {
 			throw new EcosysException(e);
 		}
-		return workbookContainer;
+		return dataWorkbook;
+	}
+
+	/**
+	 * True if no sheet id list otherwise check matched sheet id
+	 */
+	private boolean isValidSheet(Sheet sheet, Map<?, ?> parameters) {
+		if (!parameters.containsKey(BucketContainer.PARAM_DATA_SHEET_IDS) || CommonUtility.isEmpty(parameters.get(BucketContainer.PARAM_DATA_SHEET_IDS)))
+			return true;
+
+		List<String> sheetIds = (List<String>)parameters.get(BucketContainer.PARAM_DATA_SHEET_IDS);
+		return sheetIds.contains(sheet.getSheetName());
 	}
 }

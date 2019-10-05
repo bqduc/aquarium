@@ -36,6 +36,7 @@ import net.sunrise.helper.GlobalDataServiceHelper;
 import net.sunrise.manager.ConfigurationServicesHelper;
 import net.sunrise.manager.catalog.CatalogRegistryServiceHelper;
 import net.sunrise.model.Bucket;
+import net.sunrise.osx.OfficeSuiteServiceProvider;
 import net.sunrise.service.api.contact.ContactService;
 import net.sunrise.service.api.invt.ItemService;
 import net.sunrise.service.api.invt.LanguageService;
@@ -86,7 +87,10 @@ public class DataAdminController extends BaseController {
 
   @Inject 
 	private GlobalDataRepositoryManager globalDataRepositoryManager;
-  
+
+  @Inject
+	private OfficeSuiteServiceProvider officeSuiteServiceProvider;
+
   @Override
 	protected String performSearch(SearchParameter params) {
 		// TODO Auto-generated method stub

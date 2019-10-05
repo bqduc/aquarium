@@ -83,12 +83,7 @@ import net.sunrise.manager.mail.freemarker.FreeMarkerEmailConfiguration;
 		// SecurityConfig.class,
 		ThymeleafMailConfig.class, FreeMarkerEmailConfiguration.class })
 @EnableAsync
-public class WebApplicationStarter
-		implements WebMvcConfigurer /* extends SpringBootServletInitializer */ /* WebMvcConfigurerAdapter */ {
-	/*
-	 * @Inject private CategoryManager categoryService;
-	 */
-
+public class WebApplicationStarter implements WebMvcConfigurer {
 	/**
 	 * Entry point of the application
 	 * 
