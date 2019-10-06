@@ -15,19 +15,13 @@
 */
 package net.sunrise.config;
 
-import java.security.AuthProvider;
-import java.util.Arrays;
-
 import javax.inject.Inject;
 import javax.inject.Provider;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -51,14 +45,14 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Inject
 	private Provider<UserDetailsService> userDetailsServiceProvider;
 
-  @Inject
-  private CustomLoginSuccessfulHandler loginSuccessfulHandler;
+	@Inject
+	private CustomLoginSuccessfulHandler loginSuccessfulHandler;
 
-  @Inject
-  private CustomLoginFailureHandler loginFailureHandler;
+	@Inject
+	private CustomLoginFailureHandler loginFailureHandler;
 
-  @Inject
-  private PasswordEncoder passwordEncoder;
+	@Inject
+	private PasswordEncoder passwordEncoder;
 
 	/**
 	 * Inject a global parent for Spring Authentication Manager.
@@ -172,11 +166,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
   @Bean
   public CustomBasicAuthenticationEntryPoint getBasicAuthEntryPoint(){
       return new CustomBasicAuthenticationEntryPoint();
-  }
-
-  @Bean
-  public ThreadPoolTaskExecutor taskExecutor() {
-      return new ThreadPoolTaskExecutor();
   }
 
   /*

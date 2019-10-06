@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.extern.slf4j.Slf4j;
+import net.sunrise.asyn.AsyncDataPackageLoader;
 import net.sunrise.asyn.AsyncExtendedDataLoader;
 import net.sunrise.asyn.ImportContactsThread;
 import net.sunrise.asyn.InventoryDataDeployer;
@@ -30,6 +31,7 @@ import net.sunrise.dispatch.GlobalDataRepositoryManager;
 import net.sunrise.domain.entity.config.Language;
 import net.sunrise.domain.entity.config.LocalizedItem;
 import net.sunrise.domain.entity.hc.Employee;
+import net.sunrise.framework.asyn.Asynchronous;
 import net.sunrise.framework.model.ExecutionContext;
 import net.sunrise.framework.model.SearchParameter;
 import net.sunrise.helper.GlobalDataServiceHelper;
@@ -43,7 +45,6 @@ import net.sunrise.service.api.invt.LanguageService;
 
 /**
  * @author bqduc
- *
  */
 @Slf4j
 @Controller
@@ -53,7 +54,6 @@ public class DataAdminController extends BaseController {
 	 * 
 	 */
 	private static final long serialVersionUID = 6037064426276941676L;
-	private static boolean isDeploying = false;
 
 	@Inject
 	private GlobalDataLoadingManager globalDataLoadingManager;
@@ -70,28 +70,27 @@ public class DataAdminController extends BaseController {
 	@Inject
 	private LanguageService languageService;
 
-	@Inject 
+	@Inject
 	private InventoryDataDeployer inventoryDataDeployer;
 
-	@Inject 
+	@Inject
 	private ContactService contactService;
 
-	@Inject 
-	private TaskExecutor taskExecutor;
-	
-  @Inject 
-  private ApplicationContext applicationContext;
+	@Inject
+	private TaskExecutor asyncExecutor;
 
-  @Inject 
+	@Inject
+	private ApplicationContext applicationContext;
+
+	@Inject
 	private GlobalDataServiceHelper globalDataServiceHelper;
 
-  @Inject 
+	@Inject
 	private GlobalDataRepositoryManager globalDataRepositoryManager;
 
-  @Inject
-	private OfficeSuiteServiceProvider officeSuiteServiceProvider;
+	private static Map<String, Object> executorMap = ListUtility.createMap();
 
-  @Override
+	@Override
 	protected String performSearch(SearchParameter params) {
 		// TODO Auto-generated method stub
 		return null;
@@ -153,8 +152,9 @@ public class DataAdminController extends BaseController {
 		log.info("Elog.ploy data.");
 		Bucket bucket = null;
 		try {
-			//bucket = super.doLoadExternalData("/config/data/salesman.xlsx", new String[]{"contact-data"}, new int[]{2});
-			bucket = super.doLoadExternalData("/config/data/contact-data.xlsx", new String[]{"contact-data"}, new int[]{2});
+			// bucket = super.doLoadExternalData("/config/data/salesman.xlsx", new String[]{"contact-data"}, new int[]{2});
+			bucket = super.doLoadExternalData("/config/data/contact-data.xlsx", new String[] { "contact-data" },
+					new int[] { 2 });
 			displayData(bucket);
 		} catch (Exception e) {
 			log.error(e.getMessage());
@@ -165,27 +165,25 @@ public class DataAdminController extends BaseController {
 	@GetMapping("/deployContactData")
 	public String deployContactData(Model model, HttpServletRequest request) {
 		log.info("Elog.ploy data.");
-		Bucket bucket = null; 
+		Bucket bucket = null;
 		/*
 		if (true==isDeploying)
 			return "pages/system/dataAdminBrowse";
 		*/
 
 		try {
-			isDeploying = true;
-
-			ExecutionContext executionContext = ExecutionContext.builder()
-					.build();
+			ExecutionContext executionContext = ExecutionContext.builder().build();
 			executionContext.putContextData("sourceStream", "/config/liquibase/data/online_resources.xlsx");
-			executionContext.putContextData("sheetIds", new String[]{"contact-data"});
+			executionContext.putContextData("sheetIds", new String[] { "contact-data" });
 			executionContext.putContextData("sheetId", "contact-data");
-			executionContext.putContextData("startIndexes", new int[]{2});
+			executionContext.putContextData("startIndexes", new int[] { 2 });
 			executionContext.putContextData("contactService", contactService);
 			executionContext.putContextData("globalDataServiceHelper", globalDataServiceHelper);
-			ImportContactsThread importContactsThread = applicationContext.getBean(ImportContactsThread.class, executionContext);
-			taskExecutor.execute(importContactsThread);
+			ImportContactsThread importContactsThread = applicationContext.getBean(ImportContactsThread.class,
+					executionContext);
+			asyncExecutor.execute(importContactsThread);
 
-			//bucket = super.doLoadExternalData("/config/data/salesman.xlsx", new String[]{"contact-data"}, new int[]{2});
+			// bucket = super.doLoadExternalData("/config/data/salesman.xlsx", new String[]{"contact-data"}, new int[]{2});
 			/*
 			long started = System.currentTimeMillis();
 			bucket = super.doLoadExternalData("/config/liquibase/data/online_resources.xlsx", new String[]{"contact-data"}, new int[]{2});
@@ -193,8 +191,7 @@ public class DataAdminController extends BaseController {
 			System.out.println("Duration: " + duration);
 			contactService.deployContacts((List<List<String>>)bucket.get("contact-data"));
 			*/
-			isDeploying = false;
-			//displayData(bucket);
+			// displayData(bucket);
 		} catch (Exception e) {
 			log.error(e.getMessage());
 		}
@@ -204,31 +201,68 @@ public class DataAdminController extends BaseController {
 	@GetMapping("/loadingExtendedData")
 	public String loadingExtendedData(Model model, HttpServletRequest request) {
 		log.info("Enter DataAdminController::loadingExtendedData.");
-		try {
-			ExecutionContext executionContext  = ExecutionContext.builder()
-					.build()
-					.context("AA", "xx")
-					.context("DD", "ss");
-			AsyncExtendedDataLoader asyncExtendedDataLoader = applicationContext.getBean(AsyncExtendedDataLoader.class, executionContext);
-			this.taskExecutor.execute(asyncExtendedDataLoader);
-		} catch (Exception e) {
-			log.error(e.getMessage());
-		}
+		loadingAsyncData();
 		log.info("Leave DataAdminController::loadingExtendedData.");
 		return "pages/system/dataAdminBrowse";
 	}
 
-	protected void doListLocalizedItems(){
+	@GetMapping("/stopLoadingExtendedData")
+	public String stopLoadingExtendedData(Model model, HttpServletRequest request) {
+		log.info("Enter DataAdminController::loadingExtendedData.");
+		stopLoadingAsyncData();
+		log.info("Leave DataAdminController::loadingExtendedData.");
+		return "pages/system/dataAdminBrowse";
+	}
+
+	protected void loadingAsyncData() {
+		ExecutionContext executionContext = null;
+		Asynchronous asyncExtendedDataLoader = null;
+		Asynchronous asyncDataPackageLoader = null;
+		try {
+			executionContext = ExecutionContext.builder().build().context("AA", "xx").context("DD", "ss");
+
+			asyncExtendedDataLoader = applicationContext.getBean(AsyncExtendedDataLoader.class, executionContext);
+			this.asyncExecutor.execute(asyncExtendedDataLoader);
+
+			asyncDataPackageLoader = applicationContext.getBean(AsyncDataPackageLoader.class, executionContext);
+			this.asyncExecutor.execute(asyncDataPackageLoader);
+
+			executorMap.put("asyncExtendedDataLoader", asyncExtendedDataLoader);
+			executorMap.put("asyncDataPackageLoader", asyncDataPackageLoader);
+		} catch (Exception e) {
+			log.error(e.getMessage());
+		}
+	}
+
+	protected void stopLoadingAsyncData() {
+		Asynchronous asyncExtendedDataLoader = null;
+		Asynchronous asyncDataPackageLoader = null;
+		try {
+			asyncExtendedDataLoader = (Asynchronous)executorMap.get("asyncExtendedDataLoader");
+			if (null != asyncExtendedDataLoader && !asyncExtendedDataLoader.isInterrupted()) {
+				asyncExtendedDataLoader.setRunning(false);
+			}
+
+			asyncDataPackageLoader = (Asynchronous)executorMap.get("asyncDataPackageLoader");
+			if (null != asyncDataPackageLoader && !asyncDataPackageLoader.isInterrupted()) {
+				asyncDataPackageLoader.setRunning(false);
+			}
+		} catch (Exception e) {
+			log.error(e.getMessage());
+		}
+	}
+
+	protected void doListLocalizedItems() {
 		Language language = languageService.getByCode("en");
 		List<LocalizedItem> localizedItems = itemService.getLocalizedItems("CASE_STATUS", language);
 		System.out.println(localizedItems);
 	}
 
-	private void displayData(Bucket bucket){
+	private void displayData(Bucket bucket) {
 		List<List<String>> dataEntries = null;
 		Map<Object, Object> dataMap = bucket.getBucketData();
-		for (Object key :dataMap.keySet()){
-			dataEntries = (List<List<String>>)dataMap.get(key);
+		for (Object key : dataMap.keySet()) {
+			dataEntries = (List<List<String>>) dataMap.get(key);
 			System.out.println(dataEntries);
 		}
 

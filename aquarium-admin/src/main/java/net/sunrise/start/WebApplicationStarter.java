@@ -74,6 +74,7 @@ import net.sunrise.manager.mail.freemarker.FreeMarkerEmailConfiguration;
 @SpringBootApplication(/* scanBasePackageClasses = { Controllers.class, Services.class } */)
 @EnableConfigurationProperties({ MailProperties.class })
 @EnableAspectJAutoProxy
+@EnableAsync
 @Import(value = { 
 		BaseConfiguration.class, 
 		JpaAuditingConfig.class, 
@@ -81,8 +82,8 @@ import net.sunrise.manager.mail.freemarker.FreeMarkerEmailConfiguration;
 		AspectConfig.class,
 		WebSecurityConfiguration.class,
 		// SecurityConfig.class,
-		ThymeleafMailConfig.class, FreeMarkerEmailConfiguration.class })
-@EnableAsync
+		ThymeleafMailConfig.class, 
+		FreeMarkerEmailConfiguration.class })
 public class WebApplicationStarter implements WebMvcConfigurer {
 	/**
 	 * Entry point of the application

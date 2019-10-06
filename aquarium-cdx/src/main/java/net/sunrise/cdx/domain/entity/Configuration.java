@@ -4,6 +4,7 @@
 package net.sunrise.cdx.domain.entity;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -14,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Builder;
+import net.sunrise.common.CommonUtility;
 import net.sunrise.framework.entity.BizObjectBase;
 
 /**
@@ -99,6 +101,14 @@ public class Configuration extends BizObjectBase {
 
 	public Configuration setConfigurationDetails(Set<ConfigurationDetail> configurationDetails) {
 		this.configurationDetails = configurationDetails;
+		return this;
+	}
+
+	public Configuration addConfigurationDetails(List<ConfigurationDetail> configurationDetails) {
+		if (CommonUtility.isEmpty(configurationDetails))
+			return this;
+
+		this.configurationDetails.addAll(configurationDetails);
 		return this;
 	}
 

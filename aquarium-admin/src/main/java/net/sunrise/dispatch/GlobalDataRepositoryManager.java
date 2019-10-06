@@ -116,13 +116,13 @@ public class GlobalDataRepositoryManager extends BaseComponent {
 		String[] sheetIds = new String[]{"languages", "items", "localized-items"}; 
 		DataWorkbook workbookContainer = null;
 		try {
-			params.put(BucketContainer.PARAM_INPUT_STREAM, ClassPathResourceUtility.builder().build().getInputStream("config/data/data-catalog.xlsx"));
+			/*params.put(BucketContainer.PARAM_INPUT_STREAM, ClassPathResourceUtility.builder().build().getInputStream("config/data/data-catalog.xlsx"));
 			params.put(BucketContainer.PARAM_DATA_SHEET_IDS, sheetIds);
 			params.put(BucketContainer.PARAM_STARTED_ROW_INDEX, new Integer[] {1, 1, 1});
 			workbookContainer = OfficeSuiteServiceProvider.builder()
 			.build()
 			.readExcelFile(params);
-			System.out.println(workbookContainer);
+			System.out.println(workbookContainer);*/
 		} catch (Exception e) {
 			log.error(e);
 		}

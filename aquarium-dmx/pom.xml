@@ -30,6 +30,12 @@
 				<artifactId>aquarium-cdx</artifactId>
 				<version>${project.version}</version>
 		</dependency>
+
+		<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>aquarium-osx</artifactId>
+				<version>${project.version}</version>
+		</dependency>	
 		<!-- <dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
